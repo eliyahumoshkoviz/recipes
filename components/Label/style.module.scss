@@ -1,10 +1,6 @@
 .label {
   position: relative;
   display: inline-block;
-  transform: none;
-  width: auto;
-  top: auto;
-  left: auto;
   padding: 20px 40px;
   
   svg{
@@ -20,6 +16,8 @@
     color: white;
     position: relative;
     z-index: 5;
+    font-size: 20px;
+  
   }
   
 }
