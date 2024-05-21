@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function Navlink({ children, href }) {
    const path = usePathname()
-   console.log(path);
+
    return (
       <Link
          href={href}
