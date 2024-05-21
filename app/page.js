@@ -7,7 +7,7 @@ export default function Home() {
       <div className={styles.description}>
         <p>
           Get started by  editing&nbsp;
-          <code clasrevert-1-shaulsName={styles.code}>app/page.js</code>
+          <code className={styles.code}>app/page.js</code>
         </p>
         <div>
           <a
