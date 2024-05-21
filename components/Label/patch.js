@@ -1,4 +1,4 @@
-export const Icon = (props = {})=> <svg {...props}  id="strip" data-name="Isolation Mode" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60.44687" preserveAspectRatio="none"><title>strip</title>
+export const Icon = (props = {})=> <svg {...props} id="strip" data-name="Isolation Mode" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60.44687" preserveAspectRatio="none"><title>strip</title>
 		<path d="M11.79691,62.76379a3.23478,3.23478,0,0,0,2.58235.30812A2.74174,2.74174,0,0,0,11.79691,62.76379Z" transform="translate(-5.14466 -3.90299)"></path>
 		<polygon points="9.256 59.18 9.267 59.167 9.235 59.169 9.256 59.18"></polygon>
 		<path d="M199.90569,29.04369a21.90658,21.90658,0,0,0-2.60878-3.80812A30.65428,30.65428,0,0,1,199.90569,29.04369Z" transform="translate(-5.14466 -3.90299)"></path>
