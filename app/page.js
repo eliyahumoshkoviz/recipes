@@ -5,10 +5,10 @@ import Label from "@/components/Label";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Label data={'מנות עיקריות'} color={'green'} />
-
-      <SearchBar />
-      <img src='background.jpg' className={styles.bg} />
+      {/* <Label data={'מנות עיקריות'} color={'green'} /> */}
+      <div className={styles.search}>
+        <SearchBar />
+      </div>
     </main>
 
 

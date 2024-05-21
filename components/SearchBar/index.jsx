@@ -1,6 +1,9 @@
 
 export const SearchBar = () => {
   return (
-    <div>SearchBar</div>
+    <div>
+      
+      <h1>trrtrtrtrtr</h1>
+      </div>
   )
 }
