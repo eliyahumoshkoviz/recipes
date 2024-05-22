@@ -9,7 +9,7 @@ export const SearchBar = () => {
     const handleSearch = e => {
        if (e.target.value) {
             console.log(e.target.value);
-          router.push(`/?search=${e.target.value}`)
+          router.push(`/category/extras?search=${e.target.value}`)
        } else {
            router.push('/')
        }
