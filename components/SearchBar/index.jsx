@@ -1,27 +1,26 @@
 "use client"
+import { useRouter } from 'next/navigation';
 import styles from './style.module.scss';
-import { useRouter } from 'next/router';
 
 export const SearchBar = () => {
 
-    // const router = useRouter()
+    const router = useRouter()
    
     const handleSearch = e => {
        if (e.target.value) {
             console.log(e.target.value);
-        //   router.push(`/airbnb/result?search=${e.target.value}`)
+          router.push(`/?search=${e.target.value}`)
        } else {
-        //    router.push('/')
+           router.push('/')
        }
     }
     return (
-        <form className={styles.container} action="">
+        <div className={styles.container} action="">
             <input
                 className={styles.formInput}
                 type="text"
                 placeholder="חפש מתכונים"
                 name="search"
-                required
                 autoComplete="off"
                 onChange={handleSearch}
             />
@@ -30,6 +29,6 @@ export const SearchBar = () => {
                 alt="Search"
                 className={styles.img}
             />
-        </form>
+        </div>
     );
 };
