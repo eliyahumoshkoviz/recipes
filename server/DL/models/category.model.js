@@ -10,10 +10,7 @@ const categorySchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  recipes: {
-    type: [mongoose.types.ObjectId],
-    require: true,
-  }
+  recipes:  [{type: mongoose.Schema.Types.ObjectId}],
 });
 
 export const CategoryModel =
