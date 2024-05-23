@@ -16,7 +16,7 @@ export default async function Home() {
 
       </div>
       <div className={styles.photoContainer}>
-        {category.map((category, index) => <Navlink key={index} href={`/category/${category.name}`}><Photo data={category} /></Navlink>)}
+        {category.map((category, index) => <Navlink key={index} href={`/category/${category.name}`}><Photo data={category} typeObj={"category"}/></Navlink>)}
       </div>
     </main>
 
