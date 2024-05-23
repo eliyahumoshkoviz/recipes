@@ -6,15 +6,17 @@
     justify-content: space-around;
     align-items: center;
     border-bottom: 3px solid white;
-
+    position: fixed;
+    z-index: 6;
+    
     nav{
         width: 50%;
         display: flex;
         justify-content: space-around;
         gap: 20px;
         font-size: 30px;
-
-
+        
+        
         a{
             text-decoration: none;
         }
@@ -22,4 +24,7 @@
             text-decoration:underline;
         }
     }
+}
+.fixed{
+    height: 70px;
 }
