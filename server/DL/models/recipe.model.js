@@ -8,10 +8,10 @@ const recipeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  ingredients: {
-    type: [String],
+  ingredients: [{
+    type: String,
     required: true,
-  },
+  }],
   typeFood: {
     type: String,
     required: true,
@@ -33,10 +33,10 @@ const recipeSchema = new mongoose.Schema({
     type: Number,
   },
   category:
-  {
-    type: [mongoose.types.ObjectId],
+  [{
+    type: mongoose.Schema.Types.ObjectId,
     require: true,
-  },
+  },]
 
 });
 
