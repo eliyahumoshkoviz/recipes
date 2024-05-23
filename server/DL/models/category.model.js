@@ -10,6 +10,11 @@ const categorySchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  colorLabel: {
+    type: String,
+    require: true,
+  },
+
   recipes:  [{type: mongoose.Schema.Types.ObjectId}],
 });
 

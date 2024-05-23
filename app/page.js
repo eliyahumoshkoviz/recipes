@@ -1,23 +1,22 @@
 import { SearchBar } from "@/components/SearchBar";
 import styles from "./style.module.scss";
-import Label from "@/components/Label";
 import Photo from "@/components/Photo";
+import { connectToMongo } from "@/server/DL/connectToMongo";
+import { readCategorysService } from "@/server/DB/category.service";
 
-export default function Home() {
+export default async function Home() {
+  await connectToMongo();
+  const category = await readCategorysService()
+
   return (
     <main className={styles.main}>
-      <Label data={'מנות עיקריות'} color={'green'} size={'30'} />
       <div className={styles.search}>
         <SearchBar />
 
       </div>
       <div className={styles.photoContainer}>
-        <Photo />
-        <Photo /> 
-        <Photo />
-        <Photo />
-        <Photo />
-        <Photo />
+
+        {category.map((category, index) => <Photo data={category} key={index}/>)}
       </div>
     </main>
 
