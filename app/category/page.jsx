@@ -15,5 +15,7 @@ export default async function Category() {
   //     $or: [{ title: { $regex: search, $options: 'i' } }, { description: { $regex: search, $options: 'i' } }]
   //  })
 
-  return <div></div>;
+  return <div>
+    
+  </div>;
 }

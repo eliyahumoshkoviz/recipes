@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
           {
             
-            hostname: 'www.eatingwell.com',
+            hostname: '*',
            
           },
         ],
