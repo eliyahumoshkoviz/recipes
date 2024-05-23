@@ -13,7 +13,7 @@ export default function Home() {
       </div>
       <div className={styles.photoContainer}>
         <Photo />
-        <Photo />
+        <Photo /> 
         <Photo />
         <Photo />
         <Photo />

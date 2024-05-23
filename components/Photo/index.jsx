@@ -3,7 +3,7 @@ import React from 'react'
 import styles from './style.module.scss'
 import Label from '../Label'
 
-const Photo = () => {
+const Photo = ({image}) => {
  
   return (
     <div className={styles.container}>
