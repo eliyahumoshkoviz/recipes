@@ -14,13 +14,7 @@ export default async function Home() {
       <div className={styles.search}>
         <SearchBar />
 
-      </div>
-      <div className={styles.photoContainer}>
-<<<<<<< HEAD
-        {category.map((category, index) => <Navlink key={index} href={`/category/${category.name}`}><Photo data={category} typeObj={"category"}/></Navlink>)}
-=======
-        {category.map((category, index) => <Navlink key={index} href={`/category/${category.title}`}><Photo data={category} typeObj={"category"}/></Navlink>)}
->>>>>>> 06befd558739c9d22fa7cd27771d33b4e9266aa6
+      </div>      <div className={styles.photoContainer}>        {category.map((category, index) => <Navlink key={index} href={`/category/${category.title}`}><Photo data={category} typeObj={"category"}/></Navlink>)}
       </div>
     </main>
 
