@@ -9,7 +9,7 @@ const Photo = ({ data }) => {
     return (
         <div className={styles.container}>
             <Image src={image} fill />
-            <Label data={name} color={"dark blue"} size={"30"} />
+            <Label data={name} color={colorLabel} size={"30"} />
         </div>
     )
 }
