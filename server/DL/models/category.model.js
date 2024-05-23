@@ -1,27 +1,20 @@
 import mongoose from "mongoose";
 
 const categorySchema = new mongoose.Schema({
-  mainDishes: [{
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: "Recipe",
-    unique: true
-  }],
-  extras: [{
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: "Recipe",
-    unique: true
-  }],
-  desserts: [{
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: "Recipe",
-    unique: true
-  }],
-  cakes: [{
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: "Recipe",
-    unique: true
-  }],
+
+  name: {
+    type: String,
+    require: true,
+  },
+  image: {
+    type: String,
+    require: true,
+  },
+  recipes: {
+    type: [mongoose.types.ObjectId],
+    require: true,
+  }
 });
 
 export const CategoryModel =
-  mongoose.models.Recipe || mongoose.model("Category", categorySchema);
+  mongoose.models.Category || mongoose.model("Category", categorySchema);
