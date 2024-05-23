@@ -4,7 +4,7 @@ import styles from './style.module.scss'
 export default function Header() {
   const links = [
     {text: "מנות עיקריות",
-    link: "/category/main-dishes"
+    link: "/category/{main-dishes}"
     },
     {text: "תוספות",
     link: "/category/extras"
