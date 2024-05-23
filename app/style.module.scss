@@ -9,3 +9,12 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+.photoContainer{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+  padding: 15px;
+}
