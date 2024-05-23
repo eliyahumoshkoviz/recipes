@@ -1,7 +1,7 @@
 import styles from './style.module.scss'
 
-export default function Instructions() {
-    const ingredients = ["בשר", "מלח"];
+export default function Instructions({ingredients, preparationTime, CookingTime, servings, typeFood, instructions}) {
+
     return (
         <div className={styles.container}>
 
@@ -11,7 +11,7 @@ export default function Instructions() {
                         זמן הכנה
                     </h4>
                     <div className={styles.content}>
-                        10 דקות
+                        {preparationTime + " דקות"} 
                     </div>
                 </div>
                 <div className={styles.title}>
@@ -19,7 +19,7 @@ export default function Instructions() {
                         זמן בישול/אפיה
                     </h4>
                     <div className={styles.content}>
-                        30 דקות
+                       {CookingTime + " דקות"}
                     </div>
                 </div>
                 <div className={styles.title}>
@@ -27,7 +27,7 @@ export default function Instructions() {
                         מספר מנות
                     </h4>
                     <div className={styles.content}>
-                        25
+                       {servings}
                     </div>
                 </div>
                 <div className={styles.type}>
@@ -35,7 +35,7 @@ export default function Instructions() {
                         סוג
                     </h4>
                     <div className={styles.content}>
-                        בשרי
+                        {typeFood}
                     </div>
                 </div>
 
@@ -43,9 +43,11 @@ export default function Instructions() {
             <h1> רכיבים</h1>
             {
                 <ul>
-            {ingredients.map(item=><li>{item}</li>)}
+                    {ingredients.map(item => <li>{item}</li>)}
                 </ul>
             }
+            <h1> אופן ההכנה</h1>
+            <p> {instructions} </p>
         </div>
     )
 }
