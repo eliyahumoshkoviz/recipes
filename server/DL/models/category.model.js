@@ -15,7 +15,7 @@ const categorySchema = new mongoose.Schema({
     require: true,
   },
 
-  recipes:  [{type: mongoose.Schema.Types.ObjectId}],
+  recipes:  [{type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'}],
 });
 
 export const CategoryModel =
