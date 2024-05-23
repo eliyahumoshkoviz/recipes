@@ -3,6 +3,7 @@ import styles from "./style.module.scss";
 import Photo from "@/components/Photo";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { readCategorysService } from "@/server/DB/category.service";
+import Navlink from "@/components/NavLink";
 
 export default async function Home() {
   await connectToMongo();
@@ -15,8 +16,7 @@ export default async function Home() {
 
       </div>
       <div className={styles.photoContainer}>
-
-        {category.map((category, index) => <Photo data={category} key={index}/>)}
+        {category.map((category, index) => <Navlink key={index} href={`/category/${category.name}`}><Photo data={category} /></Navlink>)}
       </div>
     </main>
 
