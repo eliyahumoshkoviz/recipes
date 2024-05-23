@@ -17,10 +17,14 @@ export default function Header() {
     },
     ]
   return (
+    <>
     <div className={styles.container}>
       <nav>
         {links.map((item, index)=> <Navlink key={index} href={item.link}>{item.text}</Navlink>)}
        </nav>
     </div>
+    <div className={styles.fixed}>
+    </div>
+    </>
   )
 }
