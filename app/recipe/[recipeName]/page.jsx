@@ -7,7 +7,7 @@ export default async function Recipe() {
   await connectToMongo();
   const id = "664f2c4756a438a251e6cbdf";
   const recipe = await readRecipeByIdService(id);
-  console.log("dgdgdgd " + recipe.image);
+  console.log("dgdgdgd " + recipe);
   const ingredients = recipe.ingredients;
 
   return (

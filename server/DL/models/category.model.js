@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import { RecipeModel } from "./recipe.model";
 const categorySchema = new mongoose.Schema({
 
   title: {
@@ -15,7 +15,7 @@ const categorySchema = new mongoose.Schema({
     require: true,
   },
 
-  recipes:  [{type: mongoose.Schema.Types.ObjectId}],
+  recipes:  [{type: mongoose.Types.ObjectId, ref: 'Recipe'}],
 });
 
 export const CategoryModel =

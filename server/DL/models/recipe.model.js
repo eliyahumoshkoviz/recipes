@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { CategoryModel } from "./category.model";
 
 const recipeSchema = new mongoose.Schema({
   image: {
@@ -35,9 +36,12 @@ const recipeSchema = new mongoose.Schema({
   category:
   [{
     type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
     require: true,
   },]
 
+}, {
+  strictPopulate: false
 });
 
 export const RecipeModel =
