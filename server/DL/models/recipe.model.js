@@ -1,5 +1,10 @@
 import mongoose from "mongoose";
+<<<<<<< HEAD
 import { CategoryModel } from "./category.model";
+=======
+import Category from '../models/category.model';
+ 
+>>>>>>> 7bac08d8dc9cdd66eec6f352f76999dae66cc27b
 
 const recipeSchema = new mongoose.Schema({
   image: {
@@ -36,7 +41,11 @@ const recipeSchema = new mongoose.Schema({
   category:
   [{
     type: mongoose.Schema.Types.ObjectId,
+<<<<<<< HEAD
     ref: "Category",
+=======
+    ref:'Category',
+>>>>>>> 7bac08d8dc9cdd66eec6f352f76999dae66cc27b
     require: true,
   },]
 
