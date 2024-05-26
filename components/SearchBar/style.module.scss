@@ -1,12 +1,19 @@
 
 .container{
-    width: 80%;
+    width: 50%;
    display: flex;
    padding: 12px;
    justify-content: space-between;
    align-items: center;
     border: solid 2px black;
     background-color: #fff;
+    input{
+        border: none;
+    }
+    input:focus{
+        border: none;
+        outline: none;
+    }
 }
 .formInput{
     width: 100%;

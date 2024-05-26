@@ -1,16 +1,21 @@
 import mongoose from "mongoose";
+import Category from '../models/category.model';
+ 
 
 const recipeSchema = new mongoose.Schema({
   image: {
     type: String,
-    required: true,
   },
   title: {
     type: String,
     required: true,
   },
-  ingredients: {
-    type: [String],
+  ingredients: [{
+    type: String,
+    required: true,
+  }],
+  typeFood: {
+    type: String,
     required: true,
   },
   instructions: {
@@ -19,23 +24,23 @@ const recipeSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
   },
   preparationTime: {
     type: Number,
-    required: true,
+  },
+  CookingTime: {
+    type: Number,
   },
   servings: {
     type: Number,
-    required: true,
   },
-  category: [
-    {
-      type: String,
-      enum: ["mainDishes", "extras", "desserts", "cakes"],
-      required: true,
-    },
-  ],
+  category:
+  [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'Category',
+    require: true,
+  },]
+
 });
 
 export const RecipeModel =
