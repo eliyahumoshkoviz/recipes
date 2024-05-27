@@ -4,9 +4,7 @@ import styles from './style.module.scss'
 import Label from '../Label'
 
 const Photo = ({ data,typeObj}) => {
-    console.log(data);
     const { image, title, colorLabel} = data
-    console.log({title});
     return (
         <div className={styles.container}>
             <Image src={image} fill />
