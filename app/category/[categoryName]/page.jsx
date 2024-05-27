@@ -10,10 +10,10 @@ export default async function Category({ params: { categoryName } }) {
   await connectToMongo();
   console.log(decodeURI(categoryName));
   const result = await readCategoryService({ title: decodeURI(categoryName) });
-
+  console.log( "result:", result);
   return (
     <div className={styles.photoContainer}>
-      {result.recipes.map((category, index) => (
+      {result?.recipes.map((category, index) => (
         <Navlink key={index} href={`/recipe/${category._id}`}>
           <Photo data={category} typeObj={"recipe"} />
         </Navlink>
