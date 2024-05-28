@@ -17,8 +17,8 @@ export default async function Select({ category }) {
   }
   return (
     <div>
-      <label className={styles.label} htmlFor="selectOption">בחר קטגוריה</label>
-      <select className={styles.select} id="selectOption">
+      {/* <label className={styles.label} htmlFor="selectOption">בחר קטגוריה</label> */}
+      <select name='category' className={styles.select} id="selectOption">
         <option>בחר קטגוריה</option>
         {category?.map((categoryItem, index) => (
             <option className={styles.option} key={index} value={categoryItem.title}>
