@@ -1,31 +1,40 @@
-import RecipeDescription from '@/components/RecipeDescription'
-import Instructions from '@/components/Instructions'
+import RecipeDescription from "@/components/RecipeDescription";
+import Instructions from "@/components/Instructions";
 import { readRecipeByIdService } from "@/server/DB/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 
-export default async function Recipe() {
+export default async function Recipe({ params: { recipeName } }) {
   await connectToMongo();
-  const id = "664f2c4756a438a251e6cbdf";
-  const recipe = await readRecipeByIdService(id);
-  console.log("dgdgdgd " + recipe.image);
-  const ingredients = recipe.ingredients;
+  const recipe = await readRecipeByIdService(decodeURI(recipeName));
+  const {
+    title,
+    description,
+    image,
+    ingredients,
+    preparationTime,
+    CookingTime,
+    servings,
+    typeFood,
+    instructions,
+    category
+  } = recipe;
 
   return (
     <div>
-
       <RecipeDescription
-        recipeName={recipe.title}
-        description={recipe.description}
-        image={recipe.image}
+        recipeName={title}
+        description={description}
+        image={image}
+        category={category}
       />
       <Instructions
         ingredients={ingredients}
-        preparationTime={recipe.preparationTime}
-        CookingTime={recipe.CookingTime}
-        servings={recipe.servings}
-        typeFood={recipe.typeFood}
-        instructions={recipe.instructions}
+        preparationTime={preparationTime}
+        CookingTime={CookingTime}
+        servings={servings}
+        typeFood={typeFood}
+        instructions={instructions}
       />
     </div>
-  )
+  );
 }
