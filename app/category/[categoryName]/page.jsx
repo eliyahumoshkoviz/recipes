@@ -5,7 +5,6 @@ import styles from './style.module.scss'
 import Navlink from "@/components/NavLink";
 import Photo from "@/components/Photo";
 
-
 export default async function Category({ params: { categoryName } }) {
   await connectToMongo();
   const result = await readCategoryService({ title: decodeURI(categoryName) });

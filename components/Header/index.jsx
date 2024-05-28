@@ -27,7 +27,7 @@ export default function Header() {
         <nav>
           {/* {links.map((item, index)=> <Navlink key={index} href={item.link}>{item.text}</Navlink>)} */}
           <Navlink href={'/createRecipe'}>
-            <h4 style={{ color: "white" }} >הכנס מתכון</h4>
+            <h4 >הכנס מתכון</h4>
           </Navlink>
         </nav>
       </div>
