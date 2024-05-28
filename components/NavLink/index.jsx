@@ -9,6 +9,6 @@ export default function Navlink({ children, href }) {
    return (
       <Link
          href={href}
-         style={{ color: path === href ? 'red' : 'white' }}>{children}</Link>
+         style={{ display: path === href ? 'none' : 'block' }}>{children}</Link>
    )
 }
