@@ -3,7 +3,6 @@ import Select from "@/components/Select";
 import styles from "./style.module.scss";
 import { createRecipeAction } from '@/server/DB/actions/recipe.action'
 import { readCategorysService } from "@/server/DB/category.service";
-// action={createRecipeAction}
 
 export default async function CreateRecipe() {
   await connectToMongo();

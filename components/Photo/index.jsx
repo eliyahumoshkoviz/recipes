@@ -7,7 +7,7 @@ const Photo = ({ data,typeObj}) => {
     const { image, title, colorLabel} = data
     return (
         <div className={styles.container}>
-            <Image src={image} fill />
+            <Image src={image} fill sizes='100%' alt={title}/>
             {typeObj=="category"&&<Label data={title} color={colorLabel} size={"30"} />}
             {typeObj=="recipe"&&<div className={styles.recipeName}>{title}</div>}
         </div>

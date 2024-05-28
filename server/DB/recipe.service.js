@@ -1,6 +1,13 @@
-import { createRecipe, readRecipeById, readRecipes,updateRecipe } from '../DL/controllers/recipe.controller';
+import { connectToMongo } from '../DL/connectToMongo';
+import { createRecipe, readRecipeById, readRecipes, updateRecipe } from '../DL/controllers/recipe.controller';
+import { readCategoryService } from './category.service';
 
-export const createRecipesService = (data) => createRecipe(data);
+export const createRecipesService = async (data) => {
+    await connectToMongo();     
+    data.category = (await readCategoryService({title:data.category}))['_id'];
+    
+    return await createRecipe(data) 
+};
 export const readRecipesService = (filter) => readRecipes(filter);
 export const readRecipeByIdService = (id) => readRecipeById(id);
-export const updateRecipService = (id) => updateRecipe(id,data);
+export const updateRecipService = (id) => updateRecipe(id, data);
