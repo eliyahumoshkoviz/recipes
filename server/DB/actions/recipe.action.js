@@ -11,6 +11,7 @@ export const createRecipeAction = async (fd) => {
 
    try {
       await connectToMongo()
+      console.log("body...",body);
       await createRecipesService(body)
       revalidatePath('/')
    } catch (error) {
