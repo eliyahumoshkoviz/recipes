@@ -9,8 +9,6 @@ export default function Input() {
     { type: "text", name: "title", placeholder: "שם המתכון" },
     { type: "text", name: "description", placeholder: "תיאור" },
     { type: "number", name: "servings", placeholder: "מספר מנות" },
-    // { type: "text", name: "ingredients", placeholder: "רכיבים" },
-    // { type: "text", name: "instructions", placeholder: " הוראות הכנה" },
     { type: "number", name: "preparationTime", placeholder: "זמן הכנה (בדקות)" },
     { type: "number", name: "CookingTime", placeholder: "זמן אפיה/בישול (בדקות)" },
     { type: "text", name: "typeFood", placeholder: "סוג" }];

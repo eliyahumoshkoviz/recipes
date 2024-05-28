@@ -5,6 +5,7 @@ import { readCategoryService } from './category.service';
 export const createRecipesService = async (data) => {
     await connectToMongo();     
     data.category = (await readCategoryService({title:data.category}))['_id'];
+    data.ingredients= [1,1,1,0]
     
     return await createRecipe(data) 
 };

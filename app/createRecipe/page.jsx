@@ -16,7 +16,7 @@ export default async function CreateRecipe() {
         <Input />
         </div>
         <div className={styles.add}>
-        <input type="text" placeholder="הוסף רכיב"/ >
+        <input type="text" name="ingredients" placeholder="הוסף רכיב"/ >
         <div className={styles.addBtn}>
           <input type="button" value="+"/>
         </div>
