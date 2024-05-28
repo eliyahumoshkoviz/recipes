@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Category from '../models/category.model';
+import Category from './category.model'
  
 
 const recipeSchema = new mongoose.Schema({

@@ -5,13 +5,11 @@ import { connectToMongo } from '@/server/DL/connectToMongo';
 import Image from 'next/image'
 
 export default async function RecipeDescription({ recipeName, description, image,category }) {
-    await connectToMongo();
-    const result = await readCategoryService(category[0]);
     return (
         
         <div className={styles.container}>
             <div className={styles.description}>
-                <Label data={result.title} color={result.colorLabel} size={'40'} />
+                <Label data={category.title} color={category.colorLabel} size={'40'} />
                 <h1>{recipeName}</h1>
                 <p>
                     {description}
