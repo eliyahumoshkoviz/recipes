@@ -17,7 +17,7 @@ export default async function Home() {
         <CreateRecipe />
       </div>
       <div className={styles.photoContainer}>
-        {category?.map((category, index) => <Navlink key={index} href={`/category/${category.title}`}><Photo data={category} typeObj={"category"}/></Navlink>)}
+        {category.map((category, index) => <Navlink key={index} href={`/category/${category.title}`}><Photo data={category} typeObj={"category"} /></Navlink>)}
       </div>
     </main>
 
