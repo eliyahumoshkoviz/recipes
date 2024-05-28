@@ -45,8 +45,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: red;
-
 }
 
 .inputes {
@@ -57,7 +55,8 @@
 }
 
 .btn {
-    margin: auto;
+    margin-bottom: auto;
+    background-color: aqua;
 }
 
 .add {
