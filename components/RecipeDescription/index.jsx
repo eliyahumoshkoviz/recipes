@@ -1,12 +1,17 @@
 import styles from './style.module.css'
 import Label from "@/components/Label";
+import { readCategoryService } from '@/server/DB/category.service';
+import { connectToMongo } from '@/server/DL/connectToMongo';
 import Image from 'next/image'
 
-export default function RecipeDescription({ recipeName, description, image }) {
+export default async function RecipeDescription({ recipeName, description, image,category }) {
+    await connectToMongo();
+    const result = await readCategoryService(category[0]);
     return (
+        
         <div className={styles.container}>
             <div className={styles.description}>
-                <Label data={'מנות עיקריות'} color={'red'} size={'40'} />
+                <Label data={result.title} color={result.colorLabel} size={'40'} />
                 <h1>{recipeName}</h1>
                 <p>
                     {description}
@@ -18,8 +23,6 @@ export default function RecipeDescription({ recipeName, description, image }) {
                 height={1000}
                 alt="Picture of the author"
             />
-
-
         </div>
     )
 }

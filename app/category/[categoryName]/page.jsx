@@ -48,7 +48,6 @@ const fakeCatData = [
 
 export default async function Category({ params: { categoryName } }) {
   await connectToMongo();
-  console.log(decodeURI(categoryName));
   const result = await readCategoryService({ title: decodeURI(categoryName) });
   console.log( "result:", result);
   return (
