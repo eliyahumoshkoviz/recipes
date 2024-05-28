@@ -20,7 +20,8 @@ export default function Header() {
     <>
     <div className={styles.container}>
       <nav>
-        {links.map((item, index)=> <Navlink key={index} href={item.link}>{item.text}</Navlink>)}
+        {/* {links.map((item, index)=> <Navlink key={index} href={item.link}>{item.text}</Navlink>)} */}
+       <h3 style={{color: "white"}} >הכנס מתכון</h3>
        </nav>
     </div>
     <div className={styles.fixed}>
