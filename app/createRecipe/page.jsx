@@ -1,5 +1,5 @@
 import { connectToMongo } from "@/server/DL/connectToMongo";
-import Select from "../Select";
+import Select from "@/components/Select";
 import styles from "./style.module.scss";
 import { createRecipeAction } from '@/server/DB/actions/recipe.action'
 import { readCategorysService } from "@/server/DB/category.service";
