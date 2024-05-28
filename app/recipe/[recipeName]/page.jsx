@@ -25,7 +25,7 @@ export default async function Recipe({ params: { recipeName } }) {
         recipeName={title}
         description={description}
         image={image}
-        category={category}
+        category={category[0]}
       />
       <Instructions
         ingredients={ingredients}
