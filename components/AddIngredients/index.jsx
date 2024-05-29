@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import { useState } from "react";
 import styles from "./style.module.scss";
 import { useState } from "react";
 
@@ -29,8 +30,5 @@ export default function AddIngredien() {
             </div>))}
             {/* name="ingredients" */}
             <input type="text" readOnly style={{display: "none"}} name='ingredients' defaultValue={ingredient} />
-
-        </div>
-    )
-}
-
+  };
+ 
