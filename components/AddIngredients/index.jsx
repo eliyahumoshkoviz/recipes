@@ -1,26 +1,35 @@
 "use client"
 import styles from "./style.module.scss";
+import { useState } from "react";
 
 export default function AddIngredien() {
-    const arrIngredients = [1, 3];
+    const [arrIngredients, setArrIngredients] = useState([1]);
+    const [ingredient, setIngredient] = useState([]);
+
     const handleAddIngredients = () => {
-        arrIngredients.push(1);
-        console.log(arrIngredients[0]);
+        const updatedArr = [...arrIngredients];
+        updatedArr.push(1);
+        setArrIngredients(updatedArr);
     }
+    const handleIngredients = (e) => {
+        const updatedIngredients = [...ingredient];
+        updatedIngredients.push(e.target.value);
+        setIngredient(updatedIngredients);
+        console.log(ingredient);
+    }
+    console.log(ingredient);
     return (
         <div className={styles.container}>
-            <div className={styles.add}>
-                <div className={styles.a}>
-                    <input  type="text" placeholder="הוסף רכיב" />
-                </div>
+            <h2>רשימת רכיבים</h2>
                 <div className={styles.b}>
                     <input  type="button" value="+" onClick={handleAddIngredients} />
                 </div>
-              
-            </div>
-                    <input  type="text" placeholder="הוסף רכיב" />
-                    <input  type="text" placeholder="הוסף רכיב" />
-                    <input  type="text" placeholder="הוסף רכיב" />
+                {arrIngredients.map((item,index)=> (<div className={styles.add}>
+                    <input onBlur={e=>handleIngredients(e)}  type="text" placeholder="הוסף רכיב" />
+            </div>))}
+            {/* name="ingredients" */}
+            <input type="text" readOnly style={{display: "none"}} name='ingredients' defaultValue={ingredient} />
+
         </div>
     )
 }
