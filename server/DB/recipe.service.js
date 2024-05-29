@@ -3,11 +3,12 @@ import { createRecipe, readRecipeById, readRecipes, updateRecipe } from '../DL/c
 import { readCategoryService } from './category.service';
 
 export const createRecipesService = async (data) => {
-    await connectToMongo();     
-    data.category = (await readCategoryService({title:data.category}))['_id'];
-    data.ingredients= [1,1,1,0]
-    
-    return await createRecipe(data) 
+    console.log(data.ingredients);
+    // await connectToMongo();     
+    // data.category = (await readCategoryService({title:data.category}))['_id'];
+    // data.ingredients= [1,1,1,0]
+    // console.log(data);
+    // return await createRecipe(data);
 };
 export const readRecipesService = (filter) => readRecipes(filter);
 export const readRecipeByIdService = (id) => readRecipeById(id);

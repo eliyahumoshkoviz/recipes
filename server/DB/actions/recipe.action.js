@@ -4,7 +4,6 @@ import { createRecipesService } from "../recipe.service"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
-
 export const createRecipeAction = async (fd) => {
    const body = Object.fromEntries(fd)
 
@@ -16,3 +15,4 @@ export const createRecipeAction = async (fd) => {
    }
    redirect('/')
 } 
+
