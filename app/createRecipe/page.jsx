@@ -19,10 +19,7 @@ export default async function CreateRecipe() {
         </div>
         <div className={styles.add}>
           <AddIngredients />
-          {/* <input type="text" name="ingredients" placeholder="הוסף רכיב" /> */}
-          {/* <div className={styles.addBtn}>
-            <input type="button" value="+" />
-          </div> */}
+        <button className={styles.btn} type="submit">צור מתכון</button>
         </div>
         <textarea name="instructions" placeholder="הוראות הכנה" />
       </form>
