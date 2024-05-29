@@ -1,3 +1,4 @@
+@import './vars.scss';
 
 .search {
   width: 100%;
@@ -10,17 +11,5 @@
   background-position: center center;
 }
 .photoContainer{
-  display:grid;
-  grid-template-columns: repeat(3,1fr);
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  width: 100%;
-  padding: 40px;
-
-  img{
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
+ @extend .photos;
 }

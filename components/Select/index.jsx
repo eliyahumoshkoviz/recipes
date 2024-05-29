@@ -1,14 +1,14 @@
-export default async function Select({ category }) {
-  
+"use client";
 
+export default function Select({ category }) {
   return (
     <div>
-      <select name='category' id="selectOption">
+      <select name="category">
         <option>בחר קטגוריה</option>
         {category?.map((categoryItem, index) => (
-            <option key={index} value={categoryItem.title}>
-              {categoryItem.title}
-            </option>
+          <option key={index} value={categoryItem.title}>
+            {categoryItem.title}
+          </option>
         ))}
       </select>
     </div>
