@@ -1,6 +1,8 @@
 .container {
     width: 100%;
     height: 100%;
+    overflow-y: scroll;
+    max-height: 350px;
 }
 
 .add {
@@ -13,15 +15,6 @@
 
 }
 
-.addBtn {
-    width: 100%;
-    display: flex;
-}
-
-.a {
-    width: 90%;
-}
-
-.b {
+.btn {
     width: 10%;
 }

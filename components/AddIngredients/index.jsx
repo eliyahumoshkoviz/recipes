@@ -9,25 +9,19 @@ export default function AddIngredien() {
   };
   return (
     <div className={styles.container}>
-      <div className={styles.add}>
-        <div className={styles.a}>
+      <h2>רשימת רכיבים</h2>
+      <div className={styles.btn}>
+        <input type="button" value="+" onClick={handleAddIngredients} />
+      </div>
+      {arrIngredients?.map((item, index) => (
+        <div className={styles.add}>
           <input
+            key={index}
             type="text"
             placeholder="הוסף רכיב"
-            name={`ingredients`}
+            name={`ingredients${index}`}
           />
         </div>
-        <div className={styles.b}>
-          <input type="button" value="+" onClick={handleAddIngredients} />
-        </div>
-      </div>
-      {arrIngredients?.map((x, index) => (
-        <input
-          key={index}
-          type="text"
-          placeholder="הוסף רכיב"
-          name={`ingredients${index}`}
-        />
       ))}
     </div>
   );
