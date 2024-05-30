@@ -24,7 +24,7 @@ export default async function CreateRecipe() {
             צור מתכון
           </button>
         </div>
-        <textarea name="instructions" placeholder="הוראות הכנה" />
+        <textarea name="instructions" placeholder="הוראות הכנה" required/>
       </form>
     </div>
   );

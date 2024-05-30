@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
     <main className={styles.main}>
-        <SearchBar />
+      <SearchBar />
       <div className={styles.photoContainer}>
         {category.map((category, index) => <Navlink key={index} href={`/category/${category.title}`}><Photo data={category} typeObj={"category"} /></Navlink>)}
       </div>
