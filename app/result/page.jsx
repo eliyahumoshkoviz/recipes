@@ -19,7 +19,6 @@ export default async function Page({ searchParams: { search } }) {
             {result?.map((recipe) => (
                <Link  key={recipe._id} href={`/recipe/${recipe._id}`} >
                   <Photo data={recipe} typeObj={'recipe'} />
-                  {recipe.title}
                </Link>
             ))}
          </section>
