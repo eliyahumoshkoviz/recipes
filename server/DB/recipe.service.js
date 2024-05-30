@@ -18,9 +18,14 @@ export const createRecipesService = async (recipe) => {
   return idRecipe;
 
 };
+
+export const updateRecipService = async (id, data) => {
+  return await updateRecipe(id, data)
+};
+
+
 export const readRecipesService = (filter) => readRecipes(filter);
 export const readRecipeByIdService = (id) => readRecipeById(id);
-export const updateRecipService = (id, data) => updateRecipe(id, data);
 
 function extractValues(obj) {
   const values = [];
