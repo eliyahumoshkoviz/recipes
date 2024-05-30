@@ -1,4 +1,5 @@
 import { connectToMongo } from "../DL/connectToMongo";
+import { cloudinary } from './actions/cloudenry'
 import {
   createRecipe,
   readRecipeById,
@@ -7,9 +8,26 @@ import {
 } from "../DL/controllers/recipe.controller";
 import { readCategoryService } from "./category.service";
 
+
+const saveImgToCloud = async (img) => {
+
+  const arrayBuffer = await img.arrayBuffer()
+  const buffer = new Uint8Array(arrayBuffer)
+  const imgLink = new Promise((res) => {
+    cloudinary.uploader.upload_stream({ folder: "aaa" }, (err, uploadRes) => {
+      return res(uploadRes)
+    }).end(buffer)
+  }).then(uploadedImg => {
+    return uploadedImg.url
+  })
+  return imgLink
+}
+
+
 export const createRecipesService = async (recipe) => {
-  checkFields(recipe,['title','ingredients','typeFood','instructions','category']);
+  checkFields(recipe, ['title', 'ingredients', 'typeFood', 'instructions', 'category', 'image']);
   await connectToMongo();
+  recipe.image = await saveImgToCloud(recipe.image)
   recipe.category = (await readCategoryService({ title: recipe.category }))["_id"];
   recipe.ingredients = extractValues(recipe);
   return await createRecipe(recipe);

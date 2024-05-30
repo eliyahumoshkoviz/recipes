@@ -7,6 +7,8 @@ import { redirect } from "next/navigation"
 export const createRecipeAction = async (fd) => {
    const body = Object.fromEntries(fd)
 
+   const img =  fd.get("image")
+   console.log(img);
    try {
       await createRecipesService(body)
       revalidatePath('/')
