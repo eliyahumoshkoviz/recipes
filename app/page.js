@@ -4,6 +4,7 @@ import Photo from "@/components/Photo";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { readCategorysService } from "@/server/DB/category.service";
 import Navlink from "@/components/NavLink";
+import LoadPhoto from "@/components/LoadPhotos";
 
 export default async function Home() {
   await connectToMongo();
