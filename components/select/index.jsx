@@ -1,10 +1,9 @@
-"use client"
+export default async function Select({ category }) {
+  
 
-export default function Select({ category }) {
-   
   return (
     <div>
-      <select id="selectOption">
+      <select name='category' id="selectOption">
         <option>בחר קטגוריה</option>
         {category?.map((categoryItem, index) => (
             <option key={index} value={categoryItem.title}>
