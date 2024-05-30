@@ -29,7 +29,7 @@ export default function Header() {
           <h4 > דף הבית</h4>
         </Navlink>
         <Navlink href={'/createRecipe'}>
-          <h4 >הכנס מתכון</h4>
+          <h4 >הוסף מתכון</h4>
         </Navlink>
       </nav>
     </div>

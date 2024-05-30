@@ -1,8 +1,9 @@
 "use client";
+import styles from './style.module.scss'
 
 export default function Select({ category }) {
   return (
-    <div>
+    <div className={styles.container}>
       <select name="category">
         <option>בחר קטגוריה</option>
         {category?.map((categoryItem, index) => (
@@ -10,6 +11,13 @@ export default function Select({ category }) {
             {categoryItem.title}
           </option>
         ))}
+      </select>
+      <select name="category">
+        <option> סוג</option>
+          <option>בשרי</option>
+          <option>חלבי</option>
+          <option>פרווה</option>
+        
       </select>
     </div>
   );

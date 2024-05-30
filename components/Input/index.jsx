@@ -10,8 +10,8 @@ export default function Input() {
     { type: "text", name: "description", placeholder: "תיאור" },
     { type: "number", name: "servings", placeholder: "מספר מנות" },
     { type: "number", name: "preparationTime", placeholder: "זמן הכנה (בדקות)" },
-    { type: "number", name: "CookingTime", placeholder: "זמן אפיה/בישול (בדקות)" },
-    { type: "text", name: "typeFood", placeholder: "סוג" }];
+    { type: "number", name: "CookingTime", placeholder: "זמן אפיה/בישול (בדקות)" }
+  ];
   return (
     <div className={styles.container}>
       {inputesc.map((item, index) => <input key={index} type={item.type} placeholder={item.placeholder} name={item.name} />)}

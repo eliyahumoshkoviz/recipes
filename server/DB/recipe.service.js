@@ -2,10 +2,13 @@ import { connectToMongo } from "../DL/connectToMongo";
 import { updateCategory } from "../DL/controllers/category.controller";
 import { createRecipe, readRecipeById, readRecipes, updateRecipe } from "../DL/controllers/recipe.controller";
 import { readCategoryService } from "./category.service";
+import { saveImgToCloud } from "./cloudInary";
+
 
 export const createRecipesService = async (recipe) => {
   await connectToMongo();
-  recipe.image = recipe.image ? recipe.image.name : 'https://cdn.pixabay.com/photo/2024/04/23/09/32/ai-generated-8714513_1280.jpg';
+  const img = recipe.image && await saveImgToCloud(recipe.image);
+  recipe.image = img ? img : 'https://cdn.pixabay.com/photo/2024/04/23/09/32/ai-generated-8714513_1280.jpg';
   checkFields(recipe, [ "title","ingredients","typeFood","instructions","category",
   ]);
   recipe.ingredients = extractValues(recipe);
