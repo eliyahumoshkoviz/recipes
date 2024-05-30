@@ -11,7 +11,7 @@ export default function Instructions({ingredients, preparationTime, CookingTime,
                         זמן הכנה
                     </h4>
                     <div className={styles.content}>
-                        {preparationTime + " דקות"} 
+                        {preparationTime} 
                     </div>
                 </div>
                 <div className={styles.title}>
@@ -19,7 +19,7 @@ export default function Instructions({ingredients, preparationTime, CookingTime,
                         זמן בישול/אפיה
                     </h4>
                     <div className={styles.content}>
-                       {CookingTime + " דקות"}
+                       {CookingTime}
                     </div>
                 </div>
                 <div className={styles.title}>
