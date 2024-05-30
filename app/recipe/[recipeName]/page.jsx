@@ -2,6 +2,7 @@ import RecipeDescription from "@/components/RecipeDescription";
 import Instructions from "@/components/Instructions";
 import { readRecipeByIdService } from "@/server/DB/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
+import { Footer } from "@/components/Footer";
 
 export default async function Recipe({ params: { recipeName } }) {
   await connectToMongo();
@@ -19,7 +20,7 @@ export default async function Recipe({ params: { recipeName } }) {
     category
   } = recipe;
 
-  return (
+  return (<>
     <div>
       <RecipeDescription
         recipeName={title}
@@ -36,5 +37,8 @@ export default async function Recipe({ params: { recipeName } }) {
         instructions={instructions}
       />
     </div>
+
+    <Footer recipeName={recipeName} />
+  </>
   );
 }

@@ -1,6 +1,9 @@
 "use client";
 
-export default function Select({ category }) {
+import { useEffect } from "react";
+
+export default  function Select ({ category }) {
+ 
   return (
     <div>
       <select name="category">
