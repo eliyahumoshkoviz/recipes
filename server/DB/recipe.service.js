@@ -6,12 +6,12 @@ import { saveImgToCloud } from "./cloudinary/cloudinary";
 
 export const createRecipesService = async (recipe) => {
   await connectToMongo();
-  console.log("oooooooooooooo");
+  const { _id, image } = await readCategoryService({ title: recipe.category });
+  const imageDefault = image;
   const img = recipe.image && await saveImgToCloud(recipe.image);
-  recipe.image = img ? img : 'https://cdn.pixabay.com/photo/2024/04/23/09/32/ai-generated-8714513_1280.jpg';
+  recipe.image = img ? img : imageDefault;
   checkFields(recipe, ["title", "ingredients", "typeFood", "instructions", "category"]);
   recipe.ingredients = extractValues(recipe);
-  const { _id } = await readCategoryService({ title: recipe.category });
   recipe.category = _id;
   const idRecipe = (await createRecipe(recipe))["_id"];
   await updateCategory(_id, { $push: { recipes: idRecipe } });
