@@ -8,7 +8,7 @@ export default function Select({ category }) {
   }
   return (
     <div className={styles.container}>
-      <select name="category" required="true">
+      <select name="category" required>
 
         <option value="" hidden disabled selected> בחר קטגוריה</option>
 
@@ -21,7 +21,7 @@ export default function Select({ category }) {
           <option onClick={addCategory}>הוסף קטגוריה</option>
         </optgroup>
       </select>
-      <select name="typeFood" required="true">
+      <select name="typeFood" required>
         <option value="" hidden disabled selected> בשרי/חלבי</option>
         <option>בשרי</option>
         <option>חלבי</option>

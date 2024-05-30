@@ -2,23 +2,14 @@ import { connectToMongo } from "../DL/connectToMongo";
 import { updateCategory } from "../DL/controllers/category.controller";
 import { createRecipe, readRecipeById, readRecipes, updateRecipe } from "../DL/controllers/recipe.controller";
 import { readCategoryService } from "./category.service";
-<<<<<<< HEAD
-import { saveImgToCloud } from "./cloudInary";
-
-=======
 import { saveImgToCloud } from "./cloudinary/cloudinary";
->>>>>>> f1738b31c3d23d0fa98a5520efc763c320796d4a
 
 export const createRecipesService = async (recipe) => {
   await connectToMongo();
+  console.log("oooooooooooooo");
   const img = recipe.image && await saveImgToCloud(recipe.image);
   recipe.image = img ? img : 'https://cdn.pixabay.com/photo/2024/04/23/09/32/ai-generated-8714513_1280.jpg';
-<<<<<<< HEAD
-  checkFields(recipe, [ "title","ingredients","typeFood","instructions","category",
-  ]);
-=======
   checkFields(recipe, ["title", "ingredients", "typeFood", "instructions", "category"]);
->>>>>>> f1738b31c3d23d0fa98a5520efc763c320796d4a
   recipe.ingredients = extractValues(recipe);
   const { _id } = await readCategoryService({ title: recipe.category });
   recipe.category = _id;
