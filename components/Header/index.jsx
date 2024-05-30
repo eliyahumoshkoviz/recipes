@@ -23,18 +23,18 @@ export default function Header() {
   ]
   return (
     <>
-      <div className={styles.container}>
-        <nav>
-          <Navlink href={'/'}>
-            <h4 > דף הבית</h4>
-          </Navlink>
-          <Navlink href={'/createRecipe'}>
-            <h4 >הכנס מתכון</h4>
-          </Navlink>
-        </nav>
-      </div>
-      <div className={styles.fixed}>
-      </div>
-    </>
+    <div className={styles.container}>
+      <nav>
+        <Navlink href={'/'}>
+          <h4 > דף הבית</h4>
+        </Navlink>
+        <Navlink href={'/createRecipe'}>
+          <h4 >הכנס מתכון</h4>
+        </Navlink>
+      </nav>
+    </div>
+    <div className={styles.fixed}>
+    </div>
+  </>
   )
 }

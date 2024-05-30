@@ -16,7 +16,7 @@ export const SearchBar = ({ val }) => {
     }
     return (
         <div className={styles.search}>
-            <div className={styles.container} >
+            <div className={styles.container}>
                 <input
                     className={styles.formInput}
                     type="text"

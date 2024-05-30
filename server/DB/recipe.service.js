@@ -1,10 +1,6 @@
 import { connectToMongo } from "../DL/connectToMongo";
-<<<<<<< HEAD
-import { createRecipe, readRecipeById, readRecipes, updateRecipe} from "../DL/controllers/recipe.controller";
-=======
 import { updateCategory } from "../DL/controllers/category.controller";
 import { createRecipe, readRecipeById, readRecipes, updateRecipe } from "../DL/controllers/recipe.controller";
->>>>>>> e5f09e23695fd54b75b28ec4884ef0ea9b5f74ef
 import { readCategoryService } from "./category.service";
 
 export const createRecipesService = async (recipe) => {
@@ -26,7 +22,7 @@ export const updateRecipService = (id,data) => updateRecipe(id, data);
 
 function extractValues(obj) {
   const values = [];
-  for (let key in obj) {
+  for (const key in obj) {
     if (key.startsWith("ingredients")) {
       obj[key] !== "" && values.push(obj[key]);
       delete obj[key];
