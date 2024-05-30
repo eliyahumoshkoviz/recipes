@@ -26,10 +26,10 @@ const recipeSchema = new mongoose.Schema({
     type: String,
   },
   preparationTime: {
-    type: Number,
+    type: String,
   },
   CookingTime: {
-    type: Number,
+    type: String,
   },
   servings: {
     type: Number,
