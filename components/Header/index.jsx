@@ -25,7 +25,9 @@ export default function Header() {
     <>
       <div className={styles.container}>
         <nav>
-          {/* {links.map((item, index)=> <Navlink key={index} href={item.link}>{item.text}</Navlink>)} */}
+          <Navlink href={'/'}>
+            <h4 > דף הבית</h4>
+          </Navlink>
           <Navlink href={'/createRecipe'}>
             <h4 >הכנס מתכון</h4>
           </Navlink>
