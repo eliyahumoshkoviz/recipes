@@ -1,10 +1,14 @@
 import { connectToMongo } from "../DL/connectToMongo";
+<<<<<<< HEAD
+import { createRecipe, readRecipeById, readRecipes, updateRecipe} from "../DL/controllers/recipe.controller";
+=======
 import {
   createRecipe,
   readRecipeById,
   readRecipes,
   updateRecipe,
 } from "../DL/controllers/recipe.controller";
+>>>>>>> efcc14b6eeaec8a6453e955adde989e269bf6d83
 import { readCategoryService } from "./category.service";
 
 export const createRecipesService = async (recipe) => {
@@ -20,7 +24,11 @@ export const updateRecipService = (id) => updateRecipe(id, data);
 
 function extractValues(obj) {
   const values = [];
+<<<<<<< HEAD
+  for (let key in obj) {
+=======
   for (const key in obj) {
+>>>>>>> efcc14b6eeaec8a6453e955adde989e269bf6d83
     if (key.startsWith("ingredients")) {
       obj[key] !== "" && values.push(obj[key]);
       delete obj[key];
@@ -35,4 +43,8 @@ function checkFields(obj, fields) {
       throw new Error(`Field '${field}' does not exist in object`);
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> efcc14b6eeaec8a6453e955adde989e269bf6d83
