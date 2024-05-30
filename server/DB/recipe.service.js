@@ -1,5 +1,4 @@
 import { connectToMongo } from "../DL/connectToMongo";
-import { cloudinary } from './actions/cloudenry'
 import {
   createRecipe,
   readRecipeById,
