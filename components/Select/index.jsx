@@ -1,15 +1,14 @@
-"use client"
+"use client";
 
 export default function Select({ category }) {
-   
   return (
     <div>
-      <select id="selectOption">
+      <select name="category">
         <option>בחר קטגוריה</option>
         {category?.map((categoryItem, index) => (
-            <option key={index} value={categoryItem.title}>
-              {categoryItem.title}
-            </option>
+          <option key={index} value={categoryItem.title}>
+            {categoryItem.title}
+          </option>
         ))}
       </select>
     </div>
