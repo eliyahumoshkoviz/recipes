@@ -4,9 +4,10 @@ import { createRecipe, readRecipeById, readRecipes, updateRecipe } from "../DL/c
 import { readCategoryService } from "./category.service";
 
 export const createRecipesService = async (recipe) => {
+  await connectToMongo();
+  recipe.image = recipe.image ? recipe.image.name : 'https://cdn.pixabay.com/photo/2024/04/23/09/32/ai-generated-8714513_1280.jpg';
   checkFields(recipe, [ "title","ingredients","typeFood","instructions","category",
   ]);
-  await connectToMongo();
   recipe.ingredients = extractValues(recipe);
   const {_id} = await readCategoryService({ title: recipe.category });
   recipe.category = _id;
