@@ -5,7 +5,7 @@ export default function AddCategory() {
         <>
             <form className={styles.container}>
                 <input type="text" name="title" placeholder="שם הקטגוריה" />
-                <select name="colorLabel" required="true">
+                <select name="colorLabel" required>
                     <option value="" hidden disabled selected>  צבע תוית</option>
                     <option value="red" style={{ background: "#feb608" }}>#feb608</option>
                     <option value="red" style={{ background: "#c5090a" }}>#c5090a</option>
