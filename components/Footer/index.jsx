@@ -9,6 +9,7 @@ export const Footer = ({ recipeName }) => {
     const handleEditClick = () => {
         console.log(recipeName);
         setPopup(true)
+        console.log("popup:",popup);
     }
     return (<>
         <div className={styles.container}>
@@ -16,7 +17,7 @@ export const Footer = ({ recipeName }) => {
                 onClick={handleEditClick}
             />
         </div>
-        {popup && <Popup recipeName={recipeName} />}
+        {popup && <Popup recipeName={recipeName} setPopup={setPopup} />}
     </>
     )
 }
