@@ -17,8 +17,7 @@ export const EditRecipe = ({ recipeName }) => {
       .catch((error) => console.error("Fetch error:", error));
   }, []);
 
-  const { ingredients, typeFood, instructions, category, _id } = recipe;
-  console.log("recipe:",_id);
+  const { ingredients, typeFood, instructions, category } = recipe;
 
   const handleTextChange = (event) => {
     const { name, value } = event.target;

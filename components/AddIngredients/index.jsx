@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import styles from "./style.module.scss";
 
-export default function AddIngredien({ ingredients, setRecipe }) {
+export default function AddIngredien({ ingredients }) {
   const [arrIngredients, setArrIngredients] = useState([]);
 
   useEffect(() => {
@@ -11,31 +11,24 @@ export default function AddIngredien({ ingredients, setRecipe }) {
     }
   }, [ingredients]);
 
-
   const handleAddIngredients = () => {
     const updatedArr = [...arrIngredients, ""];
     setArrIngredients(updatedArr);
-    setRecipe?.((prev) => ({ ...prev, ingredients: updatedArr }));
   };
-  
 
   const handleDelIngredients = () => {
     if (arrIngredients.length > 0) {
       const updatedArr = arrIngredients.slice(0, -1);
       setArrIngredients(updatedArr);
-      setRecipe?.((prev) => ({ ...prev, ingredients: updatedArr }));
     }
   };
-  
 
   const handleIngredientsChange = (event, index) => {
     const updatedArrIngredients = [...arrIngredients];
     updatedArrIngredients[index] = event.target.value;
     setArrIngredients(updatedArrIngredients);
-    setRecipe?.((prev) => ({ ...prev, ingredients: updatedArrIngredients }));
   };
-  
-  
+
   return (
     <div className={styles.container}>
       <h2>רשימת רכיבים</h2>
@@ -45,7 +38,7 @@ export default function AddIngredien({ ingredients, setRecipe }) {
       </div>
       <div className={styles.btn}></div>
       <div className={styles.add}>
-        {!ingredients && (
+        {(!ingredients || arrIngredients.length === 0) && (
           <input
             type="text"
             placeholder="הוסף רכיב"
