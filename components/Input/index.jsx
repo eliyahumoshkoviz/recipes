@@ -2,31 +2,19 @@
 import { useState, useEffect } from "react";
 import styles from "./style.module.scss";
 
-export default function Input({ values = {} }) {
+export default function Input({ values }) {
   const [image, setImage] = useState(false);
-  const [inputValues, setInputValues] = useState({
-    title: '',
-    description: '',
-    preparationTime: '',
-    CookingTime: '',
-    servings: '',
-  });
-console.log("fghj#######");
-  // Ensure that inputValues are updated when the values prop changes
+  const [inputValues, setInputValues] = useState({});
   useEffect(() => {
-    if (values.title =='') {
-      
-      console.log("jgjfj");
-      setInputValues({
-        title: values.title || '',
-        description: values.description || '',
-        preparationTime: values.preparationTime || '',
-        CookingTime: values.CookingTime || '',
-        servings: values.servings || '',
-      })
-    
-  }
-  }, [inputValues]);
+    setInputValues({
+      title: '',
+      description: '',
+      preparationTime: '',
+      CookingTime: '',
+      servings: '',
+      ...values
+    })
+  }, [values]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -80,7 +68,7 @@ console.log("fghj#######");
         />
       </div>
       <h3 onClick={() => setImage(!image)}>הוסף תמונה</h3>
-      {image && <input type="file" name="image" placeholder="הוסף תמונה" />}
+      {image ? <input type="file" name="image" placeholder={(values?.image) ? "הוסף תמונה" : "שנה תמונה"} /> : <img src={values?.image || ''}></img>}
     </div>
   );
 }
