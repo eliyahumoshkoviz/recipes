@@ -10,16 +10,23 @@ export default function Input({ values = {} }) {
     preparationTime: '',
     CookingTime: '',
     servings: '',
-    ...values, // Initialize with default values or provided values
   });
-
+console.log("fghj#######");
+  // Ensure that inputValues are updated when the values prop changes
   useEffect(() => {
-    // Update the state if the `values` prop changes
-    setInputValues((prev) => ({
-      ...prev,
-      ...values,
-    }));
-  }, [values]);
+    if (values.title =='') {
+      
+      console.log("jgjfj");
+      setInputValues({
+        title: values.title || '',
+        description: values.description || '',
+        preparationTime: values.preparationTime || '',
+        CookingTime: values.CookingTime || '',
+        servings: values.servings || '',
+      })
+    
+  }
+  }, [inputValues]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -72,7 +79,7 @@ export default function Input({ values = {} }) {
           name="CookingTime"
         />
       </div>
-      <h3 onClick={() => setImage(!image)}>החלפת תמונה</h3>
+      <h3 onClick={() => setImage(!image)}>הוסף תמונה</h3>
       {image && <input type="file" name="image" placeholder="הוסף תמונה" />}
     </div>
   );

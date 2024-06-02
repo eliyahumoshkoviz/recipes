@@ -8,7 +8,6 @@ export const EditRecipe = ({ recipeName }) => {
 
     const [recipe, setRecipe] = useState({})
 
-
     useEffect(() => {
         fetch(`/api/recipe/${recipeName}`, { cache: 'no-store' })
             .then(res => res.json())

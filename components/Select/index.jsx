@@ -1,5 +1,4 @@
 "use client";
-import { connectToMongo } from '@/server/DL/connectToMongo';
 import styles from './style.module.scss'
 import { useEffect, useState } from 'react';
 export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר קטגוריה' }) {
