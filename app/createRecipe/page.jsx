@@ -15,7 +15,7 @@ export default async function CreateRecipe() {
     <div className={styles.container}>
       <form action={createRecipeAction}>
         <div className={styles.inputes}>
-          <Select category={category} />
+          <Select  />
           <Input />
         </div>
         <div className={styles.add}>

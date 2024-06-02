@@ -30,18 +30,17 @@ export const EditRecipe = ({ recipeName }) => {
     } = recipe;
 
 
-
     return (
         <div className={styles.container}>
             <form >
                 <div className={styles.inputes}>
-                    <Select category={category} />
-                    <Input />
+                    <Select typeFood={typeFood} cat={category?.[0].title} />
+                    <Input values={recipe} />
                 </div>
                 <div className={styles.add}>
-                    <AddIngredients />
+                    <AddIngredients ingredients={ingredients}/>
                 </div>
-                <textarea name="instructions" placeholder="הוראות הכנה" required />
+                <textarea value={instructions} name="instructions" placeholder="הוראות הכנה" required />
                     <button className={styles.btn} type="submit">
                         סיום    
                     </button>

@@ -2,18 +2,17 @@
 import { connectToMongo } from '@/server/DL/connectToMongo';
 import styles from './style.module.scss'
 import { useEffect, useState } from 'react';
-import { readCategorysService } from '@/server/DB/category.service';
-export default async function Select({category}) {
+export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר קטגוריה' }) {
   const [add, setAdd] = useState(false)
-  // const [category, setCategory] = useState([])
-  // useEffect(() => { fechData() }, [])
+  const [category, setCategory] = useState([])
 
-  const fechData = async () => {
+  useEffect(() => {
 
-    await connectToMongo();
-    const categoryData = await readCategorysService();
-    setCategory(categoryData)
-  }
+    fetch(`/api/category`, { cache: 'no-store' })
+      .then(res => res.json())
+      .then(data => { setCategory(data) })
+      .catch(error => console.error('Fetch error:', error));
+  }, []);
 
   const addCategory = () => {
     setAdd(!add)
@@ -22,7 +21,7 @@ export default async function Select({category}) {
     <div className={styles.container}>
       <select name="category" required>
 
-        <option value="" hidden disabled selected> בחר קטגוריה</option>
+        <option value="" hidden disabled selected> {cat}</option>
 
         {category?.map((categoryItem, index) => (
           <option key={index} value={categoryItem.title}>
@@ -34,7 +33,7 @@ export default async function Select({category}) {
         </optgroup>
       </select>
       <select name="typeFood" required>
-        <option value="" hidden disabled selected> בשרי/חלבי</option>
+        <option value="" hidden disabled selected> {typeFood}</option>
         <option>בשרי</option>
         <option>חלבי</option>
         <option>פרווה</option>
