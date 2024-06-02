@@ -1,8 +1,20 @@
 "use client";
+import { connectToMongo } from '@/server/DL/connectToMongo';
 import styles from './style.module.scss'
-import { useState } from 'react';
-export default function Select({ category }) {
+import { useEffect, useState } from 'react';
+import { readCategorysService } from '@/server/DB/category.service';
+export default async function Select({category}) {
   const [add, setAdd] = useState(false)
+  // const [category, setCategory] = useState([])
+  // useEffect(() => { fechData() }, [])
+
+  const fechData = async () => {
+
+    await connectToMongo();
+    const categoryData = await readCategorysService();
+    setCategory(categoryData)
+  }
+
   const addCategory = () => {
     setAdd(!add)
   }

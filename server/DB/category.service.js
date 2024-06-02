@@ -2,6 +2,6 @@ import { createCategory, readCategoryById, readCategorys, updateCategory,readCat
 
 export const createCategorysService = (data) => createCategory(data);
 export const readCategoryByIdService = (id) => readCategoryById(id);
-export const readCategorysService = (filter) => readCategorys(filter);
+export const readCategorysService = () => readCategorys();
 export const readCategoryService = (filter) => readCategory(filter);
 export const updateCategoryService = (id) => updateCategory(id,data);
