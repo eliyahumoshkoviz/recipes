@@ -1,50 +1,68 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./style.module.scss";
-import AddCategory from "../AddCategory";
 
-export default function AddIngredien() {
+export default function AddIngredien({ ingredients, setRecipe }) {
   const [arrIngredients, setArrIngredients] = useState([]);
 
-  const handleAddIngredients = () => {
-    setArrIngredients((prev) => [...prev, 1]);
-  };
+  useEffect(() => {
+    if (ingredients) {
+      setArrIngredients(ingredients);
+    }
+  }, [ingredients]);
 
-  const handleDelIngredients = () => {
-    setArrIngredients((prev) => {
-      if (prev.length > 0) {
-        return prev.slice(0, -1);
-      }
-      return prev;
-    });
+
+  const handleAddIngredients = () => {
+    const updatedArr = [...arrIngredients, ""];
+    setArrIngredients(updatedArr);
+    setRecipe?.((prev) => ({ ...prev, ingredients: updatedArr }));
   };
   
 
+  const handleDelIngredients = () => {
+    if (arrIngredients.length > 0) {
+      const updatedArr = arrIngredients.slice(0, -1);
+      setArrIngredients(updatedArr);
+      setRecipe?.((prev) => ({ ...prev, ingredients: updatedArr }));
+    }
+  };
+  
+
+  const handleIngredientsChange = (event, index) => {
+    const updatedArrIngredients = [...arrIngredients];
+    updatedArrIngredients[index] = event.target.value;
+    setArrIngredients(updatedArrIngredients);
+    setRecipe?.((prev) => ({ ...prev, ingredients: updatedArrIngredients }));
+  };
+  
+  
   return (
     <div className={styles.container}>
-      {/* <AddCategory /> */}
       <h2>רשימת רכיבים</h2>
       <div className={styles.buttes}>
         <input type="button" value="+" onClick={handleAddIngredients} />
         <input type="button" value="-" onClick={handleDelIngredients} />
       </div>
-      <div className={styles.btn}>
-      </div>
+      <div className={styles.btn}></div>
       <div className={styles.add}>
-      <input
+        {!ingredients && (
+          <input
             type="text"
             placeholder="הוסף רכיב"
             name="ingredients"
             required
+            onChange={(e) => handleIngredientsChange(e)}
           />
-          </div>
+        )}
+      </div>
       {arrIngredients?.map((item, index) => (
-        <div className={styles.add}>
+        <div className={styles.add} key={index}>
           <input
-            key={index}
+            value={item}
             type="text"
             placeholder="הוסף רכיב"
             name={`ingredients${index}`}
+            onChange={(e) => handleIngredientsChange(e, index)}
           />
         </div>
       ))}
