@@ -63,7 +63,7 @@ export default function Input({ recipe }) {
         />
       </div>
       <h3 onClick={() => setImage(!image)}>הוסף תמונה</h3>
-      {image ? <input type="file" name="image" placeholder={(values?.image) ? "הוסף תמונה" : "שנה תמונה"} /> : <img src={values?.image || ''}></img>}
+      {image ? <input type="file" name="image" placeholder={values?.image ? "שנה תמונה" : "הוסף תמונה"} /> : <img src={values?.image || ''}></img>}
     </div>
   );
 }

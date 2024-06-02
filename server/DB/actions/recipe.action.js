@@ -21,8 +21,9 @@ export const createRecipeAction = async (fd) => {
 
 export const updateRecipeAction = async (_id,fd) => {
    const body = Object.fromEntries(fd)
+   console.log(_id,fd);
    try {
-      await updateRecipService(id, fd)
+      // await updateRecipService(id, fd)
    } catch (error) {
       console.log({ error });
    }
