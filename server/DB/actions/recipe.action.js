@@ -8,8 +8,6 @@ import { saveImgToCloud } from "../cloudInary"
 export const createRecipeAction = async (fd) => {
    const body = Object.fromEntries(fd)
 
-   const img = fd.get("image")
-   console.log(img);
    try {
       await createRecipesService(body)
       revalidatePath('/')
@@ -29,12 +27,23 @@ export const updateRecipeAction = async (fd) => {
    // }
    const _id = fd.get("_id")
    const body = Object.fromEntries(fd)
-   console.log("#######SERVER##########", body);
+   body.ingredients = extractValues(body);
+
    try {
-      await updateRecipService(_id, body)
+      await updateRecipService(_id, body);
    } catch (error) {
       console.log({ error });
    }
    redirect('/')
 }
 
+function extractValues(obj) {
+   const values = [];
+   for (const key in obj) {
+     if (key.startsWith("ingredients")) {
+       obj[key] !== "" && values.push(obj[key]);
+       delete obj[key];
+     }
+   }
+   return values;
+ }
