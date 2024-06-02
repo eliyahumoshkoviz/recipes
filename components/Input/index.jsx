@@ -19,13 +19,13 @@ export default function Input({ recipe }) {
     }));
   };
 
-  const { title, description, preparationTime, CookingTime, servings } = values;
+  const { title, description, preparationTime, CookingTime, servings,_id } = values;
 
   return (
     <div className={styles.container}>
       <input
         onChange={handleInputChange}
-        value={title}
+        value={title || ""}
         type="text"
         placeholder="שם המתכון"
         name="title"
@@ -33,14 +33,14 @@ export default function Input({ recipe }) {
       />
       <input
         onChange={handleInputChange}
-        value={description}
+        value={description || ""}
         type="text"
         placeholder="תיאור"
         name="description"
       />
       <input
         onChange={handleInputChange}
-        value={servings}
+        value={servings || ""}
         type="number"
         min="1"
         placeholder="מספר מנות"
@@ -49,18 +49,19 @@ export default function Input({ recipe }) {
       <div className={styles.time}>
         <input
           onChange={handleInputChange}
-          value={preparationTime}
+          value={preparationTime || ""}
           type="text"
           placeholder="זמן הכנה"
           name="preparationTime"
         />
         <input
           onChange={handleInputChange}
-          value={CookingTime}
+          value={CookingTime || ""}
           type="text"
           placeholder="זמן בישול/אפיה"
           name="CookingTime"
         />
+        <input name='_id' value={_id || ""} hidden />
       </div>
       <h3 onClick={() => setImage(!image)}>הוסף תמונה</h3>
       {image ? <input type="file" name="image" placeholder={values?.image ? "שנה תמונה" : "הוסף תמונה"} /> : <img src={values?.image || ''}></img>}

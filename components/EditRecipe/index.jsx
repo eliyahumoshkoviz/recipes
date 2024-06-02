@@ -3,6 +3,7 @@ import Input from "../Input";
 import Select from "../Select";
 import AddIngredients from "../AddIngredients";
 import styles from "./style.module.scss";
+import { updateRecipeAction } from "@/server/DB/actions/recipe.action";
 
 export const EditRecipe = ({ recipeName }) => {
   const [recipe, setRecipe] = useState({});
@@ -16,7 +17,8 @@ export const EditRecipe = ({ recipeName }) => {
       .catch((error) => console.error("Fetch error:", error));
   }, []);
 
-  const { ingredients, typeFood, instructions, category } = recipe;
+  const { ingredients, typeFood, instructions, category, _id } = recipe;
+  console.log("recipe:",_id);
 
   const handleTextChange = (event) => {
     const { name, value } = event.target;
@@ -28,7 +30,7 @@ export const EditRecipe = ({ recipeName }) => {
 
   return (
     <div className={styles.container}>
-      <form>
+      <form action={updateRecipeAction}>
         <div className={styles.inputes}>
           <Select typeFood={typeFood} cat={category?.[0].title} />
           <Input recipe={recipe} setRecipe={setRecipe} />
