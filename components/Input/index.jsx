@@ -1,42 +1,19 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./style.module.scss";
 
-export default function Input({ values = {} }) {
+export default function Input({ recipe = {}, setRecipe}) {
   const [image, setImage] = useState(false);
-  const [inputValues, setInputValues] = useState({
-    title: '',
-    description: '',
-    preparationTime: '',
-    CookingTime: '',
-    servings: '',
-  });
-console.log("fghj#######");
-  // Ensure that inputValues are updated when the values prop changes
-  useEffect(() => {
-    if (values.title =='') {
-      
-      console.log("jgjfj");
-      setInputValues({
-        title: values.title || '',
-        description: values.description || '',
-        preparationTime: values.preparationTime || '',
-        CookingTime: values.CookingTime || '',
-        servings: values.servings || '',
-      })
-    
-  }
-  }, [inputValues]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setInputValues((prev) => ({
+    setRecipe((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const { title, description, preparationTime, CookingTime, servings } = inputValues;
+  const { title, description, preparationTime, CookingTime, servings } = recipe;
 
   return (
     <div className={styles.container}>
