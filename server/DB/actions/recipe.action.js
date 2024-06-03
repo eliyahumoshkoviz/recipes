@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache"
 import { RedirectType, redirect } from "next/navigation"
 import { extractValues } from '../function/function'
 import { createRecipesService, updateRecipService } from "../recipe.service"
+import { createCategorysService } from "../category.service"
 
 
 export const createRecipeAction = async (fd) => {
@@ -38,4 +39,16 @@ export const updateRecipeAction = async (fd) => {
 
    redirect(`/recipe/${_id}`)
 
+}
+
+export const cretaeCategoryAction = async (fd) => {
+   const body = Object.fromEntries(fd)
+
+   try {
+      await createCategorysService(body)
+      revalidatePath('/createRecipe')
+   } catch (error) {
+      console.log({ error });
+   }
+   redirect('/createRecipe')
 }

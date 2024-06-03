@@ -8,8 +8,7 @@ import {extractValues,checkFields} from './function/function'
 export const createRecipesService = async (recipe) => {
   await connectToMongo();
 
-  const { _id, image } = await readCategoryService({ title: recipe.category });
-  const imageDefault = image;
+  const { _id, image: imageDefault } = await readCategoryService({ title: recipe.category });
   const img = recipe.image ? await saveImgToCloud(recipe.image) : imageDefault;
   
   recipe.image = img;
