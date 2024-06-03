@@ -62,7 +62,7 @@ export default function Input({ recipe }) {
           placeholder="זמן בישול/אפיה"
           name="CookingTime"
         />
-        <input name="_id" value={_id || ""} hidden />
+        <input name="_id" value={_id || ""} readOnly hidden />
       </div>
       <h3 onClick={() => setImage(!image)}>
         {values?.image ? "שנה תמונה" : "הוסף תמונה"}{" "}
