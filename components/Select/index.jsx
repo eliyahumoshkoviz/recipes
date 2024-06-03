@@ -20,7 +20,7 @@ export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר ק�
     <div className={styles.container}>
       <select name="category" required>
 
-        <option defaultValue={cat}> {cat}</option>
+        <option defaultValue={''}> {cat}</option>
 
         {category?.map((categoryItem, index) => (
           <option key={index} value={categoryItem.title}>
