@@ -1,4 +1,5 @@
 "use client";
+import { Popup } from '../Popup';
 import styles from './style.module.scss'
 import { useEffect, useState } from 'react';
 export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר קטגוריה' }) {
@@ -18,6 +19,7 @@ export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר ק�
   }
   return (
     <div className={styles.container}>
+      <Popup />
       <select name="category" required={cat === 'בחר קטגוריה'}>
       <option value="" hidden disabled selected> {cat}</option>
         {category?.map((categoryItem, index) => (
