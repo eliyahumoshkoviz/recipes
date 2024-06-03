@@ -3,6 +3,7 @@ import { updateCategory } from "../DL/controllers/category.controller";
 import { createRecipe, readRecipeById, readRecipes, updateRecipe } from "../DL/controllers/recipe.controller";
 import { readCategoryService } from "./category.service";
 import { saveImgToCloud } from "./cloudinary/cloudinary";
+import {extractValues,checkFields} from './function/function'
 
 export const createRecipesService = async (recipe) => {
   await connectToMongo();
@@ -35,21 +36,4 @@ export const updateRecipService = async (id, data) => {
 export const readRecipesService = (filter) => readRecipes(filter);
 export const readRecipeByIdService = (id) => readRecipeById(id);
 
-function extractValues(obj) {
-  const values = [];
-  for (const key in obj) {
-    if (key.startsWith("ingredients")) {
-      obj[key] !== "" && values.push(obj[key]);
-      delete obj[key];
-    }
-  }
-  return values;
-}
 
-function checkFields(obj, fields) {
-  for (const field of fields) {
-    if (obj[field] === "") {
-      throw new Error(`Field '${field}' does not exist in object`);
-    }
-  }
-}

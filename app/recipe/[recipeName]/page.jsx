@@ -17,28 +17,29 @@ export default async function Recipe({ params: { recipeName } }) {
     servings,
     typeFood,
     instructions,
-    category
+    category,
   } = recipe;
 
-  return (<>
-    <div>
-      <RecipeDescription
-        recipeName={title}
-        description={description}
-        image={image}
-        category={category[0]}
-      />
-      <Instructions
-        ingredients={ingredients}
-        preparationTime={preparationTime}
-        CookingTime={CookingTime}
-        servings={servings}
-        typeFood={typeFood}
-        instructions={instructions}
-      />
-    </div>
+  return (
+    <>
+      <div>
+        <RecipeDescription
+          recipeName={title}
+          description={description}
+          image={image}
+          category={category[0]}
+        />
+        <Instructions
+          ingredients={ingredients}
+          preparationTime={preparationTime}
+          CookingTime={CookingTime}
+          servings={servings}
+          typeFood={typeFood}
+          instructions={instructions}
+        />
+      </div>
 
-    <Footer recipeName={recipeName} />
-  </>
+      <Footer recipeName={recipeName} />
+    </>
   );
 }

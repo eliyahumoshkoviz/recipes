@@ -1,7 +1,7 @@
 import React from "react";
 import { connectToMongo } from "@/server/DL/connectToMongo";
-import { createCategorysService, readCategoryService } from "@/server/DB/category.service";
-import styles from './style.module.scss'
+import { readCategoryService } from "@/server/DB/category.service";
+import styles from "./style.module.scss";
 import Navlink from "@/components/NavLink";
 import Photo from "@/components/Photo";
 
