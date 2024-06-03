@@ -1,8 +1,9 @@
 "use client";
+import AddCategory from '../AddCategory';
 import { Popup } from '../Popup';
 import styles from './style.module.scss'
 import { useEffect, useState } from 'react';
-export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר קטגוריה' }) {
+export default function Select({ typeFood = "בשרי/חלבי", cat = 'בחר קטגוריה' }) {
   const [add, setAdd] = useState(false)
   const [category, setCategory] = useState([])
 
@@ -19,9 +20,11 @@ export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר ק�
   }
   return (
     <div className={styles.container}>
-      <Popup />
+      {createCategory && <Popup>
+        <AddCategory />
+      </Popup>}
       <select name="category" required={cat === 'בחר קטגוריה'}>
-      <option value="" hidden disabled selected> {cat}</option>
+        <option value="" hidden disabled selected> {cat}</option>
         {category?.map((categoryItem, index) => (
           <option key={index} value={categoryItem.title}>
             {categoryItem.title}
@@ -31,8 +34,8 @@ export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר ק�
           <option onClick={addCategory}>הוסף קטגוריה</option>
         </optgroup>
       </select>
-      <select name="typeFood" required={typeFood==="בשרי/חלבי"}>
-      <option value="" hidden disabled selected> {typeFood}</option>
+      <select name="typeFood" required={typeFood === "בשרי/חלבי"}>
+        <option value="" hidden disabled selected> {typeFood}</option>
         <option>בשרי</option>
         <option>חלבי</option>
         <option>פרווה</option>
@@ -40,4 +43,3 @@ export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר ק�
     </div>
   );
 }
- 
