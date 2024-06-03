@@ -1,11 +1,16 @@
 "use client";
+
+import { useRouter } from 'next/navigation';
 import AddCategory from '../AddCategory';
 import { Popup } from '../Popup';
 import styles from './style.module.scss'
 import { useEffect, useState } from 'react';
 export default function Select({ typeFood = "בשרי/חלבי", cat = 'בחר קטגוריה' }) {
-  const [add, setAdd] = useState(false)
+  const router = useRouter()
+
   const [category, setCategory] = useState([])
+  const [createCategory, setCreateCategory] = useState(false)
+  const [selectedOption, setSelectedOption] = useState('');
 
   useEffect(() => {
 
@@ -15,15 +20,21 @@ export default function Select({ typeFood = "בשרי/חלבי", cat = 'בחר �
       .catch(error => console.error('Fetch error:', error));
   }, []);
 
-  const addCategory = () => {
-    setAdd(!add)
+  const handleChange = (event) => {
+    const value = event.target.value;
+    setSelectedOption(value);
+    if (value === 'addCategory') {
+      router.push('/createCategory')
+    }
+  };
+
+  const handleAddCategory = () => {
+    setCreateCategory(!createCategory);
   }
+
   return (
     <div className={styles.container}>
-      {createCategory && <Popup>
-        <AddCategory />
-      </Popup>}
-      <select name="category" required={cat === 'בחר קטגוריה'}>
+      <select onChange={handleChange} name="category" required={cat === 'בחר קטגוריה'}>
         <option value="" hidden disabled selected> {cat}</option>
         {category?.map((categoryItem, index) => (
           <option key={index} value={categoryItem.title}>
@@ -31,7 +42,7 @@ export default function Select({ typeFood = "בשרי/חלבי", cat = 'בחר �
           </option>
         ))}
         <optgroup style={{ background: "#a3040c" }}>
-          <option onClick={addCategory}>הוסף קטגוריה</option>
+          <option value="addCategory">הוסף קטגוריה</option>
         </optgroup>
       </select>
       <select name="typeFood" required={typeFood === "בשרי/חלבי"}>
