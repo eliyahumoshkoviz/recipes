@@ -9,7 +9,6 @@ import Input from "@/components/Input";
 export default async function CreateRecipe() {
   
   await connectToMongo();
-  const category = await readCategorysService();
 
   return (
     <div className={styles.container}>

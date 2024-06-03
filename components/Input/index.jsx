@@ -19,7 +19,8 @@ export default function Input({ recipe }) {
     }));
   };
 
-  const { title, description, preparationTime, CookingTime, servings,_id } = values;
+  const { title, description, preparationTime, CookingTime, servings, _id } =
+    values;
 
   return (
     <div className={styles.container}>
@@ -61,10 +62,16 @@ export default function Input({ recipe }) {
           placeholder="זמן בישול/אפיה"
           name="CookingTime"
         />
-        <input name='_id' value={_id || ""} hidden />
+        <input name="_id" value={_id || ""} hidden />
       </div>
-      <h3 onClick={() => setImage(!image)}>הוסף תמונה</h3>
-      {image ? <input type="file" name="image" placeholder={values?.image ? "שנה תמונה" : "הוסף תמונה"} /> : <img src={values?.image || ''}></img>}
+      <h3 onClick={() => setImage(!image)}>
+        {values?.image ? "שנה תמונה" : "הוסף תמונה"}{" "}
+      </h3>
+      {image ? (
+        <input type="file" name="image" />
+      ) : (
+        <img src={values?.image || ""}></img>
+      )}
     </div>
   );
 }

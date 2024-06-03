@@ -18,10 +18,8 @@ export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר ק�
   }
   return (
     <div className={styles.container}>
-      <select name="category" required>
-
-        <option defaultValue={''}> {cat}</option>
-
+      <select name="category" required={cat === 'בחר קטגוריה'}>
+      <option value="" hidden disabled selected> {cat}</option>
         {category?.map((categoryItem, index) => (
           <option key={index} value={categoryItem.title}>
             {categoryItem.title}
@@ -31,8 +29,8 @@ export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר ק�
           <option onClick={addCategory}>הוסף קטגוריה</option>
         </optgroup>
       </select>
-      <select name="typeFood" required>
-        <option defaultValue={typeFood} > {typeFood }</option>
+      <select name="typeFood" required={typeFood==="בשרי/חלבי"}>
+      <option value="" hidden disabled selected> {typeFood}</option>
         <option>בשרי</option>
         <option>חלבי</option>
         <option>פרווה</option>
@@ -40,3 +38,4 @@ export default function Select({ typeFood="בשרי/חלבי", cat = 'בחר ק�
     </div>
   );
 }
+ 
