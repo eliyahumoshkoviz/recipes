@@ -43,7 +43,7 @@ export const updateRecipeAction = async (fd) => {
 
 export const cretaeCategoryAction = async (fd) => {
    const body = Object.fromEntries(fd)
-
+// console.log("aaaa",body);
    try {
       await createCategorysService(body)
       revalidatePath('/createRecipe')
