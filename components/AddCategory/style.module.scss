@@ -26,20 +26,12 @@
             height: 40px;
             padding: 8px;
         }
-        button{
-            align-self: flex-end; /* מצמיד את הכפתור לתחתית */
-        }
-
-    
-
-}
-
-
+ }
 
 .btn {
-
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    position: relative;
+    margin-top: 100px;
+    background-color:  rgb(181, 6, 6);
+ color: white;
 }
 }
