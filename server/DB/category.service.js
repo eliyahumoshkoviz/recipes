@@ -6,9 +6,9 @@ import { extractValues, checkFields } from './function/function'
 export const createCategorysService = async (category) => {
   await connectToMongo();
 
-  // const img = await saveImgToCloud(category.image);
-  category.image = '';
-  // category.image = img;
+  const img = await saveImgToCloud(category.image);
+  // category.image = '';
+  category.image = img;
   checkFields(category, ["title", "colorLabel"]);
   createCategory(category)
 };
