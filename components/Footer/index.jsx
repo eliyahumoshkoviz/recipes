@@ -1,7 +1,7 @@
-"use client"
-import { useState } from 'react';
-import { Popup } from '../Popup';
-import styles from './style.module.scss'
+"use client";
+import { useState } from "react";
+import { Popup } from "../Popup";
+import styles from "./style.module.scss";
 import { MdEdit } from "react-icons/md";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { EditRecipe } from '../EditRecipe';
