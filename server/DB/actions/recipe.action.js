@@ -19,12 +19,13 @@ export const createRecipeAction = async (fd) => {
 
 
 export const updateRecipeAction = async (fd) => {
-   let img = fd.get("image")
+   // let img = fd.get("image")
    // if (typeof img !== 'string') {
-   //    img = await saveImgToCloud(fd.image);
    //    console.log('img', img);
+   //    return;ו
+      // img = await saveImgToCloud(fd.image);
 
-   // }
+   // }foo
    const _id = fd.get("_id")
    const body = Object.fromEntries(fd)
    body.ingredients = extractValues(body);
