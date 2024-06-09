@@ -2,25 +2,23 @@
 import { useEffect, useState } from "react";
 import styles from "./style.module.scss";
 
-export default function Input({ recipe }) {
+export default function Input({ recipe, setRecipe }) {
   const [image, setImage] = useState(false);
   const [values, setValues] = useState({});
-  useEffect(() => {
-    if (recipe) {
-      setValues(recipe);
-    }
-  }, [recipe]);
+  
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setValues((prev) => ({
+    const setFunc = setRecipe ? setRecipe : setValues;
+
+    setFunc((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const { title, description, preparationTime, CookingTime, servings, _id } =
-    values;
+  const { title, description, preparationTime, CookingTime, servings } =
+    recipe||values;
 
   return (
     <div className={styles.container}>
@@ -62,7 +60,6 @@ export default function Input({ recipe }) {
           placeholder="זמן בישול/אפיה"
           name="CookingTime"
         />
-        <input name="_id" value={_id || ""} readOnly hidden />
       </div>
       <h3 onClick={() => setImage(!image)}>
         {values?.image ? "שנה תמונה" : "הוסף תמונה"}{" "}

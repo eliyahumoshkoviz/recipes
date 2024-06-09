@@ -17,7 +17,7 @@ export const EditRecipe = ({ recipeName }) => {
       .catch((error) => console.error("Fetch error:", error));
   }, []);
 
-  const { ingredients, typeFood, instructions, category } = recipe;
+  const { ingredients, typeFood, instructions, category, _id } = recipe;
 
   const handleTextChange = (event) => {
     const { name, value } = event.target;
@@ -26,10 +26,11 @@ export const EditRecipe = ({ recipeName }) => {
       [name]: value,
     }));
   };
+  const updateRecipeActionId = updateRecipeAction.bind(null, recipeName);
 
   return (
     <div className={styles.container}>
-      <form action={updateRecipeAction}>
+      <form action={updateRecipeActionId}>
         <div className={styles.inputes}>
           <Select typeFood={typeFood} cat={category?.[0].title} />
           <Input recipe={recipe} setRecipe={setRecipe} />

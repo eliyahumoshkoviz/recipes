@@ -20,29 +20,27 @@ export const createRecipeAction = async (fd) => {
 }
 
 
-export const updateRecipeAction = async (fd) => {
-   let img = fd.get("image")
+export const updateRecipeAction = async (id,fd) => {
+   // let img = fd.get("image")
    // if (typeof img !== 'string') {
    //    img = await saveImgToCloud(fd.image);
    //    console.log('img', img);
 
    // }
-   const _id = fd.get("_id")
    const body = Object.fromEntries(fd)
    body.ingredients = extractValues(body);
    try {
-      await updateRecipService(_id, body);
+      await updateRecipService(id, body);
    } catch (error) {
       console.log({ error });
    }
 
-   redirect(`/recipe/${_id}`)
+   redirect(`/recipe/${id}`)
 
 }
 
 export const cretaeCategoryAction = async (fd) => {
    const body = Object.fromEntries(fd)
-// console.log("aaaa",body);
    try {
       await createCategorysService(body)
       revalidatePath('/createRecipe')

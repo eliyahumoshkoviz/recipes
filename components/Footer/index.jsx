@@ -17,10 +17,9 @@ export const Footer = ({ recipeName }) => {
       </div>
       {popup && (
         <Popup setPopup={setPopup}>
-          <EditRecipe recipeName={recipeName} />
+          <EditRecipe recipeName={recipeName}/>
         </Popup>
       )}
-      .
     </>
   );
 };
