@@ -1,4 +1,3 @@
-// import { useEffect, useState } from 'react'
 import Styles from './style.module.scss'
 
 export const Popup = ({setPopup , children}) => {
