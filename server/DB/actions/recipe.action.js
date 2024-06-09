@@ -32,7 +32,6 @@ export const updateRecipeAction = async (fd) => {
    body.ingredients = extractValues(body);
    try {
       await updateRecipService(_id, body);
-      console.log({ body });
    } catch (error) {
       console.log({ error });
    }

@@ -10,7 +10,6 @@ export default function Select({ typeFood = "בשרי/חלבי", cat = 'בחר �
 
   const [category, setCategory] = useState([])
   const [createCategory, setCreateCategory] = useState(false)
-  const [selectedOption, setSelectedOption] = useState('');
 
   useEffect(() => {
 
@@ -21,9 +20,7 @@ export default function Select({ typeFood = "בשרי/חלבי", cat = 'בחר �
   }, []);
 
   const handleChange = (event) => {
-    const value = event.target.value;
-    setSelectedOption(value);
-    if (value === 'addCategory') {
+    if (event.target.value === 'addCategory') {
       router.push('/createCategory')
     }
   };
@@ -35,12 +32,13 @@ export default function Select({ typeFood = "בשרי/חלבי", cat = 'בחר �
   return (
     <div className={styles.container}>
       <select onChange={handleChange} name="category" required={cat === 'בחר קטגוריה'}>
-        <option value="" hidden disabled selected> {cat}</option>
+        <option value='' hidden disabled selected> {cat}</option>
         {category?.map((categoryItem, index) => (
-          <option key={index} value={categoryItem.title}>
+         categoryItem.title !== cat && (<option key={index} value={categoryItem.title}>
             {categoryItem.title}
-          </option>
+          </option>)
         ))}
+
         <optgroup style={{ background: "#a3040c" }}>
           <option value="addCategory">הוסף קטגוריה</option>
         </optgroup>
