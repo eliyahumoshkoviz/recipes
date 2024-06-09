@@ -20,7 +20,7 @@ export const createRecipeAction = async (fd) => {
 }
 
 
-export const updateRecipeAction = async (id,fd) => {
+export const updateRecipeAction = async (id,prev,fd) => {
    // let img = fd.get("image")
    // if (typeof img !== 'string') {
    //    img = await saveImgToCloud(fd.image);
@@ -31,6 +31,8 @@ export const updateRecipeAction = async (id,fd) => {
    body.ingredients = extractValues(body);
    try {
       await updateRecipService(id, body);
+      revalidatePath(`/recipe/${id}`)
+      return 'The recipe has been successfully updated'
    } catch (error) {
       console.log({ error });
    }

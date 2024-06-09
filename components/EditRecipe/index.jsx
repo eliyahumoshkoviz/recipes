@@ -1,11 +1,15 @@
+'use client'
+
 import { useEffect, useState } from "react";
+import { useFormState } from 'react-dom'
+
 import Input from "../Input";
 import Select from "../Select";
 import AddIngredients from "../AddIngredients";
 import styles from "./style.module.scss";
 import { updateRecipeAction } from "@/server/DB/actions/recipe.action";
 
-export const EditRecipe = ({ recipeName }) => {
+export const EditRecipe = ({ recipeName,setPopup }) => {
   const [recipe, setRecipe] = useState({});
 
   useEffect(() => {
@@ -27,10 +31,12 @@ export const EditRecipe = ({ recipeName }) => {
     }));
   };
   const updateRecipeActionId = updateRecipeAction.bind(null, recipeName);
+  const [state, formAction] = useFormState(updateRecipeActionId)
+  {state!==undefined&&setPopup(false)}
 
   return (
     <div className={styles.container}>
-      <form action={updateRecipeActionId}>
+      <form action={formAction}>
         <div className={styles.inputes}>
           <Select typeFood={typeFood} cat={category?.[0].title} />
           <Input recipe={recipe} setRecipe={setRecipe} />
