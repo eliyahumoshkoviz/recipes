@@ -8,7 +8,6 @@ export const SearchBar = ({ val }) => {
 
     const handleSearch = e => {
         if (e.target.value) {
-            console.log(e.target.value);
             router.push(`/result?search=${e.target.value}`)
         } else {
             router.push('/')
