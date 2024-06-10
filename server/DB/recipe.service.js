@@ -42,12 +42,9 @@ export const createRecipesService = async (recipe) => {
 };
 
 export const updateRecipService = async (id, data) => {
-  return await updateRecipe(id, data);
+  const { category, ...dataWithoutTitle } = data; // Extract title and keep the rest
+  return await updateRecipe(id, dataWithoutTitle);
 };
-// export const updateRecipService = async (id, data) => {
-//   const { title, ...dataWithoutTitle } = data; // Extract title and keep the rest
-//   return await updateRecipe(id, dataWithoutTitle);
-// };
 
 
 export const readRecipesService = (filter) => readRecipes(filter);

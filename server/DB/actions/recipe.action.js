@@ -38,9 +38,7 @@ export const updateRecipeAction = async (id,prev,fd) => {
       const categoryId = recipe.category[0]._id.toString();
       await changeCategory(id, categoryId, {title:body.category});
       recipe = await readRecipeByIdService(id);
-
     }
-
     await updateRecipService(id, body);
     revalidatePath(`/recipe/${id}`);
     return "The recipe has been successfully updated";
