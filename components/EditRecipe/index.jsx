@@ -32,7 +32,7 @@ export const EditRecipe = ({ recipeName,setPopup }) => {
   };
   const updateRecipeActionId = updateRecipeAction.bind(null, recipeName);
   const [state, formAction] = useFormState(updateRecipeActionId)
-  {state!==undefined&&setPopup(false)}
+  {state!==undefined&&setPopup(undefined)}
 
   return (
     <div className={styles.container}>

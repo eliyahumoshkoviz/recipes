@@ -22,20 +22,23 @@ export const createRecipeAction = async (fd) => {
   redirect("/");
 };
 
-export const updateRecipeAction = async (id, prev, fd) => {
-  // let img = fd.get("image")
-  // if (typeof img !== 'string') {
-  //    img = await saveImgToCloud(fd.image);
-  //    console.log('img', img);
+
+export const updateRecipeAction = async (id,prev,fd) => {
+   // let img = fd.get("image")
+   // if (typeof img !== 'string') {
+   //    img = await saveImgToCloud(fd.image);
+   //    console.log('img', img);
 
   // }
   const body = Object.fromEntries(fd);
   body.ingredients = extractValues(body);
   try {
-    const recipe = await readRecipeByIdService(id,true);
+    let recipe = await readRecipeByIdService(id);
     if (body.category) {
       const categoryId = recipe.category[0]._id.toString();
       await changeCategory(id, categoryId, {title:body.category});
+      recipe = await readRecipeByIdService(id);
+
     }
 
     await updateRecipService(id, body);
