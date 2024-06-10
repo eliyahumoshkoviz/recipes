@@ -1,23 +1,26 @@
-"use server"
+"use server";
 
-import { revalidatePath } from "next/cache"
-import { RedirectType, redirect } from "next/navigation"
-import { extractValues } from '../function/function'
-import { createRecipesService, updateRecipService } from "../recipe.service"
-import { createCategorysService } from "../category.service"
-
+import { revalidatePath } from "next/cache";
+import { RedirectType, redirect } from "next/navigation";
+import { extractValues, getCategoryId,changeCategory } from "../function/function";
+import {
+  createRecipesService,
+  readRecipeByIdService,
+  updateRecipService,
+} from "../recipe.service";
+import { createCategorysService } from "../category.service";
 
 export const createRecipeAction = async (fd) => {
-   const body = Object.fromEntries(fd)
+  const body = Object.fromEntries(fd);
 
-   try {
-      await createRecipesService(body)
-      revalidatePath('/')
-   } catch (error) {
-      console.log({ error });
-   }
-   redirect('/')
-}
+  try {
+    await createRecipesService(body);
+    revalidatePath("/");
+  } catch (error) {
+    console.log({ error });
+  }
+  redirect("/");
+};
 
 
 export const updateRecipeAction = async (id,prev,fd) => {
@@ -26,28 +29,33 @@ export const updateRecipeAction = async (id,prev,fd) => {
    //    img = await saveImgToCloud(fd.image);
    //    console.log('img', img);
 
-   // }
-   const body = Object.fromEntries(fd)
-   body.ingredients = extractValues(body);
-   try {
-      await updateRecipService(id, body);
-      revalidatePath(`/recipe/${id}`)
-      return 'The recipe has been successfully updated'
-   } catch (error) {
-      console.log({ error });
-   }
+  // }
+  const body = Object.fromEntries(fd);
+  body.ingredients = extractValues(body);
+  try {
+    let recipe = await readRecipeByIdService(id);
+    if (body.category) {
+      const categoryId = recipe.category[0]._id.toString();
+      await changeCategory(id, categoryId, {title:body.category});
+      recipe = await readRecipeByIdService(id);
+    }
+    await updateRecipService(id, body);
+    revalidatePath(`/recipe/${id}`);
+    return "The recipe has been successfully updated";
+  } catch (error) {
+    console.log({ error });
+  }
 
-   redirect(`/recipe/${id}`)
-
-}
+  redirect(`/recipe/${id}`);
+};
 
 export const cretaeCategoryAction = async (fd) => {
-   const body = Object.fromEntries(fd)
-   try {
-      await createCategorysService(body)
-      revalidatePath('/createRecipe')
-   } catch (error) {
-      console.log({ error });
-   }
-   redirect('/createRecipe')
-}
+  const body = Object.fromEntries(fd);
+  try {
+    await createCategorysService(body);
+    revalidatePath("/createRecipe");
+  } catch (error) {
+    console.log({ error });
+  }
+  redirect("/createRecipe");
+};

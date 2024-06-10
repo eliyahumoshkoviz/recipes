@@ -3,10 +3,11 @@ import Instructions from "@/components/Instructions";
 import { readRecipeByIdService } from "@/server/DB/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { Footer } from "@/components/Footer";
+import styles from './style.module.scss'
 
 export default async function Recipe({ params: { recipeName } }) {
   await connectToMongo();
-  const recipe = await readRecipeByIdService(decodeURI(recipeName));
+  const recipe = await readRecipeByIdService(decodeURI(recipeName),true);
   const {
     title,
     description,
@@ -21,7 +22,7 @@ export default async function Recipe({ params: { recipeName } }) {
   } = recipe;
 
   return (
-    <>
+    <div className={styles.recipeBody}>
       <div>
         <RecipeDescription
           recipeName={title}
@@ -40,6 +41,6 @@ export default async function Recipe({ params: { recipeName } }) {
       </div>
 
       <Footer recipeName={recipeName} />
-    </>
+    </div>
   );
 }

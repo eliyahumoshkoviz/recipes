@@ -3,23 +3,26 @@ import { useState } from "react";
 import { Popup } from "../Popup";
 import styles from "./style.module.scss";
 import { MdEdit } from "react-icons/md";
-import { EditRecipe } from "../EditRecipe";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { EditRecipe } from '../EditRecipe';
+import { DeleteConfirm } from "../DeleteConfirm";
 
 export const Footer = ({ recipeName }) => {
-  const [popup, setPopup] = useState(false);
-  const handleEditClick = () => {
-    setPopup(true);
-  };
-  return (
-    <>
-      <div className={styles.container}>
-        <MdEdit className={styles.edit} onClick={handleEditClick} />
-      </div>
-      {popup && (
-        <Popup setPopup={setPopup}>
-          <EditRecipe recipeName={recipeName} setPopup={setPopup}/>
-        </Popup>
-      )}
+  const [popup, setPopup] = useState(undefined)
+
+  return (<>
+    <div className={styles.container}>
+      <MdEdit className={styles.edit}
+        onClick={() => setPopup(<EditRecipe recipeName={recipeName} setPopup={setPopup}/>)}
+      />
+      <FaRegTrashAlt className={styles.edit}
+        onClick={() => setPopup(<DeleteConfirm recipeName={recipeName} setPopup={setPopup} />)}
+
+      />
+    </div>
+    {popup && <Popup setPopup={setPopup} >
+      {popup}
+    </Popup>}
     </>
-  );
-};
+  )
+}
