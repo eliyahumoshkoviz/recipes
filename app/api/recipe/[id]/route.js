@@ -18,7 +18,7 @@ export const GET = async (req, { params }) => {
    try {
       await connectToMongo()
       const { id } = params;
-      const recipes = await readRecipeByIdService( id )
+      const recipes = await readRecipeByIdService( id, true )
       return NextResponse.json(recipes);
    } catch (error) {
       console.log(error);

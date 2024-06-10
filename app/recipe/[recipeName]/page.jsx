@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 
 export default async function Recipe({ params: { recipeName } }) {
   await connectToMongo();
-  const recipe = await readRecipeByIdService(decodeURI(recipeName));
+  const recipe = await readRecipeByIdService(decodeURI(recipeName),true);
   const {
     title,
     description,

@@ -1,4 +1,5 @@
-import {readCategoryService} from "../category.service";
+import { readCategoryService } from "../category.service";
+import { readRecipeByIdService } from "../recipe.service";
 const extractValues = (obj) => {
   const values = [];
   for (const key in obj) {
@@ -18,9 +19,36 @@ const checkFields = (obj, fields) => {
   }
 };
 
-const getCategoryId = async (filter) => {
-    const category = await readCategoryService(filter);
-    return  category._id;
-  };
-  
-module.exports = { extractValues, checkFields, getCategoryId };
+const getCategoryId = async (filter) =>
+  (await readCategoryService(filter))._id.toString();
+
+const changeCategory = async (recipeId, prevCat, newCat) => {
+  await removeRecipeFromCategory(recipeId, prevCat);
+  const newCatId = await getCategoryId(newCat);
+  await addRecipeToCategory(recipeId, newCatId);
+  changeRecipeCategory(recipeId, prevCat, newCatId);
+};
+
+const changeRecipeCategory = async (recipeId, prevCat, newCat) => {
+  const recipe = await readRecipeByIdService(recipeId);
+  recipe.category = recipe.category.filter((id) => id.toString() !== prevCat);
+  recipe.category.push({ _id: newCat });
+  await recipe.save();
+
+};
+
+const removeRecipeFromCategory = async (recipeId, categoryId) => {
+  const category = await readCategoryService({ _id: categoryId });
+  category.recipes = category.recipes.filter(
+    (id) => id.toString() !== recipeId
+  );
+  await category.save();
+};
+
+const addRecipeToCategory = async (recipeId, categoryId) => {
+  const category = await readCategoryService({ _id: categoryId });
+  category.recipes.push(recipeId);
+  await category.save();
+};
+
+module.exports = { extractValues, checkFields, getCategoryId, changeCategory };
