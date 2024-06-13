@@ -7,7 +7,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { EditRecipe } from '../EditRecipe';
 import { DeleteConfirm } from "../DeleteConfirm";
 
-export const Footer = ({ recipeName }) => {
+export const Footer = ({ recipeName, category }) => {
   const [popup, setPopup] = useState(undefined)
 
   return (<>
@@ -16,7 +16,7 @@ export const Footer = ({ recipeName }) => {
         onClick={() => setPopup(<EditRecipe recipeName={recipeName} setPopup={setPopup}/>)}
       />
       <FaRegTrashAlt className={styles.edit}
-        onClick={() => setPopup(<DeleteConfirm recipeName={recipeName} setPopup={setPopup} />)}
+        onClick={() => setPopup(<DeleteConfirm recipeName={recipeName} setPopup={setPopup} category={category} />)}
 
       />
     </div>

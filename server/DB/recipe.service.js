@@ -3,13 +3,15 @@ import { connectToMongo } from "../DL/connectToMongo";
 import { updateCategory } from "../DL/controllers/category.controller";
 import {
   createRecipe,
+  deleteRecipeById,
   readRecipeById,
   readRecipes,
   updateRecipe,
 } from "../DL/controllers/recipe.controller";
 import { readCategoryService } from "./category.service";
 import { saveImgToCloud } from "./cloudinary/cloudinary";
-import { extractValues, checkFields } from "./function/function";
+import { extractValues, checkFields, removeRecipeFromCategory } from "./function/function";
+import { revalidatePath } from "next/cache";
 
 export const createRecipesService = async (recipe) => {
   await connectToMongo();
@@ -49,3 +51,15 @@ export const updateRecipService = async (id, data) => {
 
 export const readRecipesService = (filter) => readRecipes(filter);
 export const readRecipeByIdService = (id,populate) => readRecipeById(id,populate);
+
+export const deleteRecipe = async (recipeId , categoryId) => {
+  try {
+    await removeRecipeFromCategory(recipeId , categoryId);
+    await deleteRecipeById(recipeId);
+    revalidatePath("/");
+    
+  } catch (error) {
+    console.log({ error });
+  }
+
+};

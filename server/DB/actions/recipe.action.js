@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { RedirectType, redirect } from "next/navigation";
-import { extractValues, getCategoryId,changeCategory } from "../function/function";
+import { extractValues, getCategoryId,changeCategory, removeRecipeFromCategory } from "../function/function";
 import {
   createRecipesService,
   readRecipeByIdService,
@@ -59,3 +59,19 @@ export const cretaeCategoryAction = async (fd) => {
   }
   redirect("/createRecipe");
 };
+
+
+// export const uploadeImageToRecipeInstructions = async (imageFile) => {
+
+//    try {
+//       const result = await cloudinary.uploader.upload(imageFile,{
+//          folder: "instructions-images"
+//       })
+//       console.log(":rocket: ~ authRouter.post ~ body:", result.secure_url)
+//    }
+//    catch (err) {
+//      console.log({err})
+//    }
+   
+// }
+
