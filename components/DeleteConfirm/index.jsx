@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import styles from './style.module.scss'
-import { useRouter } from 'next/router';
+import { useRouter } from "next/navigation"
 
-export const DeleteConfirm = ({ setPopup, recipeName, category }) => {
-  const router = useRouter
+
+export const DeleteConfirm = ({ setPopup, recipeName, category,title }) => {
+  const router = useRouter()
 
   const handleDelete = async () => {
     try {
@@ -12,10 +13,9 @@ export const DeleteConfirm = ({ setPopup, recipeName, category }) => {
         cache: 'no-store',
         body: JSON.stringify({ category }),
       });
-      console.log(response)
       if (response.ok) {
         setPopup(undefined)
-        router.push('/')
+        router.push(`/category/${title}`)
 
       }
   

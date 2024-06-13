@@ -40,7 +40,7 @@ export default async function Recipe({ params: { recipeName } }) {
         />
       </div>
 
-      <Footer recipeName={recipeName} category={category[0]._id} />
+      <Footer recipeName={recipeName} category={category[0]._id} title={category[0].title}  />
     </div>
   );
 }
