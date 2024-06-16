@@ -8,7 +8,7 @@ import Photo from "@/components/Photo";
 export const generateStaticParams = async () => {
   await connectToMongo();
   const res = await readCategorysService();
-  return res.map(category => ({ categoryName: String(category.title) }));
+  return res.map(category => ({ categoryName: category.title }));
 }
 
 export default async function Category({ params: { categoryName } }) {
