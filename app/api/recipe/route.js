@@ -1,5 +1,5 @@
 import { readRecipesService } from "@/server/DB/recipe.service";
-import { connectToMongo } from "@/server/connectToMongo";
+import { connectToMongo } from "@/server/DL/connectToMongo";
 import { NextResponse } from "next/navigation";
 
 export const GET = async () => {
