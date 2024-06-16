@@ -15,4 +15,4 @@ export const createCategorysService = async (category) => {
 export const readCategoryByIdService = (id) => readCategoryById(id);
 export const readCategorysService = () => readCategorys();
 export const readCategoryService = (filter,populate) => readCategory(filter,populate);
-export const updateCategoryService = (id) => updateCategory(id, data);
+export const updateCategoryService = (id,data) => updateCategory(id, data);

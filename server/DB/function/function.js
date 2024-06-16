@@ -1,4 +1,5 @@
-import { readCategoryService } from "../category.service";
+import { readCategoryService, updateCategoryService } from "../category.service";
+import { saveImgToCloud } from "../cloudInary";
 import { readRecipeByIdService } from "../recipe.service";
 export const extractValues = (obj) => {
   const values = [];
@@ -15,8 +16,8 @@ export const checkFields = (obj, fields) => {
   for (const field of fields) {
     if (obj[field] === "") {
       throw new Error(`Field '${field}' does not exist in object`);
-      }
-      }
+    }
+  }
 };
 
 export const getCategoryId = async (filter) =>
@@ -45,19 +46,34 @@ export const removeRecipeFromCategory = async (recipeId, categoryId) => {
   await category.save();
 };
 
+// export const addRecipeToCategory = async (recipeId, categoryId) => {
+//   const category = await readCategoryService({ _id: categoryId });
+//   category.recipes.push(recipeId);
+//   await category.save();
+// };
+
 export const addRecipeToCategory = async (recipeId, categoryId) => {
-  const category = await readCategoryService({ _id: categoryId });
-  category.recipes.push(recipeId);
-  await category.save();
+  let category = await readCategoryService({ _id: categoryId });
+  if (!category) {
+    throw new Error(`Category with _id ${categoryId} not found.`);
+  }
+  if (!category.recipes.includes(recipeId)) {
+    category.recipes.push(recipeId);
+    await category.save();
+  }
+};
+export const addRecipeToCategoryWhthId = async (categoryId, recipeId) => {
+  await updateCategoryService(categoryId, { $push: { recipes: recipeId } });
 };
 
-  // const addRecipeToCategory = async (recipeId, categoryId) => {
-  //     let category = await readCategoryService({ _id: categoryId });
-  //     if (!category) {
-  //       throw new Error(`Category with _id ${categoryId} not found.`);
-  //     }
-  //     if (!category.recipes.includes(recipeId)) {
-  //       category.recipes.push(recipeId);
-  //       await category.save();
-  //     } 
-  // };
+export const getCategoryDetails = async (categoryTitle) => {
+  const category = await readCategoryService({ title: categoryTitle });
+  return {
+    categoryId: category._id,
+    imageDefault: category.image
+  };
+};
+
+export const uploadImage = async (image, imageDefault) => {
+  return await saveImgToCloud(image) || imageDefault;
+};

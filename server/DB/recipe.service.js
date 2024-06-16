@@ -10,27 +10,21 @@ import {
 } from "../DL/controllers/recipe.controller";
 import { readCategoryService } from "./category.service";
 import { saveImgToCloud } from "./cloudinary/cloudinary";
-import { extractValues, checkFields, removeRecipeFromCategory } from "./function/function";
+import { extractValues, checkFields, removeRecipeFromCategory, getCategoryDetails, uploadImage, addRecipeToCategoryWhthId } from "./function/function";
 import { revalidatePath } from "next/cache";
 
 export const createRecipesService = async (recipe) => {
   checkFields(recipe, ["title", "ingredients", "typeFood", "instructions", "category"]);
   await connectToMongo();
 
-  const { _id, image: imageDefault } = await readCategoryService({ title: recipe.category });
-
-  const img = await saveImgToCloud(recipe.image) || imageDefault;
-
-  recipe.image = img;
-
+  const { categoryId, imageDefault } = await getCategoryDetails(recipe.category);
+  recipe.image = await uploadImage(recipe.image, imageDefault);
   recipe.ingredients = extractValues(recipe);
-  recipe.category = _id;
-  delete recipe._id;
+  recipe.category = categoryId;
 
   const createdRecipe = await createRecipe(recipe);
   const idRecipe = createdRecipe._id;
-
-  await updateCategory(_id, { $push: { recipes: idRecipe } });
+  await addRecipeToCategoryWhthId(categoryId, idRecipe);
 
   return idRecipe;
 };

@@ -16,7 +16,6 @@ export const createRecipeAction = async (fd) => {
 
   try {
     await createRecipesService(body);
-    console.log(category)
     revalidatePath(`/`);
   } catch (error) {
     console.log({ error });
