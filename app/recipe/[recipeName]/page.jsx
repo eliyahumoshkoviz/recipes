@@ -1,9 +1,15 @@
 import RecipeDescription from "@/components/RecipeDescription";
 import Instructions from "@/components/Instructions";
-import { readRecipeByIdService } from "@/server/DB/recipe.service";
+import { readRecipeByIdService, readRecipesService } from "@/server/DB/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { Footer } from "@/components/Footer";
 import styles from './style.module.scss'
+
+export const generateStaticParams = async () => {
+  await connectToMongo();
+  const res = await readRecipesService();
+  return res.map(recipe => ({ recipeName: String(recipe._id) }));
+}
 
 export default async function Recipe({ params: { recipeName } }) {
   await connectToMongo();

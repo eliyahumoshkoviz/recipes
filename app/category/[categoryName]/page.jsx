@@ -1,13 +1,19 @@
 import React from "react";
 import { connectToMongo } from "@/server/DL/connectToMongo";
-import { readCategoryService } from "@/server/DB/category.service";
+import { readCategoryService, readCategorysService } from "@/server/DB/category.service";
 import styles from "./style.module.scss";
 import Navlink from "@/components/NavLink";
 import Photo from "@/components/Photo";
 
+export const generateStaticParams = async () => {
+  await connectToMongo();
+  const res = await readCategorysService();
+  return res.map(category => ({ categoryName: String(category.title) }));
+}
+
 export default async function Category({ params: { categoryName } }) {
   await connectToMongo();
-  const result = await readCategoryService({ title: decodeURI(categoryName) },true);
+  const result = await readCategoryService({ title: decodeURI(categoryName) }, true);
   return (
     <div className={styles.photoContainer}>
       {result?.recipes.map((category, index) => (
