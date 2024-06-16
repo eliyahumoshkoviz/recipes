@@ -1,4 +1,6 @@
-import { readCategoryService } from "../category.service";
+import { readCategoryService, updateCategoryService } from "../category.service";
+import {addRecipeToCategory, getCategoryId, removeRecipeFromCategory} from './categoryFunction'
+import { saveImgToCloud } from "../cloudInary";
 import { readRecipeByIdService } from "../recipe.service";
 export const extractValues = (obj) => {
   const values = [];
@@ -15,12 +17,10 @@ export const checkFields = (obj, fields) => {
   for (const field of fields) {
     if (obj[field] === "") {
       throw new Error(`Field '${field}' does not exist in object`);
-      }
-      }
+    }
+  }
 };
 
-export const getCategoryId = async (filter) =>
-  (await readCategoryService(filter))._id.toString();
 
 export const changeCategory = async (recipeId, prevCat, newCat) => {
   await removeRecipeFromCategory(recipeId, prevCat);
@@ -37,27 +37,6 @@ export const changeRecipeCategory = async (recipeId, prevCat, newCat) => {
 
 };
 
-export const removeRecipeFromCategory = async (recipeId, categoryId) => {
-  const category = await readCategoryService({ _id: categoryId });
-  category.recipes = category.recipes.filter(
-    (id) => id.toString() !== recipeId
-  );
-  await category.save();
+export const uploadImage = async (image, imageDefault) => {
+  return await saveImgToCloud(image) || imageDefault;
 };
-
-export const addRecipeToCategory = async (recipeId, categoryId) => {
-  const category = await readCategoryService({ _id: categoryId });
-  category.recipes.push(recipeId);
-  await category.save();
-};
-
-  // const addRecipeToCategory = async (recipeId, categoryId) => {
-  //     let category = await readCategoryService({ _id: categoryId });
-  //     if (!category) {
-  //       throw new Error(`Category with _id ${categoryId} not found.`);
-  //     }
-  //     if (!category.recipes.includes(recipeId)) {
-  //       category.recipes.push(recipeId);
-  //       await category.save();
-  //     } 
-  // };

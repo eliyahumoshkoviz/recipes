@@ -10,35 +10,23 @@ import {
 } from "../DL/controllers/recipe.controller";
 import { readCategoryService } from "./category.service";
 import { saveImgToCloud } from "./cloudinary/cloudinary";
-import { extractValues, checkFields, removeRecipeFromCategory } from "./function/function";
+import { extractValues, checkFields, uploadImage } from "./function/function";
 import { revalidatePath } from "next/cache";
+import { addRecipeToCategoryWhthId, removeRecipeFromCategory } from "./function/categoryFunction";
+import { getCategoryDetails } from "./function/recipeFunction";
 
 export const createRecipesService = async (recipe) => {
+  checkFields(recipe, ["title", "ingredients", "typeFood", "instructions", "category"]);
   await connectToMongo();
 
-  const { _id, image: imageDefault } = await readCategoryService({
-    title: recipe.category,
-  });
-  const img = recipe.image ? await saveImgToCloud(recipe.image) : imageDefault;
-
-  recipe.image = img;
-
-  checkFields(recipe, [
-    "title",
-    "ingredients",
-    "typeFood",
-    "instructions",
-    "category",
-  ]);
-
+  const { categoryId, imageDefault } = await getCategoryDetails(recipe.category);
+  recipe.image = await uploadImage(recipe.image, imageDefault);
   recipe.ingredients = extractValues(recipe);
-  recipe.category = _id;
-  delete recipe._id;
+  recipe.category = categoryId;
 
   const createdRecipe = await createRecipe(recipe);
   const idRecipe = createdRecipe._id;
-
-  await updateCategory(_id, { $push: { recipes: idRecipe } });
+  await addRecipeToCategoryWhthId(categoryId, idRecipe);
 
   return idRecipe;
 };
@@ -50,14 +38,14 @@ export const updateRecipService = async (id, data) => {
 
 
 export const readRecipesService = () => readRecipes();
-export const readRecipeByIdService = (id,populate) => readRecipeById(id,populate);
+export const readRecipeByIdService = (id, populate) => readRecipeById(id, populate);
 
-export const deleteRecipe = async (recipeId , categoryId) => {
+export const deleteRecipe = async (recipeId, categoryId) => {
   try {
-    await removeRecipeFromCategory(recipeId , categoryId);
+    await removeRecipeFromCategory(recipeId, categoryId);
     await deleteRecipeById(recipeId);
     revalidatePath("/");
-    
+
   } catch (error) {
     console.log({ error });
   }

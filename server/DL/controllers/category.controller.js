@@ -3,9 +3,9 @@ import { CategoryModel } from "../models/category.model";
 export const readCategorys = () => CategoryModel.find().lean();
 
 export const readCategory = async (filter, populate = false) => {
-    const query = await CategoryModel.findOne(filter);
-    if (populate) {
-        await query.populate("recipes");
+  const query = await CategoryModel.findOne(filter);
+  if (populate) {
+    await query.populate("recipes");
   }
   return query
 };

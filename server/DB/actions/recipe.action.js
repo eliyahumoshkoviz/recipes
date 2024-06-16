@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { RedirectType, redirect } from "next/navigation";
-import { extractValues, getCategoryId,changeCategory, removeRecipeFromCategory } from "../function/function";
+import { extractValues, getCategoryId,changeCategory } from "../function/function";
 import {
   createRecipesService,
   readRecipeByIdService,
@@ -16,7 +16,6 @@ export const createRecipeAction = async (fd) => {
 
   try {
     await createRecipesService(body);
-    console.log(category)
     revalidatePath(`/`);
   } catch (error) {
     console.log({ error });
@@ -40,6 +39,7 @@ export const updateRecipeAction = async (id,prev,fd) => {
       const categoryId = recipe.category[0]._id.toString();
       await changeCategory(id, categoryId, {title:body.category});
       recipe = await readRecipeByIdService(id);
+      console.log(recipe);
     }
     await updateRecipService(id, body);
     revalidatePath(`/recipe/${id}`);
