@@ -166,19 +166,19 @@ const ReachText = ({ setResetKey, onSend }) => {
             // setInputFile(false);
         }
     }
-
+    
 
     //קבלת URL
     const getUrl = async (file) => {
         const reader = new FileReader()
         reader.readAsDataURL(file);
         reader.onloadend = async () => {
-            console.log(reader.result)
-            const url = await axiosReq({
+            console.log('########################',reader.result)
+            const url =  await fetch(`/api/recipe/`, {
                 method: 'POST',
-                url: 'cloudinary/get-url',
-                body: { img: reader.result }
-            })
+                cache: 'no-store',
+                body: JSON.stringify({ img: reader.result }),
+              });
             console.log(url);
             return url;
         }
@@ -188,12 +188,14 @@ const ReachText = ({ setResetKey, onSend }) => {
         const reader = new FileReader()
         reader.readAsDataURL(file);
         reader.onloadend = async () => {
-            console.log(reader.result)
-            const url = await axiosReq({
+            const response  = await fetch(`/api/recipe/`, {
                 method: 'POST',
-                url: 'cloudinary/get-url',
-                body: { img: reader.result }
-            })
+                cache: 'no-store',
+                body: JSON.stringify({ img: reader.result }),
+              });
+
+              const data = await response.json();
+              const url = data.url;
             console.log(url);
 
             // קבלת מיקום הסמן מתוך האירוע

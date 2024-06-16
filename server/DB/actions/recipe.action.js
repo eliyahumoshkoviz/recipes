@@ -61,17 +61,4 @@ export const cretaeCategoryAction = async (fd) => {
 };
 
 
-// export const uploadeImageToRecipeInstructions = async (imageFile) => {
-
-//    try {
-//       const result = await cloudinary.uploader.upload(imageFile,{
-//          folder: "instructions-images"
-//       })
-//       console.log(":rocket: ~ authRouter.post ~ body:", result.secure_url)
-//    }
-//    catch (err) {
-//      console.log({err})
-//    }
-   
-// }
 
