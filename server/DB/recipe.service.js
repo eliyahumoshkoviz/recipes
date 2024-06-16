@@ -10,8 +10,10 @@ import {
 } from "../DL/controllers/recipe.controller";
 import { readCategoryService } from "./category.service";
 import { saveImgToCloud } from "./cloudinary/cloudinary";
-import { extractValues, checkFields, removeRecipeFromCategory, getCategoryDetails, uploadImage, addRecipeToCategoryWhthId } from "./function/function";
+import { extractValues, checkFields, uploadImage } from "./function/function";
 import { revalidatePath } from "next/cache";
+import { addRecipeToCategoryWhthId, removeRecipeFromCategory } from "./function/categoryFunction";
+import { getCategoryDetails } from "./function/recipeFunction";
 
 export const createRecipesService = async (recipe) => {
   checkFields(recipe, ["title", "ingredients", "typeFood", "instructions", "category"]);

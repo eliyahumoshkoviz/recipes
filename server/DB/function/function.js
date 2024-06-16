@@ -1,4 +1,5 @@
 import { readCategoryService, updateCategoryService } from "../category.service";
+import {addRecipeToCategory, getCategoryId, removeRecipeFromCategory} from './categoryFunction'
 import { saveImgToCloud } from "../cloudInary";
 import { readRecipeByIdService } from "../recipe.service";
 export const extractValues = (obj) => {
@@ -20,8 +21,6 @@ export const checkFields = (obj, fields) => {
   }
 };
 
-export const getCategoryId = async (filter) =>
-  (await readCategoryService(filter))._id.toString();
 
 export const changeCategory = async (recipeId, prevCat, newCat) => {
   await removeRecipeFromCategory(recipeId, prevCat);
@@ -36,42 +35,6 @@ export const changeRecipeCategory = async (recipeId, prevCat, newCat) => {
   recipe.category.push({ _id: newCat });
   await recipe.save();
 
-};
-
-export const removeRecipeFromCategory = async (recipeId, categoryId) => {
-  const category = await readCategoryService({ _id: categoryId });
-  category.recipes = category.recipes.filter(
-    (id) => id.toString() !== recipeId
-  );
-  await category.save();
-};
-
-// export const addRecipeToCategory = async (recipeId, categoryId) => {
-//   const category = await readCategoryService({ _id: categoryId });
-//   category.recipes.push(recipeId);
-//   await category.save();
-// };
-
-export const addRecipeToCategory = async (recipeId, categoryId) => {
-  let category = await readCategoryService({ _id: categoryId });
-  if (!category) {
-    throw new Error(`Category with _id ${categoryId} not found.`);
-  }
-  if (!category.recipes.includes(recipeId)) {
-    category.recipes.push(recipeId);
-    await category.save();
-  }
-};
-export const addRecipeToCategoryWhthId = async (categoryId, recipeId) => {
-  await updateCategoryService(categoryId, { $push: { recipes: recipeId } });
-};
-
-export const getCategoryDetails = async (categoryTitle) => {
-  const category = await readCategoryService({ title: categoryTitle });
-  return {
-    categoryId: category._id,
-    imageDefault: category.image
-  };
 };
 
 export const uploadImage = async (image, imageDefault) => {
