@@ -1,6 +1,6 @@
 import { RecipeModel } from "../models/recipe.model"
 
-export const readRecipes = (filter) => RecipeModel.find(filter)
+export const readRecipes = () => RecipeModel.find()
 export const readRecipeById = (id, populate = false) => 
     populate ? RecipeModel.findById(id).populate('category') : RecipeModel.findById(id);
 

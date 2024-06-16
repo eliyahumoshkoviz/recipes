@@ -62,12 +62,12 @@ export default function Input({ recipe, setRecipe }) {
         />
       </div>
       <h3 onClick={() => setImage(!image)}>
-        {values?.image ? "שנה תמונה" : "הוסף תמונה"}{" "}
+        {recipe?.image ? "שנה תמונה" : "הוסף תמונה"}
       </h3>
       {image ? (
         <input type="file" name="image" />
       ) : (
-        <img src={values?.image || ""}></img>
+        <img src={recipe?.image || ""}></img>
       )}
     </div>
   );

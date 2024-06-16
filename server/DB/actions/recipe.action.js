@@ -12,14 +12,16 @@ import { createCategorysService } from "../category.service";
 
 export const createRecipeAction = async (fd) => {
   const body = Object.fromEntries(fd);
+  const category = body.category.toString()
 
   try {
     await createRecipesService(body);
-    revalidatePath("/");
+    console.log(category)
+    revalidatePath(`/`);
   } catch (error) {
     console.log({ error });
   }
-  redirect("/");
+  redirect(`/`);
 };
 
 

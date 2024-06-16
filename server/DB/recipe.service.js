@@ -49,7 +49,7 @@ export const updateRecipService = async (id, data) => {
 };
 
 
-export const readRecipesService = (filter) => readRecipes(filter);
+export const readRecipesService = () => readRecipes();
 export const readRecipeByIdService = (id,populate) => readRecipeById(id,populate);
 
 export const deleteRecipe = async (recipeId , categoryId) => {

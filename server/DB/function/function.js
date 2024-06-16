@@ -15,8 +15,8 @@ export const checkFields = (obj, fields) => {
   for (const field of fields) {
     if (obj[field] === "") {
       throw new Error(`Field '${field}' does not exist in object`);
-    }
-  }
+      }
+      }
 };
 
 export const getCategoryId = async (filter) =>
@@ -51,4 +51,13 @@ export const addRecipeToCategory = async (recipeId, categoryId) => {
   await category.save();
 };
 
-// module.exports = { extractValues, getCategoryId, changeCategory };
+  // const addRecipeToCategory = async (recipeId, categoryId) => {
+  //     let category = await readCategoryService({ _id: categoryId });
+  //     if (!category) {
+  //       throw new Error(`Category with _id ${categoryId} not found.`);
+  //     }
+  //     if (!category.recipes.includes(recipeId)) {
+  //       category.recipes.push(recipeId);
+  //       await category.save();
+  //     } 
+  // };

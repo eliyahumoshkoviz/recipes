@@ -14,8 +14,8 @@ export const DeleteConfirm = ({ setPopup, recipeName, category,title }) => {
         body: JSON.stringify({ category }),
       });
       if (response.ok) {
+        router.push(`/category/${title}`, undefined, { shallow: false })
         setPopup(undefined)
-        router.push(`/category/${title}`)
 
       }
   
