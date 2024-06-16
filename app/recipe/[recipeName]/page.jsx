@@ -29,7 +29,7 @@ export default async function Recipe({ params: { recipeName } }) {
 
   return (
     <div className={styles.recipeBody}>
-      <div>
+      {/* <div> */}
         <RecipeDescription
           recipeName={title}
           description={description}
@@ -44,9 +44,9 @@ export default async function Recipe({ params: { recipeName } }) {
           typeFood={typeFood}
           instructions={instructions}
         />
-      </div>
+      {/* </div> */}
 
-      <Footer recipeName={recipeName} />
+      <Footer recipeName={recipeName} category={category[0]._id} title={category[0].title}  />
     </div>
   );
 }

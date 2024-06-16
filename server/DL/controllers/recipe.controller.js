@@ -6,4 +6,5 @@ export const readRecipeById = (id, populate = false) =>
 
 export const createRecipe = (data) => RecipeModel.create(data)
 export const updateRecipe= (id, data) => RecipeModel.findByIdAndUpdate({ _id: id }, data, { new: true }).lean();
-  
+
+export const deleteRecipeById = (id) => RecipeModel.deleteOne({ _id: id })

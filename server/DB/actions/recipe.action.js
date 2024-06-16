@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { RedirectType, redirect } from "next/navigation";
-import { extractValues, getCategoryId,changeCategory } from "../function/function";
+import { extractValues, getCategoryId,changeCategory, removeRecipeFromCategory } from "../function/function";
 import {
   createRecipesService,
   readRecipeByIdService,
@@ -12,14 +12,16 @@ import { createCategorysService } from "../category.service";
 
 export const createRecipeAction = async (fd) => {
   const body = Object.fromEntries(fd);
+  const category = body.category.toString()
 
   try {
     await createRecipesService(body);
-    revalidatePath("/");
+    console.log(category)
+    revalidatePath(`/`);
   } catch (error) {
     console.log({ error });
   }
-  redirect("/");
+  redirect(`/`);
 };
 
 
@@ -59,3 +61,6 @@ export const cretaeCategoryAction = async (fd) => {
   }
   redirect("/createRecipe");
 };
+
+
+
