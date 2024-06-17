@@ -1,11 +1,19 @@
 import mongoose from "mongoose";
 import Category from './category.model'
  
+const imageSchema = new mongoose.Schema({
+  image_public_id: {
+    type: String,
+    required: true,
+  },
+  image_url: {
+    type: String,
+    required: true,
+  },
+});
 
 const recipeSchema = new mongoose.Schema({
-  image: {
-    type: String,
-  },
+  image: imageSchema,
   title: {
     type: String,
     required: true,

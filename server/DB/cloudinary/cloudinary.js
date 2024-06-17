@@ -21,6 +21,7 @@ const saveImgToCloud = async (img) => {
 
     const arrayBuffer = await img.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
+    let image = undefined
 
     const imgLink = new Promise((resolve, reject) => {
       cloudinary.uploader.upload_stream({ folder: "recipeImage" }, (err, uploadRes) => {
@@ -30,13 +31,18 @@ const saveImgToCloud = async (img) => {
         resolve(uploadRes);
       }).end(buffer);
     }).then(uploadedImg => {
-      return uploadedImg.url;
+      image = {
+        image_url: uploadedImg.url,
+        image_public_id: uploadedImg.public_id
+      }
+      console.log(image);
+      return image;
     }).catch(err => {
       console.error("Error uploading to Cloudinary:", err);
       return null;
     });
 
-    return imgLink;
+    return image;
   } catch (error) {
     console.error("Error processing the image:", error);
     return null;

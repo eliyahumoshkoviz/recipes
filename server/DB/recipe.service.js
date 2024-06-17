@@ -20,7 +20,7 @@ export const createRecipesService = async (recipe) => {
   await connectToMongo();
 
   const { categoryId, imageDefault } = await getCategoryDetails(recipe.category);
-  recipe.image = await uploadImage(recipe.image, imageDefault);
+  recipe.image = await uploadImage(recipe.image, imageDefault).then(()=>console.log(recipe.image))
   recipe.ingredients = extractValues(recipe);
   recipe.category = categoryId;
 

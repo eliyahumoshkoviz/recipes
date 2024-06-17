@@ -9,6 +9,7 @@ import {
   updateRecipService,
 } from "../recipe.service";
 import { createCategorysService } from "../category.service";
+import { saveImgToCloud } from "../cloudinary/cloudinary";
 
 export const createRecipeAction = async (fd) => {
   const body = Object.fromEntries(fd);
@@ -25,14 +26,12 @@ export const createRecipeAction = async (fd) => {
 
 
 export const updateRecipeAction = async (id,prev,fd) => {
-   // let img = fd.get("image")
-   // if (typeof img !== 'string') {
-   //    img = await saveImgToCloud(fd.image);
-   //    console.log('img', img);
-
-  // }
   const body = Object.fromEntries(fd);
   body.ingredients = extractValues(body);
+   let img = fd.get("image")
+   
+   if (img) { body.image = await saveImgToCloud(img)  }
+  
   try {
     let recipe = await readRecipeByIdService(id);
     if (body.category) {
