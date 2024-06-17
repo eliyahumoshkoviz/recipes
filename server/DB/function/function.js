@@ -35,7 +35,7 @@ export const changeRecipeCategory = async (recipeId, prevCat, newCat) => {
   recipe.category.push({ _id: newCat });
   await recipe.save();
 
-};
+};  
 
 export const uploadImage = async (image, imageDefault) => {
   return await saveImgToCloud(image) || imageDefault;

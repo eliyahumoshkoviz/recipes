@@ -1,11 +1,9 @@
-import { connectToMongo } from '../DL/connectToMongo';
 import { createCategory, readCategoryById, readCategorys, updateCategory, readCategory } from '../DL/controllers/category.controller';
 import { saveImgToCloud } from "./cloudinary/cloudinary";
 import { checkFields } from './function/function';
 // import { extractValues } from './function/function'
 
 export const createCategorysService = async (category) => {
-  await connectToMongo();
 
   checkFields(category, ["title", "colorLabel", "image"]);
   const img = await saveImgToCloud(category.image);
