@@ -26,6 +26,7 @@ export default async function Recipe({ params: { recipeName } }) {
     instructions,
     category,
   } = recipe;
+  const imageUrl = image?.image_url ? image.image_url : image;
 
   return (
     <div className={styles.recipeBody}>
@@ -33,7 +34,7 @@ export default async function Recipe({ params: { recipeName } }) {
         <RecipeDescription
           recipeName={title}
           description={description}
-          image={image}
+          image={imageUrl}
           category={category[0]}
         />
         <Instructions

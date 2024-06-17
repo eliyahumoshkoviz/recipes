@@ -8,8 +8,6 @@ import {
   readRecipes,
   updateRecipe,
 } from "../DL/controllers/recipe.controller";
-import { readCategoryService } from "./category.service";
-import { saveImgToCloud } from "./cloudinary/cloudinary";
 import { extractValues, checkFields, uploadImage } from "./function/function";
 import { revalidatePath } from "next/cache";
 import { addRecipeToCategoryWhthId, removeRecipeFromCategory } from "./function/categoryFunction";
@@ -20,7 +18,8 @@ export const createRecipesService = async (recipe) => {
   await connectToMongo();
 
   const { categoryId, imageDefault } = await getCategoryDetails(recipe.category);
-  recipe.image = await uploadImage(recipe.image, imageDefault).then(()=>console.log(recipe.image))
+  recipe.image = await uploadImage(recipe.image, imageDefault)
+  console.log(recipe.image)
   recipe.ingredients = extractValues(recipe);
   recipe.category = categoryId;
 

@@ -1,7 +1,7 @@
 import { readCategoryService, updateCategoryService } from "../category.service";
 import {addRecipeToCategory, getCategoryId, removeRecipeFromCategory} from './categoryFunction'
-import { saveImgToCloud } from "../cloudInary";
 import { readRecipeByIdService } from "../recipe.service";
+import { saveImgToCloud } from "../cloudinary/cloudinary";
 export const extractValues = (obj) => {
   const values = [];
   for (const key in obj) {

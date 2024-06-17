@@ -13,7 +13,7 @@ export const generateStaticParams = async () => {
 
 export default async function Category({ params: { categoryName } }) {
   await connectToMongo();
-  const result = await readCategoryService({ title: decodeURI(categoryName) }, true);
+  const result = (await readCategoryService({ title: decodeURI(categoryName) }, true));
   return (
     <div className={styles.photoContainer}>
       {result?.recipes.map((category, index) => (
