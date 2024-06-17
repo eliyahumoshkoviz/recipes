@@ -12,14 +12,15 @@ import { createCategorysService } from "../category.service";
 
 export const createRecipeAction = async (fd) => {
   const body = Object.fromEntries(fd);
+  const category = body.category.toString()
 
   try {
     await createRecipesService(body);
-    revalidatePath("/");
+    revalidatePath(`/`);
   } catch (error) {
     console.log({ error });
   }
-  redirect("/");
+  redirect(`/`);
 };
 
 
@@ -38,6 +39,7 @@ export const updateRecipeAction = async (id,prev,fd) => {
       const categoryId = recipe.category[0]._id.toString();
       await changeCategory(id, categoryId, {title:body.category});
       recipe = await readRecipeByIdService(id);
+      console.log(recipe);
     }
     await updateRecipService(id, body);
     revalidatePath(`/recipe/${id}`);
@@ -59,3 +61,6 @@ export const cretaeCategoryAction = async (fd) => {
   }
   redirect("/createRecipe");
 };
+
+
+

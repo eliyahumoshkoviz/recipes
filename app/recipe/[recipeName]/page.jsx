@@ -1,12 +1,17 @@
 import RecipeDescription from "@/components/RecipeDescription";
 import Instructions from "@/components/Instructions";
-import { readRecipeByIdService } from "@/server/DB/recipe.service";
+import { readRecipeByIdService, readRecipesService } from "@/server/DB/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { Footer } from "@/components/Footer";
 import styles from './style.module.scss'
 
-export default async function Recipe({ params: { recipeName } }) {
+export const generateStaticParams = async () => {
   await connectToMongo();
+  const res = await readRecipesService();
+  return res.map(recipe => ({ recipeName: String(recipe._id) }));
+}
+
+export default async function Recipe({ params: { recipeName } }) {
   const recipe = await readRecipeByIdService(decodeURI(recipeName),true);
   const {
     title,
@@ -23,7 +28,7 @@ export default async function Recipe({ params: { recipeName } }) {
 
   return (
     <div className={styles.recipeBody}>
-      <div>
+      {/* <div> */}
         <RecipeDescription
           recipeName={title}
           description={description}
@@ -38,9 +43,9 @@ export default async function Recipe({ params: { recipeName } }) {
           typeFood={typeFood}
           instructions={instructions}
         />
-      </div>
+      {/* </div> */}
 
-      <Footer recipeName={recipeName} />
+      <Footer recipeName={recipeName} category={category[0]._id} title={category[0].title}  />
     </div>
   );
 }
