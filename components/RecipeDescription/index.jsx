@@ -1,7 +1,5 @@
 import styles from './style.module.css'
 import Label from "@/components/Label";
-import { readCategoryService } from '@/server/DB/category.service';
-import { connectToMongo } from '@/server/DL/connectToMongo';
 import Image from 'next/image'
 
 export default async function RecipeDescription({ recipeName, description, image,category }) {

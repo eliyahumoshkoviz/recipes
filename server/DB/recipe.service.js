@@ -1,5 +1,4 @@
 import { MdPeopleOutline } from "react-icons/md";
-import { connectToMongo } from "../DL/connectToMongo";
 import { updateCategory } from "../DL/controllers/category.controller";
 import {
   createRecipe,
@@ -17,7 +16,6 @@ import { getCategoryDetails } from "./function/recipeFunction";
 
 export const createRecipesService = async (recipe) => {
   checkFields(recipe, ["title", "ingredients", "typeFood", "instructions", "category"]);
-  await connectToMongo();
 
   const { categoryId, imageDefault } = await getCategoryDetails(recipe.category);
   recipe.image = await uploadImage(recipe.image, imageDefault);
