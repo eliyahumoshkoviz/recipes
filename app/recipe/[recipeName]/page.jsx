@@ -25,7 +25,7 @@ export default async function Recipe({ params: { recipeName } }) {
     instructions,
     category,
   } = recipe;
-  const imageUrl = image.image_url ? image.image_url : image;
+  const imageUrl =  image?.image_url ? image.image_url : image;
 
   return (
     <div className={styles.recipeBody}>

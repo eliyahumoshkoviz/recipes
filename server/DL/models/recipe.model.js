@@ -4,7 +4,6 @@ import Category from './category.model'
 const imageSchema = new mongoose.Schema({
   image_public_id: {
     type: String,
-    required: true,
   },
   image_url: {
     type: String,

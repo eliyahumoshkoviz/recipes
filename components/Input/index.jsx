@@ -19,7 +19,7 @@ export default function Input({ recipe, setRecipe }) {
 
   const { title, description, preparationTime, CookingTime, servings } =
     recipe||values;
-    const imageUrl = recipe.image?.image_url ? recipe.image?.image_url : recipe.image;
+    const imageUrl =recipe ? recipe.image?.image_url ? recipe.image?.image_url : recipe.image : undefined;
 
   return (
     <div className={styles.container}>
