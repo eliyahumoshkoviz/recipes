@@ -13,7 +13,7 @@ export default function DeleteCategory({ categoryId }) {
   return (
     <>
       <div
-        onClick={() => setPopup(<DeleteConfirm recipeName={'recipeName'} setPopup={setPopup} category={'category'} title={'title'} />)}
+        onClick={() => setPopup(<DeleteConfirm type={'category'} _id={categoryId} setPopup={setPopup} category={'category'} title={'title'} />)}
       >
         <FaRegTrashAlt className={styles.icon} />
       </div>
