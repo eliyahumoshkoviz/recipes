@@ -5,9 +5,10 @@ import Label from '../Label'
 
 const Photo = ({ data,typeObj}) => {
     const { image, title, colorLabel} = data
+    const imageUrl = image?.image_url ? image.image_url : image;
     return (
         <div className={styles.container}>
-            <Image src={image} fill sizes='100%' alt={title}/>
+            <Image src={imageUrl} fill sizes='100%' alt={title}/>
             {typeObj=="category"&&<Label data={title} color={colorLabel} size={"30"} />}
             {typeObj=="recipe"&&<div className={styles.recipeName}>{title}</div>}
         </div>

@@ -12,40 +12,41 @@ export const generateStaticParams = async () => {
 }
 
 export default async function Recipe({ params: { recipeName } }) {
-  const recipe = await readRecipeByIdService(decodeURI(recipeName),true);
+  const recipe = await readRecipeByIdService(decodeURI(recipeName), true);
   const {
-    title,
-    description,
-    image,
-    ingredients,
-    preparationTime,
-    CookingTime,
-    servings,
-    typeFood,
-    instructions,
-    category,
-  } = recipe;
+    title = '',
+    description = '',
+    image = '',
+    ingredients = [],
+    preparationTime = '',
+    CookingTime = '',
+    servings = '',
+    typeFood = '',
+    instructions = '',
+    category = '',
+  } = recipe || {};
 
-  return (
-    <div className={styles.recipeBody}>
-      {/* <div> */}
-        <RecipeDescription
-          recipeName={title}
-          description={description}
-          image={image}
-          category={category[0]}
-        />
-        <Instructions
-          ingredients={ingredients}
-          preparationTime={preparationTime}
-          CookingTime={CookingTime}
-          servings={servings}
-          typeFood={typeFood}
-          instructions={instructions}
-        />
-      {/* </div> */}
+  return (<>
+    {recipe ? <div className={styles.recipeBody} >
+      <RecipeDescription
+        recipeName={title}
+        description={description}
+        image={image}
+        category={category[0]}
+      />
+      <Instructions
+        ingredients={ingredients}
+        preparationTime={preparationTime}
+        CookingTime={CookingTime}
+        servings={servings}
+        typeFood={typeFood}
+        instructions={instructions}
+      />
 
-      <Footer recipeName={recipeName} category={category[0]._id} title={category[0].title}  />
-    </div>
+      <Footer recipeName={recipeName} category={category[0]._id} title={category[0].title} />
+    </div >
+      : <h1 >  מתכון לא קיים 😥</h1>
+    }
+  </>
   );
 }

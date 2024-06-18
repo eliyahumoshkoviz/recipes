@@ -4,7 +4,7 @@ export const getCategoryId = async (filter) =>
   (await readCategoryService(filter))._id.toString();
 
 export const removeRecipeFromCategory = async (recipeId, categoryId) => {
-  const category = await readCategoryService({ _id: categoryId });
+  const category = await readCategoryService({ _id: categoryId },false,false);
   category.recipes = category.recipes.filter(
     (id) => id.toString() !== recipeId
   );
@@ -12,7 +12,7 @@ export const removeRecipeFromCategory = async (recipeId, categoryId) => {
 };
 
 export const addRecipeToCategory = async (recipeId, categoryId) => {
-  let category = await readCategoryService({ _id: categoryId });
+  let category = await readCategoryService({ _id: categoryId },false,false);
   if (!category) {
     throw new Error(`Category with _id ${categoryId} not found.`);
   }

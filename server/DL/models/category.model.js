@@ -1,19 +1,20 @@
 import mongoose from "mongoose";
 import Recipe from '../models/recipe.model';
+import { imageSchema } from "./imageSchema";
 
 const categorySchema = new mongoose.Schema({
 
   title: {
     type: String,
-    require: true,
+    required: true,
   },
   image: {
-    type: String,
-    // require: true,
+    type: imageSchema,
+    required: true,
   },
   colorLabel: {
     type: String,
-    require: true,
+    required: true,
   },
 
   recipes:  [{type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'}],

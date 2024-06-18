@@ -19,6 +19,7 @@ export default function Input({ recipe, setRecipe }) {
 
   const { title, description, preparationTime, CookingTime, servings } =
     recipe||values;
+    const imageUrl =recipe ? recipe.image?.image_url ? recipe.image?.image_url : recipe.image : undefined;
 
   return (
     <div className={styles.container}>
@@ -67,7 +68,7 @@ export default function Input({ recipe, setRecipe }) {
       {image ? (
         <input type="file" name="image" />
       ) : (
-        <img src={recipe?.image || ""}></img>
+        <img src={imageUrl || ""}></img>
       )}
     </div>
   );
