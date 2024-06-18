@@ -25,10 +25,6 @@ export default function Select({ typeFood = "בשרי/חלבי", cat = 'בחר �
     }
   };
 
-  const handleAddCategory = () => {
-    setCreateCategory(!createCategory);
-  }
-
   return (
     <div className={styles.container}>
       <select onChange={handleChange} name="category" required={cat === 'בחר קטגוריה'}>
@@ -39,9 +35,6 @@ export default function Select({ typeFood = "בשרי/חלבי", cat = 'בחר �
           </option>)
         ))}
 
-        <optgroup style={{ background: "#a3040c" }}>
-          <option value="addCategory">הוסף קטגוריה</option>
-        </optgroup>
       </select>
       <select name="typeFood" required={typeFood === "בשרי/חלבי"}>
         <option value="" hidden disabled selected> {typeFood}</option>

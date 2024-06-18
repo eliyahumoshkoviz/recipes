@@ -16,6 +16,36 @@
         font-size: 30px;
     }
 }
-.fixed{
+.add {
+    cursor: pointer; /* סמן יד כאשר מרחפים על הכותרת */
+  }
+  
+  .dropdown {
+    position: relative; /* עיצוב התפריט הנפתח */
+    display: inline-block;
+    color: white;
+  }
+  
+  .menu {
+    display: none;
+    position: absolute;
+    background-color: #a3040c;
+    min-width: 240px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .menu a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+  }
+  
+
+  .dropdown:hover .menu {
+    display: block;
+  }
+  .fixed{
     height: 90px;
-}
+  }
