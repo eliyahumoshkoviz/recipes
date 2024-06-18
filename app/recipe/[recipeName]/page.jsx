@@ -25,11 +25,10 @@ export default async function Recipe({ params: { recipeName } }) {
     instructions,
     category,
   } = recipe;
-  const imageUrl = image?.image_url ? image.image_url : image;
+  const imageUrl = image.image_url ? image.image_url : image;
 
   return (
     <div className={styles.recipeBody}>
-      {/* <div> */}
         <RecipeDescription
           recipeName={title}
           description={description}
@@ -44,7 +43,6 @@ export default async function Recipe({ params: { recipeName } }) {
           typeFood={typeFood}
           instructions={instructions}
         />
-      {/* </div> */}
 
       <Footer recipeName={recipeName} category={category[0]._id} title={category[0].title}  />
     </div>

@@ -2,12 +2,10 @@ import { CategoryModel } from "../models/category.model";
 
 export const readCategorys = () => CategoryModel.find().lean();
 
-export const readCategory = async (filter, populate = false) => {
-  const query = await CategoryModel.findOne(filter);
-  if (populate) {
-    await query.populate("recipes");
-  }
-  return query
+export const readCategory = async (filter, populate = false, lean = true) => {
+  const category = populate ? CategoryModel.findOne(filter).populate('recipes') : CategoryModel.findOne(filter);
+   if(lean) category.lean();
+   return category;
 };
 
 export const readCategoryById = (id) =>
