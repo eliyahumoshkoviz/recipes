@@ -19,7 +19,7 @@ export const Footer = ({ recipeName, category, title }) => {
       />
       <FaRegTrashAlt className={styles.edit}
         // onClick={() => setPopup(<ReachText setResetKey={setCount} />)}
-        onClick={() => setPopup(<DeleteConfirm recipeName={recipeName} setPopup={setPopup} category={category} title={title}/>)}
+        onClick={() => setPopup(<DeleteConfirm type={'recipe'} _id={recipeName} setPopup={setPopup} category={category} title={title}/>)}
 
       />
     </div>
