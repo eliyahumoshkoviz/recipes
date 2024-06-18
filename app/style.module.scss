@@ -13,6 +13,24 @@
 .photoContainer{
  @extend .photos;
 }
+
+.categoryItem{
+  position: relative;
+}
+
+.btn{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: rgb(57, 145, 57);
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .load{
  height: 40vh;
  width: 100%;
