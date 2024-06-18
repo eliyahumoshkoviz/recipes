@@ -30,7 +30,7 @@ export const changeCategory = async (recipeId, prevCat, newCat) => {
 };
 
 export const changeRecipeCategory = async (recipeId, prevCat, newCat) => {
-  const recipe = await readRecipeByIdService(recipeId);
+  const recipe = await readRecipeByIdService(recipeId, false, false);
   recipe.category = recipe.category.filter((id) => id.toString() !== prevCat);
   recipe.category.push({ _id: newCat });
   await recipe.save();
