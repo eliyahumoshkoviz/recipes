@@ -6,7 +6,6 @@ import Label from '../Label'
 const Photo = ({ data,typeObj}) => {
     const { image, title, colorLabel} = data
     const imageUrl = image?.image_url ? image.image_url : image;
-    console.log(image);
     return (
         <div className={styles.container}>
             <Image src={imageUrl} fill sizes='100%' alt={title}/>
