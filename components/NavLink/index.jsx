@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import styles from './style.module.scss'
+import Spinner from '../Spinner'
 
 export default function Navlink({ children, href }) {
    const path = usePathname()
@@ -22,7 +23,7 @@ export default function Navlink({ children, href }) {
             style={{ color: path === href ? '#a3040c' : 'white' }}>
             {children}
          </Link>
-         {isLoading && <div className={styles.spinner}></div>}
+         {isLoading && <Spinner/>}
       </div>
    )
 }
