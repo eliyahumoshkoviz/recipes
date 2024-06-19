@@ -53,11 +53,11 @@ export const cretaeCategoryAction = async (fd) => {
   const body = Object.fromEntries(fd);
   try {
     await createCategorysService(body);
-    revalidatePath("/createRecipe");
+    revalidatePath("/");
   } catch (error) {
     console.log({ error });
   }
-  redirect("/createRecipe");
+  redirect("/");
 };
 
 
