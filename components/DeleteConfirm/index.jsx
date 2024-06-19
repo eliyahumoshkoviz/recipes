@@ -7,26 +7,19 @@ export const DeleteConfirm = ({ type, setPopup, _id, category, title }) => {
 
   const handleDelete = async () => {
     try {
-      if (type === "recipe") {
-        const response = await fetch(`/api/recipe/${_id}`, {
-          method: "DELETE",
-          cache: "no-store",
-          body: JSON.stringify({ category }),
-        });
-        if (response.ok) {
-          router.push(`/category/${title}`, undefined, { shallow: false });
-          setPopup(undefined);
-        }
-      } else if (type === "category") {
-        const response = await fetch(`/api/category/${_id}`, {
-          method: "DELETE",
-          cache: "no-store",
-        });
-        if (response.ok) {
-          router.push(`/`, undefined, { shallow: false });
-          setPopup(undefined);
-        }
+      const options = {
+        method: "DELETE",
+        cache: "no-store",
+      };
+  
+      if (category) {
+        options.body = JSON.stringify({ category });
       }
+      const response = await fetch(`/api/${type}/${_id}`, options);
+          if (response.ok) {
+            router.push(`/${category ?`category/${title}` :''}`, undefined, { shallow: false });
+            setPopup(undefined);
+          }
     } catch (error) {
       console.error("Fetch error:", error);
     }

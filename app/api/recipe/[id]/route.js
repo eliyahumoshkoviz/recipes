@@ -33,6 +33,7 @@ export const DELETE = async (req, { params }) => {
          const { id } = params;
          const body = await req.json(); 
          const { category } = body;
+         console.log(body)
          await deleteRecipe(id, category);
          return NextResponse.json({ message: 'Recipe deleted successfully' });
       } catch (error) {
