@@ -16,7 +16,6 @@ import { NextResponse } from "next/server";
 
 export const GET = async (req, { params }) => {
    if(req.method === "GET"){
-
       try {
          await connectToMongo()
          const { id } = params;
@@ -30,10 +29,10 @@ export const GET = async (req, { params }) => {
 
 export const DELETE = async (req, { params }) => {
    if(req.method === 'DELETE'){
-      const { id } = params;
-      const body = await req.json(); 
-      const { category } = body;
       try {
+         const { id } = params;
+         const body = await req.json(); 
+         const { category } = body;
          await deleteRecipe(id, category);
          return NextResponse.json({ message: 'Recipe deleted successfully' });
       } catch (error) {

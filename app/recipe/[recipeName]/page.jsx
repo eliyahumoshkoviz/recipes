@@ -12,6 +12,7 @@ export const generateStaticParams = async () => {
 }
 
 export default async function Recipe({ params: { recipeName } }) {
+  await connectToMongo();
   const recipe = await readRecipeByIdService(decodeURI(recipeName), true);
   const {
     title = '',

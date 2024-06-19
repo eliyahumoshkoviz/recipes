@@ -17,14 +17,12 @@ export const createRecipesService = async (recipe) => {
 
   const { categoryId, imageDefault } = await getCategoryDetails(recipe.category);
   recipe.image = await uploadImage(recipe.image, imageDefault)
-  console.log(recipe.image)
   recipe.ingredients = extractValues(recipe);
   recipe.category = categoryId;
 
   const createdRecipe = await createRecipe(recipe);
   const idRecipe = createdRecipe._id;
   await addRecipeToCategoryWhthId(categoryId, idRecipe);
-
   return idRecipe;
 };
 
