@@ -2,14 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 import { RedirectType, redirect } from "next/navigation";
-import { extractValues, getCategoryId,changeCategory } from "../function/function";
+import { extractValues, getCategoryId, changeCategory, isCategoryImage } from "../function/function";
 import {
   createRecipesService,
   readRecipeByIdService,
   updateRecipService,
 } from "../recipe.service";
 import { createCategorysService } from "../category.service";
-import { saveImgToCloud } from "../cloudinary/cloudinary";
+import { deleteImageFromCloud, saveImgToCloud } from "../cloudinary/cloudinary";
 
 export const createRecipeAction = async (fd) => {
   const body = Object.fromEntries(fd);
@@ -25,19 +25,22 @@ export const createRecipeAction = async (fd) => {
 };
 
 
-export const updateRecipeAction = async (id,prev,fd) => {
+export const updateRecipeAction = async (id, prev, fd) => {
+  let prevRecipe = await readRecipeByIdService(id);
+  const categoryId = prevRecipe.category[0]._id.toString();
   const body = Object.fromEntries(fd);
   body.ingredients = extractValues(body);
-   let img = fd.get("image")
-   
-   if (img) { body.image = await saveImgToCloud(img)  }
-  
+  let img = fd.get("image")
+  if (img) {
+    const flag = await isCategoryImage(prevRecipe.image.image_url,categoryId)
+    if(!flag){  await deleteImageFromCloud(prevRecipe?.image?.image_public_id)}
+    body.image = await saveImgToCloud(img,'recipeImage')
+  }
+
   try {
-    let recipe = await readRecipeByIdService(id);
     if (body.category) {
-      const categoryId = recipe.category[0]._id.toString();
-      await changeCategory(id, categoryId, {title:body.category});
-      recipe = await readRecipeByIdService(id);
+      await changeCategory(id, categoryId, { title: body.category });
+      prevRecipe = await readRecipeByIdService(id);
     }
     await updateRecipService(id, body);
     revalidatePath(`/recipe/${id}`);
