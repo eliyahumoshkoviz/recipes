@@ -1,16 +1,14 @@
 import Navlink from '../NavLink'
+import AuthStatus from '../user.components/AuthStatus/AuthStatus';
 import styles from './style.module.scss'
 import Image from 'next/image'
-import { FaUser } from "react-icons/fa";
 
 export default function Header() {
   return (
     <>
       <div className={styles.container}>
         <nav>
-        <p className={styles.login}> 
-          <span className={styles.userAvatar}>
-            <FaUser/> </span>התחברות/הרשמה</p>
+          <AuthStatus/>
           <Navlink href={'/'}>
             <h4>דף הבית</h4>
           </Navlink>

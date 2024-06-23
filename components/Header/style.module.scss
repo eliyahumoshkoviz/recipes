@@ -9,30 +9,13 @@
     position: fixed;
     z-index: 6;
 
-    .login{
-      @extend .flex-center;
-      cursor: pointer;
-      gap: 5px;
-      color: #ffff;
-      font-size: 20px;
-      
-      .userAvatar{
-        @extend .flex-center;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: #c8bfbf;
-        color: #180f05;
-        
-      }
-    }
     
     nav{
         width: 100%;
         display: flex;
-        justify-content: space-around;
-        gap: 20px;
-        font-size: 30px;
+        justify-content: space-between;
+        padding: 20px;
+        font-size: 25px;
     }
 }
 .add {
