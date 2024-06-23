@@ -50,14 +50,8 @@ const recipeSchema = new mongoose.Schema({
       ref: 'Category',
       required: true,
     },],
-  likes: [{
-    type: String,
-    unique: true,
-  }],
-  views: [{
-        type: String,
-        unique: true,
-  }]
+  likes: [],
+  views: []
 
 });
 
