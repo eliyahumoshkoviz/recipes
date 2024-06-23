@@ -3,7 +3,6 @@ import Select from "@/components/Select";
 import AddIngredients from "@/components/AddIngredients";
 import styles from "./style.module.scss";
 import { createRecipeAction } from "@/server/DB/actions/recipe.action";
-import { readCategorysService } from "@/server/DB/category.service";
 import Input from "@/components/Input";
 
 export default async function CreateRecipe() {

@@ -1,4 +1,4 @@
-import { deleteRecipe, readRecipesService } from "@/server/DB/recipe.service";
+import { readRecipesService } from "@/server/DB/service/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { NextResponse } from "next/server";
 const cloudinary = require('cloudinary').v2;

@@ -1,13 +1,8 @@
 import {
-  createCategory,
-  readCategoryById,
-  readCategorys,
-  updateCategory,
-  readCategory,
-  deleteRecipeById,
-} from "../DL/controllers/category.controller";
-import { deleteImageFromCloud, saveImgToCloud } from "./cloudinary/cloudinary";
-import { checkFields } from "./function/function";
+  createCategory, readCategoryById, readCategorys, updateCategory, readCategory, deleteRecipeById,
+} from "../../DL/controllers/category.controller";
+import { deleteImageFromCloud, saveImgToCloud } from "../cloudinary/cloudinary";
+import { checkFields } from "../function/function";
 
 export const createCategorysService = async (category) => {
   checkFields(category, ["title", "colorLabel", "image"]);

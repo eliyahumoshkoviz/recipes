@@ -7,9 +7,9 @@ import {
   createRecipesService,
   readRecipeByIdService,
   updateRecipService,
-} from "../recipe.service";
-import { createCategorysService } from "../category.service";
+} from "../service/recipe.service";
 import { deleteImageFromCloud, saveImgToCloud } from "../cloudinary/cloudinary";
+import { createCategorysService } from "../service/category.service";
 
 export const createRecipeAction = async (fd) => {
   const body = Object.fromEntries(fd);
@@ -32,9 +32,9 @@ export const updateRecipeAction = async (id, prev, fd) => {
   body.ingredients = extractValues(body);
   let img = fd.get("image")
   if (img) {
-    const flag = await isCategoryImage(prevRecipe.image.image_url,categoryId)
-    if(!flag){  await deleteImageFromCloud(prevRecipe?.image?.image_public_id)}
-    body.image = await saveImgToCloud(img,'recipeImage')
+    const flag = await isCategoryImage(prevRecipe.image.image_url, categoryId)
+    if (!flag) { await deleteImageFromCloud(prevRecipe?.image?.image_public_id) }
+    body.image = await saveImgToCloud(img, 'recipeImage')
   }
 
   try {

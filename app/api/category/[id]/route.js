@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { deleteRecipeByIdService } from "@/server/DB/category.service";
+import { deleteRecipeByIdService } from "@/server/DB/service/category.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 
 export const DELETE = async (req, { params }) => {

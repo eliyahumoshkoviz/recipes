@@ -1,6 +1,6 @@
 import RecipeDescription from "@/components/RecipeDescription";
 import Instructions from "@/components/Instructions";
-import { readRecipeByIdService, readRecipesService } from "@/server/DB/recipe.service";
+import { readRecipeByIdService, readRecipesService } from "@/server/DB/service/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { Footer } from "@/components/Footer";
 import styles from './style.module.scss'

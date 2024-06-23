@@ -1,4 +1,4 @@
-import { deleteRecipe, readRecipeByIdService} from "@/server/DB/recipe.service";
+import { deleteRecipe, readRecipeByIdService} from "@/server/DB/service/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { NextResponse } from "next/server";
 
