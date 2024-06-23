@@ -48,9 +48,9 @@ export default function Registr() {
             required={field.required}
           />
           {field.name === "password" &&
-            <div onClick={() => setIsVisible(old => !old)}>
+            <span onClick={() => setIsVisible(old => !old)}>
               {isVisible ? <FiEyeOff /> : <FiEye />}
-            </div>
+            </span>
           }
         </div>
       ))}
