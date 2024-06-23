@@ -5,29 +5,22 @@ import styles from './style.module.scss'
 import Logged from '../Logged';
 import Guest from '../guest';
 
-const checkAuthStatus = async () => {
-        setTimeout(() => {
-           return false
-        }, 1000);
-};
 
 const AuthStatus = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(null);
 
     useEffect(() => {
         const getAuthStatus = async () => {
-            const status = await checkAuthStatus();
-            setIsLoggedIn(status);
+            //from cookies
+            setIsLoggedIn(null);
         };
         getAuthStatus();
     }, []);
 
 
     return (
-
-        <div className={styles.login} onClick={() => setIsLoggedIn(!isLoggedIn)}>
+        <div className={styles.login}>
             {isLoggedIn ? <Logged /> : <Guest />}
-
         </div>
 
     );

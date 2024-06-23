@@ -7,8 +7,8 @@ export default function Header() {
   return (
     <>
       <div className={styles.container}>
+        <div className={styles.AuthStatus}><AuthStatus /></div>
         <nav>
-          <AuthStatus/>
           <Navlink href={'/'}>
             <h4>דף הבית</h4>
           </Navlink>
