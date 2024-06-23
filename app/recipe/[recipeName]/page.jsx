@@ -1,5 +1,5 @@
-import RecipeDescription from "@/components/RecipeDescription";
-import Instructions from "@/components/Instructions";
+import RecipeDescription from "@/components/recipe.component/RecipeDescription";
+import Instructions from "@/components/recipe.component/Instructions";
 import { readRecipeByIdService, readRecipesService } from "@/server/DB/service/recipe.service";
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { Footer } from "@/components/Footer";

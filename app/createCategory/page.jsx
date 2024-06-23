@@ -1,6 +1,6 @@
 "use client"
 import { useState } from 'react'
-import AddCategory from '@/components/AddCategory'
+import AddCategory from '@/components/category.component/AddCategory'
 import { Popup } from '@/components/Popup'
 import { useRouter } from 'next/navigation';
 import { connectToMongo } from '@/server/DL/connectToMongo';

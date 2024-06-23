@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { useFormState } from 'react-dom'
 
-import Input from "../Input";
-import Select from "../Select";
+import Input from "../../Input";
+import Select from "../../Select";
 import AddIngredients from "../AddIngredients";
 import styles from "./style.module.scss";
 import { updateRecipeAction } from "@/server/DB/actions/recipe.action";
-import Spinner from "../Spinner";
+import Spinner from "../../Spinner";
 
 export const EditRecipe = ({ recipeName, setPopup }) => {
   const [recipe, setRecipe] = useState({});

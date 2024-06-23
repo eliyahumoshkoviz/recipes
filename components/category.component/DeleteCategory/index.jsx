@@ -3,8 +3,8 @@ import React from 'react'
 import { FaRegTrashAlt } from "react-icons/fa";
 import styles from "./style.module.scss";
 import { useState } from "react";
-import { Popup } from "../Popup";
-import { DeleteConfirm } from '../DeleteConfirm';
+import { Popup } from "../../Popup";
+import { DeleteConfirm } from '../../DeleteConfirm';
 
 
 export default function DeleteCategory({ categoryId }) {

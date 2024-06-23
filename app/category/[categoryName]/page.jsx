@@ -4,7 +4,7 @@ import { readCategoryService, readCategorysService} from "@/server/DB/service/ca
 import styles from "./style.module.scss";
 import Navlink from "@/components/NavLink";
 import Photo from "@/components/Photo";
-import NoRecipes from "@/components/NoRecipes";
+import NoRecipes from "@/components/recipe.component/NoRecipes";
 
 export const generateStaticParams = async () => {
   await connectToMongo();

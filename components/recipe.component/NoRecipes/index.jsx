@@ -1,4 +1,4 @@
-import Navlink from "../NavLink";
+import Navlink from "../../NavLink";
 import styles from "./style.module.scss";
 
 export default function NoRecipes() {
