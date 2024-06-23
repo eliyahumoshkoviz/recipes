@@ -1,0 +1,29 @@
+.container {
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 600px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.registr,
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  border: 1px solid gray;
+
+  &.active {
+    background-color: white;
+  }
+
+  &.inactive {
+    background-color: gray;
+  }
+}
