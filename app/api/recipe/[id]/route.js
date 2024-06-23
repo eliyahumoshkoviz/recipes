@@ -3,17 +3,6 @@ import { connectToMongo } from "@/server/DL/connectToMongo";
 import { NextResponse } from "next/server";
 
 
-// export const PUT = async (req, { params }) => {
-//    try {
-//       const body = await req.json();
-//       const { id } = params;
-//       const searchParams = Object.fromEntries(req.nextUrl.searchParams)
-//       return NextResponse.json({ body, id, searchParams })
-//    } catch (error) {
-//       console.log(error);
-//    }
-// }
-
 export const GET = async (req, { params }) => {
    if(req.method === "GET"){
       try {
