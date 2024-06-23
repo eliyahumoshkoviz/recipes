@@ -14,6 +14,9 @@ export const createRecipesService = async (recipe) => {
   recipe.image = await uploadImage(recipe.image, 'recipeImage', imageDefault)
   recipe.ingredients = extractValues(recipe);
   recipe.category = categoryId;
+  recipe.likes = Math.floor(Math.random() * 1001).toString(); // Random value between 0 and 1000
+recipe.views = Math.floor(Math.random() * 5001).toString(); // Random value between 0 and 5000
+
 
   const createdRecipe = await createRecipe(recipe);
   const idRecipe = createdRecipe._id;
