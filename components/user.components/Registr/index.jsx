@@ -21,6 +21,7 @@ export default function Registr() {
         cache: 'no-store',
         body: JSON.stringify( detailsUser ),
       });
+      console.log({result})
       
       // if (res) navigate("/login");
     } catch (error) {
@@ -29,7 +30,7 @@ export default function Registr() {
   };
 
   const formFields = [
-    { name: "firstName", placeholder: "* שם משתמש", type: "text", icon: <CiUser />, required: true },
+    { name: "userName", placeholder: "* שם משתמש", type: "text", icon: <CiUser />, required: true },
     { name: "email", placeholder: "* מייל", type: "email", icon: <HiOutlineMail />, required: true },
     { name: "password", placeholder: "* סיסמא", type: isVisible ? "text" : "password", icon: <TbPassword />, required: true }
   ];

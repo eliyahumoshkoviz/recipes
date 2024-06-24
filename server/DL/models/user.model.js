@@ -9,18 +9,20 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
-    fullName: {
+    userName: {
         type: String,
         required: true
     },
     avatar: imageSchema,
     password: {
         type: String,
-        select: false
+        select: false,
+        required: true
+
     },
     permission: {
         type: String,
-        enum: ["admin","editor", "user"],
+        enum: ["admin", "editor", "user"],
         default: "user",
     },
     createDate: {
@@ -44,7 +46,7 @@ const userSchema = new mongoose.Schema({
 })
 
 export const UserModel =
-  mongoose.models.User || mongoose.model("User", userSchema);
+    mongoose.models.User || mongoose.model("User", userSchema);
 
 
 
