@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 import { createUser } from "@/server/DL/controllers/user.controller";
 import { checkFields, uploadImage } from "../function/function";
 import { validEmail, validPassword } from "../function/userValidation";
@@ -12,7 +14,7 @@ export const createUserService = async (user) => {
     const userSchema = {
         email: user.email,
         userName: user.userName,
-        password: user.password,
+        password: bcrypt.hashSync(user.password, saltRounds),
         avatar: user.avatar && (user.avatar = await uploadImage(user.avatar, 'userImage'))
     }
     const result = await createUser(userSchema);
