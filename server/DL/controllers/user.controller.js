@@ -1,6 +1,6 @@
 import { UserModel } from "../models/user.model";
 
-export const createUser = (data) => UserModel.create(data).lean()
+export const createUser = (data) => UserModel.create(data)
 
 export const readUserById = async (id, populate = {}, lean = true, select = '') => {
   let user = await UserModel.findById(id, select);

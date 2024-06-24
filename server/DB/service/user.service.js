@@ -5,6 +5,7 @@ import { validEmail, validPassword } from "../function/userValidation";
 
 export const createUserService = async (user) => {
     checkFields(user, ["email", "userName", "password"]);
+    console.log({ user });
     validEmail(user.email);
     validPassword(user.password);
 
@@ -14,8 +15,11 @@ export const createUserService = async (user) => {
         password: user.password,
         avatar: user.avatar && (user.avatar = await uploadImage(user.avatar, 'userImage'))
     }
+    const result = await createUser(userSchema);
+    console.log(result)
+    if (user) return true;
 
-    return await createUser(userSchema);
+    return false;
 };
 
 

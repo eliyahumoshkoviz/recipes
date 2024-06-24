@@ -7,10 +7,10 @@ export const POST = async (req) => {
     if (req.method === 'POST') {
       try {
         const body = await req.json();
-        const user = await createUserService(body);
-       console.log(user);
+        const result = await createUserService(body);
+       console.log(result);
        
-        return NextResponse.json({body});
+        return NextResponse.json({result});
       } catch (err) {
         console.log({ err });
         return NextResponse.json({ error: 'Image upload failed', details: err.message }, { status: 500 });
