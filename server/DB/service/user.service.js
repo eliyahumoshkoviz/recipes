@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-import { createUser } from "@/server/DL/controllers/user.controller";
+import { createUser, readUserOne } from "@/server/DL/controllers/user.controller";
 import { checkFields, uploadImage } from "../function/function";
 import { validEmail, validPassword } from "../function/userValidation";
+import { createToken } from "../utils/jwt";
 
 
 export const createUserService = async (user) => {
     checkFields(user, ["email", "userName", "password"]);
-    console.log({ user });
     validEmail(user.email);
     validPassword(user.password);
 
@@ -18,10 +18,21 @@ export const createUserService = async (user) => {
         avatar: user.avatar && (user.avatar = await uploadImage(user.avatar, 'userImage'))
     }
     const result = await createUser(userSchema);
-    console.log(result)
-    if (user) return true;
-
-    return false;
+    return result.email !==undefined;
 };
 
+export const login = async (data) => {
+    const user = await readUserOne({ email: data.email }, {}, true,'password');
+    if (!user) throw { msg: 'User not found' }
+    console.log({ user });
+    const correctPassword = bcrypt.compareSync(data.password, user.password)
+    if (!correctPassword) throw { msg: 'password mismatch' }
+    const token = createToken(user._id);
+    user.password = null
+    return { token: token, user: user.avatar }
+}
 
+// const test = () => {
+//     login({email:'meir25@gmail.com'})
+// }
+// test();

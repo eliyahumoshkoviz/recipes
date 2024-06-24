@@ -7,6 +7,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { TbPassword } from "react-icons/tb";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
+import { createUserAction } from "@/server/DB/actions/user.action";
 
 
 export default function Registr() {
@@ -39,7 +40,7 @@ export default function Registr() {
   ];
 
   return (
-    <form className={styles.container} onSubmit={handleSubmit}>
+    <form action={createUserAction} className={styles.container} >
       {formFields.map((field, index) => (
         <div className={styles.imputContainer}>
           <span className={styles.icon}>{field.icon}</span>
