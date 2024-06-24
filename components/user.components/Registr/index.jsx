@@ -16,12 +16,12 @@ export default function Registr() {
     const formData = new FormData(e.target);
     const detailsUser = Object.fromEntries(formData);
     try {
-      // const res = await axiosReq({
-      //   method: "POST",
-      //   url: `/users/register`,
-      //   body: { ...detailsUser, fullName: fullName },
-      // });
-      console.log(detailsUser)
+      const result =  await fetch(`/api/user/`, {
+        method: 'POST',
+        cache: 'no-store',
+        body: JSON.stringify( detailsUser ),
+      });
+      
       // if (res) navigate("/login");
     } catch (error) {
       console.log(error);
