@@ -1,10 +1,10 @@
-// import { createUser, readUserOne } from "@/server/DL/controllers/user.controller";
-// import { checkFields, uploadImage } from "../function/function";
-// const bcrypt = require('bcrypt');
+import { createUser, readUserOne } from "@/server/DL/controllers/user.controller";
+import { checkFields, uploadImage } from "../function/function";
+const bcrypt = require('bcrypt');
 const saltRounds = 10;
+
 import { validEmail, validPassword } from "../function/userValidation";
 import { createToken } from "../utils/jwt";
-
 
 export const createUserService = async (user) => {
     checkFields(user, ["email", "userName", "password"]);

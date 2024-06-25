@@ -9,28 +9,8 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import { createUserAction } from "@/server/DB/actions/user.action";
 
-
 export default function Registr() {
   const [isVisible, setIsVisible] = useState(false);
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const detailsUser = Object.fromEntries(formData);
-    try {
-      const result =  await fetch(`/api/user/`, {
-        method: 'POST',
-        cache: 'no-store',
-        body: JSON.stringify( detailsUser ),
-      });
-      console.log({result})
-      
-      // if (res) navigate("/login");
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const formFields = [
     { name: "userName", placeholder: "* שם משתמש", type: "text", icon: <CiUser />, required: true },
@@ -40,7 +20,7 @@ export default function Registr() {
   ];
 
   return (
-    <form action={createUserAction}  className={styles.container} >
+    <form action={createUserAction} className={styles.container} >
       {formFields.map((field, index) => (
         <div className={styles.imputContainer}>
           <span className={styles.icon}>{field.icon}</span>
@@ -63,5 +43,3 @@ export default function Registr() {
     </form>
   );
 }
-
-

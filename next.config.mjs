@@ -9,11 +9,6 @@ const nextConfig = {
           },
         ],
       },
-      webpack: (config) => {
-        // Add bcrypt to externals if it's necessary for your setup
-        config.externals = [...(config.externals || []), 'bcrypt'];
-        return config;
-      },
 };
 
 export default nextConfig;
