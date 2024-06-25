@@ -7,7 +7,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { TbPassword } from "react-icons/tb";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
-export default function Login() {
+export default function Login({ user }) {
   const [isVisible, setIsVisible] = useState(false);
 
 
@@ -29,17 +29,17 @@ export default function Login() {
   };
 
   const formFields = [
-    { name: "email", placeholder: "* מייל", type: "email", icon: <HiOutlineMail />, required: true },
-    { name: "password", placeholder: "* סיסמא", type: isVisible ? "text" : "password", icon: <TbPassword />, required: true }
+    { name: "email", placeholder: "* מייל", type: "email", icon: <HiOutlineMail />, required: true, value: user?.email || '' },
+    { name: "password", placeholder: "* סיסמא", type: isVisible ? "text" : "password", icon: <TbPassword />, required: true, value: user?.password || '' }
   ];
 
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
       {formFields.map((field, index) => (
-        <div className={styles.imputContainer}>
+        <div className={styles.imputContainer} key={index}>
           <span className={styles.icon}>{field.icon}</span>
           <input
-            key={index}
+            defaultValue={field.value}
             type={field.type}
             className={styles.input}
             placeholder={field.placeholder}

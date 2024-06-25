@@ -1,13 +1,15 @@
- "use server"
+"use server"
 import { createUserService } from "../service/user.service";
 
-export const createUserAction = async (fd) => {
+export const createUserAction = async (prev, fd) => {
     const body = Object.fromEntries(fd);
-    
+
+
     try {
-        const result = await createUserService(body);
-        console.log(result)
+        return { success: await createUserService(body) };
+
     } catch (error) {
-        console.log({ error });
+        console.log(error?.message);
+        return { error: error?.message }
     }
 };

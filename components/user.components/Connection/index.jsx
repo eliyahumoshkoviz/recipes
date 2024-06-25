@@ -7,14 +7,15 @@ import Login from "../Login";
 
 export default function Connect() {
   const [isConnect, setIsConnect] = useState(false);
+  const [user, setUser] = useState();
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div className={`${styles.registr} ${!isConnect ? styles.active : styles.inactive}`} onClick={() => setIsConnect(false)}>להרשמה</div>
-        <div className={`${styles.login} ${isConnect ? styles.active : styles.inactive}`} onClick={() => setIsConnect(true)}>להתחברות</div>
+        <div className={`${styles.registr} ${!isConnect ? styles.active : styles.inactive}`} onClick={() => setIsConnect(false)}>הרשמה</div>
+        <div className={`${styles.login} ${isConnect ? styles.active : styles.inactive}`} onClick={() => setIsConnect(true)}>התחברות</div>
       </div>
-      {isConnect ? <Login /> : <Registr />}
+      {isConnect ? <Login user={user} /> : <Registr setIsConnect={setIsConnect} setUser={setUser} />}
     </div>
   );
 }
