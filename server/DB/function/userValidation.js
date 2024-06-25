@@ -1,9 +1,21 @@
-const validEmail = (email) => {
+"use server"
+import { readUserOne } from "@/server/DL/controllers/user.controller";
+
+export const isExist = async (email) => {
+    const existingUser = await readUserOne({ email });
+    if (existingUser && existingUser.isActive) {
+        throw new Error("משתמש קיים");
+    }
+    return existingUser;
+};
+
+
+export const validEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 };
 
-const validPassword = (password) => {
+export const validPassword = (password) => {
     if (password.length < 6 || password.length > 12) {
         throw new Error("Password must be between 6 and 12 characters.");
     }
@@ -16,7 +28,6 @@ const validPassword = (password) => {
     // Make sure at least one digit is present
     if (!hasDigit(password)) {
         throw new Error("Password must contain at least one digit.");
-
     }
 
     // Make sure there are no characters other than English letters and numbers
@@ -39,4 +50,3 @@ const hasEnglishLetter = (str) => {
 const isAlphanumeric = (str) => {
     return /^[a-zA-Z0-9]+$/.test(str);
 }
-module.exports = { validEmail, validPassword };
