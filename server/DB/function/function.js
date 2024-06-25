@@ -37,8 +37,8 @@ export const changeRecipeCategory = async (recipeId, prevCat, newCat) => {
 
 };
 
-export const uploadImage = async (image,folder, imageDefault) => {
-  return await saveImgToCloud(image,folder) || imageDefault;
+export const uploadImage = async (image, folder, imageDefault) => {
+  return await saveImgToCloud(image, folder) || imageDefault;
 };
 
 export const isCategoryImage = async (image_url, category_id) => {

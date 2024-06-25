@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from 'react'
 import styles from './style.module.scss'
 import { FaUser } from 'react-icons/fa'
@@ -11,7 +13,7 @@ export default function Guest() {
     <>
       <div className={styles.login}>
         <span className={styles.userAvatar}>
-          <FaUser />  
+          <FaUser />
         </span>
         <p onClick={() => { setPopup(<Connect />) }}>הרשמה/התחברות</p>
       </div>

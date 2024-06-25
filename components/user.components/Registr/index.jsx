@@ -1,62 +1,64 @@
 'use client'
-
+import { useFormState } from 'react-dom'
 import { useState } from "react";
 import styles from './style.module.scss';
 import { CiUser } from "react-icons/ci";
 import { HiOutlineMail } from "react-icons/hi";
 import { TbPassword } from "react-icons/tb";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { FaUserCircle } from "react-icons/fa";
+import { createUserAction } from "@/server/DB/actions/user.action";
 
-export default function Registr() {
+export default function Registr({setIsConnect, setUser}) {
+
   const [isVisible, setIsVisible] = useState(false);
+  const [userDetails, setUserDetails] = useState();
+  const [state, formAction] = useFormState(createUserAction, undefined)
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const detailsUser = Object.fromEntries(formData);
-    try {
-      // const res = await axiosReq({
-      //   method: "POST",
-      //   url: `/users/register`,
-      //   body: { ...detailsUser, fullName: fullName },
-      // });
-      console.log(detailsUser)
-      // if (res) navigate("/login");
-    } catch (error) {
-      console.log(error);
-    }
+  const handleUserDetailsChange = (e) => {
+    setUserDetails((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
+  
+
+  {state?.success !== undefined  && (setIsConnect(true),setUser(userDetails))}
+
 
   const formFields = [
-    { name: "firstName", placeholder: "* שם משתמש", type: "text", icon: <CiUser />, required: true },
+    { name: "userName", placeholder: "* שם משתמש", type: "text", icon: <CiUser />, required: true },
     { name: "email", placeholder: "* מייל", type: "email", icon: <HiOutlineMail />, required: true },
-    { name: "password", placeholder: "* סיסמא", type: isVisible ? "text" : "password", icon: <TbPassword />, required: true }
+    { name: "password", placeholder: "* סיסמא", type: isVisible ? "text" : "password", icon: <TbPassword />, required: true },
+    { name: "avatar", placeholder: "* תמונת פרופיל", type: "file", icon: <FaUserCircle />, required: false }
   ];
 
+
   return (
-    <form className={styles.container} onSubmit={handleSubmit}>
-      {formFields.map((field, index) => (
-        <div className={styles.imputContainer}>
-          <span className={styles.icon}>{field.icon}</span>
-          <input
-            key={index}
-            type={field.type}
-            className={styles.input}
-            placeholder={field.placeholder}
-            name={field.name}
-            required={field.required}
-          />
-          {field.name === "password" &&
-            <span onClick={() => setIsVisible(old => !old)}>
-              {isVisible ? <FiEyeOff /> : <FiEye />}
-            </span>
-          }
-        </div>
-      ))}
-      <input className={styles.btn} type="submit" value="הרשמה" />
-    </form>
+    <>
+      <form action={formAction} className={styles.container} >
+        {formFields.map((field, index) => (
+          <div className={styles.imputContainer} key={index}>
+            <span className={styles.icon}>{field.icon}</span>
+            <input
+              type={field.type}
+              className={styles.input}
+              placeholder={field.placeholder}
+              name={field.name}
+              required={field.required}
+              onChange={handleUserDetailsChange}
+            />
+            {field.name === "password" &&
+              <span onClick={() => setIsVisible(old => !old)}>
+                {isVisible ? <FiEyeOff /> : <FiEye />}
+              </span>
+            }
+          </div>
+        ))}
+        <input className={styles.btn} type="submit" value="הרשמה" />
+        <p className={styles.error}>{state?.error}</p>
+      </form>
+    </>
   );
 }
-
-

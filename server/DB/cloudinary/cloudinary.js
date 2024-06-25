@@ -13,7 +13,7 @@ const saveImgToCloud = async (img, folder) => {
       return null;
     }
 
-    const fileType = img.type.split('/')[0];
+    const fileType = img?.type?.split('/')[0];
     if (fileType !== 'image') {
       console.error("File is not an image");
       return null;

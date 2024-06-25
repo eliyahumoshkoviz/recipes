@@ -9,11 +9,10 @@ export const readUserById = async (id, populate = {}, lean = true, select = '') 
   if (lean) user.lean();
   return user;
 }
-export const readUserOne = async (filter, populate = {}, lean = true, select = '') => {
-  let user = await UserModel.findById(filter, select);
+export const readUserOne = async (filter, populate = {}, password = false) => {
+  let user = password ? await UserModel.findOne(filter, `+password`) : await UserModel.findOne(filter);
   if (populate?.recipes && user) await user.populate("recipes.recipe");
   if (populate?.cayegory && user) await user.populate('recipes.recipe.category');
-  if (lean) user.lean();
   return user;
 }
 

@@ -13,7 +13,6 @@ import { createCategorysService } from "../service/category.service";
 
 export const createRecipeAction = async (fd) => {
   const body = Object.fromEntries(fd);
-  const category = body.category.toString()
 
   try {
     await createRecipesService(body);
