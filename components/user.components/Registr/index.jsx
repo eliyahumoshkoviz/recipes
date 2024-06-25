@@ -40,7 +40,7 @@ export default function Registr() {
   ];
 
   return (
-    <form action={createUserAction} className={styles.container} >
+    <form action={createUserAction}  className={styles.container} >
       {formFields.map((field, index) => (
         <div className={styles.imputContainer}>
           <span className={styles.icon}>{field.icon}</span>

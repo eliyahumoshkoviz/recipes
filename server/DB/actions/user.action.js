@@ -7,7 +7,7 @@ export const createUserAction = async (fd) => {
 
     try {
         const result = await createUserService(body);
-        console.log(result)
+        // console.log(result)
     } catch (error) {
         console.log({ error });
     }

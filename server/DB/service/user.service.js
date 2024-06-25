@@ -1,7 +1,7 @@
-const bcrypt = require('bcrypt');
+// import { createUser, readUserOne } from "@/server/DL/controllers/user.controller";
+// import { checkFields, uploadImage } from "../function/function";
+// const bcrypt = require('bcrypt');
 const saltRounds = 10;
-import { createUser, readUserOne } from "@/server/DL/controllers/user.controller";
-import { checkFields, uploadImage } from "../function/function";
 import { validEmail, validPassword } from "../function/userValidation";
 import { createToken } from "../utils/jwt";
 
@@ -10,7 +10,7 @@ export const createUserService = async (user) => {
     checkFields(user, ["email", "userName", "password"]);
     validEmail(user.email);
     validPassword(user.password);
-
+    
     const userSchema = {
         email: user.email,
         userName: user.userName,
@@ -32,7 +32,4 @@ export const login = async (data) => {
     return { token: token, user: user.avatar }
 }
 
-// const test = () => {
-//     login({email:'meir25@gmail.com'})
-// }
-// test();
+
