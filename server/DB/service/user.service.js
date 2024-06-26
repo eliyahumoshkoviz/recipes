@@ -29,7 +29,11 @@ export const loginService = async (data) => {
     const correctPassword = bcrypt.compareSync(data.password, user.password)
     if (!correctPassword) throw { msg: 'password mismatch' }
     const token = createToken(user._id);
-    return { token: token, user: user.avatar }
+    const userlogged = {
+        name: user.userName,
+        avatar: user.avatar
+    }
+    return { token: token, userlogged }
 }
 
 

@@ -6,7 +6,7 @@ import { FaUser } from 'react-icons/fa'
 import { Popup } from '@/components/Popup'
 import Connect from '../Connection'
 
-export default function Guest() {
+export default function Guest({setIsLoggedIn}) {
   const [popup, setPopup] = useState(undefined)
 
   return (
@@ -15,7 +15,7 @@ export default function Guest() {
         <span className={styles.userAvatar}>
           <FaUser />
         </span>
-        <p onClick={() => { setPopup(<Connect />) }}>הרשמה/התחברות</p>
+        <p onClick={() => { setPopup(<Connect setIsLoggedIn={setIsLoggedIn} />) }}>הרשמה/התחברות</p>
       </div>
       {popup && <Popup setPopup={setPopup} >
         {popup}
