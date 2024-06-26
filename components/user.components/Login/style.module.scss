@@ -49,3 +49,13 @@
   border: 1px solid gray;
   border-radius: 10px;
 }
+.error{
+  color: red;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+}
+.click {
+  pointer-events: none;
+  opacity: 0.5;
+}

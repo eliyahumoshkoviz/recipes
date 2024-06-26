@@ -25,9 +25,9 @@ export const createUserService = async (user) => {
 
 export const loginService = async (data) => {
     const user = await readUserOne({ email: data.email }, {}, true);
-    if (!user) throw { msg: 'User not found' }
+    if (!user) throw { message: 'User not found' }
     const correctPassword = bcrypt.compareSync(data.password, user.password)
-    if (!correctPassword) throw { msg: 'password mismatch' }
+    if (!correctPassword) throw { message: 'password mismatch' }
     const token = createToken(user._id);
     const userlogged = {
         name: user.userName,
