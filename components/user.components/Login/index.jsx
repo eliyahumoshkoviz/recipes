@@ -1,7 +1,7 @@
 'use client'
 
 import { useFormState } from 'react-dom'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from './style.module.scss';
 import { CiUser } from "react-icons/ci";
 import { HiOutlineMail } from "react-icons/hi";
@@ -9,10 +9,13 @@ import { TbPassword } from "react-icons/tb";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { loginAction } from "@/server/DB/actions/user.action";
 import Checkmark from '@/components/Checkmark';
+import Spinner from '@/components/Spinner';
 
 export default function Login({ user, setIsLoggedIn }) {
   const [isVisible, setIsVisible] = useState(false);
   const [state, formAction] = useFormState(loginAction, undefined)
+  const [isClick, setIsClick] = useState(false)
+
 
   const handleLoginSuccess = () => {
     setTimeout(() => {
@@ -21,6 +24,7 @@ export default function Login({ user, setIsLoggedIn }) {
   };
 
   { state?.success !== undefined && (handleLoginSuccess()) }
+  useEffect(()=>{setIsClick(false)},[state])
 
   const formFields = [
     { name: "email", placeholder: "* מייל", type: "email", icon: <HiOutlineMail />, required: true, value: user?.email || '' },
@@ -48,9 +52,14 @@ export default function Login({ user, setIsLoggedIn }) {
             }
           </div>
         ))}
-        <input className={styles.btn} type="submit" value="התחברות" />
+        <input className={`${styles.btn} ${isClick ? styles.Click : ''}`}
+         type="submit" value="התחברות" 
+         onClick={()=>setIsClick(true)}/>
+        <p className={styles.error}>{state?.error}</p>
       </form>
       { state?.success !== undefined && <Checkmark/> }
+      {isClick && <Spinner/>}
+
     </>
   );
 }
