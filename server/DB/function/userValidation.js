@@ -1,4 +1,3 @@
-"use server"
 import { readUserOne } from "@/server/DL/controllers/user.controller";
 
 export const isExist = async (email) => {

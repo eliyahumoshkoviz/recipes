@@ -20,7 +20,7 @@ const AuthStatus = () => {
 
     return (
         <div className={styles.login}>
-            {isLoggedIn ? <Logged /> : <Guest />}
+            {isLoggedIn ? <Logged isLoggedIn={isLoggedIn}/> : <Guest setIsLoggedIn={setIsLoggedIn}/>}
         </div>
 
     );
