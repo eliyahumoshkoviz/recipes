@@ -9,10 +9,11 @@ import { TbPassword } from "react-icons/tb";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { loginAction } from "@/server/DB/actions/user.action";
 
-export default function Login({ user }) {
+export default function Login({ user, setIsLoggedIn }) {
   const [isVisible, setIsVisible] = useState(false);
   const [state, formAction] = useFormState(loginAction, undefined)
-  {state?.success !== undefined  && (console.log(state))}
+  {state?.success !== undefined  && (setIsLoggedIn(state.success))}
+
 
   const formFields = [
     { name: "email", placeholder: "* מייל", type: "email", icon: <HiOutlineMail />, required: true, value: user?.email || '' },
