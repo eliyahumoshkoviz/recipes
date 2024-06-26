@@ -39,7 +39,7 @@ export default function Registr({setIsConnect, setUser}) {
     <>
       <form action={formAction} className={styles.container} >
         {formFields.map((field, index) => (
-          <div className={styles.imputContainer} key={index}>
+          <div className={`${styles.imputContainer} ${field.type == "file" && styles.fileUpload}`} key={index}>
             <span className={styles.icon}>{field.icon}</span>
             <input
               type={field.type}
