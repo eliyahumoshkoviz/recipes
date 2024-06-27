@@ -57,7 +57,7 @@ export default function Login({ user, setIsLoggedIn }) {
          onClick={()=>setIsClick(true)}/>
         <p className={styles.error}>{state?.error}</p>
       </form>
-      { state?.success !== undefined && <Checkmark/> }
+      { state?.success && <Checkmark/> }
       {isClick && <Spinner/>}
 
     </>
