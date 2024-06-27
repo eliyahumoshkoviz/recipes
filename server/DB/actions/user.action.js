@@ -18,9 +18,9 @@ export const loginAction = async (prev, fd) => {
 
     try {
         const success = await loginService(body);
-        cookies().set("token",success.token,{secure: true,path: '/',httpOnly: true,})
-        cookies().set("name",success.userlogged?.name,{secure: true,path: '/',httpOnly: true,})
-        cookies().set("avatar",success.userlogged?.avatar,{secure: true,path: '/',httpOnly: true,})
+        cookies().set("token",success.token,{secure: true,path: '/'})
+        cookies().set("name",success.userlogged?.name,{secure: true,path: '/'})
+        cookies().set("avatar",success.userlogged?.avatar,{secure: true,path: '/'})
         return { success };
 
     } catch (error) {
