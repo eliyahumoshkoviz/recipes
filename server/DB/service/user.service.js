@@ -31,7 +31,7 @@ export const loginService = async (data) => {
     const token = createToken(user._id);
     const userlogged = {
         name: user.userName,
-        avatar: user.avatar
+        avatar: user.avatar.image_url
     }
     return { token: token, userlogged }
 }
