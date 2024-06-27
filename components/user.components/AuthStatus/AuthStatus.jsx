@@ -12,11 +12,17 @@ const AuthStatus = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(null);
 
     const getAuthStatus = async () => {
-        const {token,name,avatar} = getCookies();
-        // const x = checkToken(token)
-        // console.log(x);
+        const { token, name, avatar } = getCookies();
+        try {
+            const response = await fetch('/api/user', { method: "POST", body: JSON.stringify({ token }) })
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
+
         const decodedName = decodeURIComponent(name);
-        setIsLoggedIn({userlogged:{name: decodedName,avatar}});
+        setIsLoggedIn({ userlogged: { name: decodedName, avatar } });
 
     };
     useEffect(() => {

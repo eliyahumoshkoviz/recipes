@@ -6,9 +6,6 @@ const createToken = (userId) => {
     return token;
 }
 
-const checkToken = (token) => {
-    const payload = jwt.verify( token , process.env.JWT_SECRET)
-    return payload;
-}
+const checkToken = (token) => jwt.verify(token, process.env.JWT_SECRET)
 
-module.exports = { createToken ,checkToken };
+module.exports = { createToken, checkToken };
