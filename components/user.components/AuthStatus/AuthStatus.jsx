@@ -5,24 +5,24 @@ import styles from './style.module.scss'
 import Logged from '../Logged';
 import Guest from '../guest';
 import { getCookies } from 'cookies-next';
-import { checkToken } from '@/server/DB/utils/jwt';
 
 
 const AuthStatus = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(null);
-
+    
     const getAuthStatus = async () => {
-        const { token, name, avatar } = getCookies();
+        let { token, name, avatar } = getCookies();
+         name = decodeURIComponent(name);
+         avatar = decodeURIComponent(avatar);
         try {
-            const response = await fetch('/api/user', { method: "POST", body: JSON.stringify({ token }) })
-            const data = await response.json();
+            const response = token ? await fetch('/api/user', { method: "POST", body: JSON.stringify({ token }) }) : undefined
+            const data = await response?.json();
             console.log(data);
+            data && setIsLoggedIn({ userlogged: { name, avatar } });
         } catch (error) {
             console.error("Fetch error:", error);
         }
 
-        const decodedName = decodeURIComponent(name);
-        setIsLoggedIn({ userlogged: { name: decodedName, avatar } });
 
     };
     useEffect(() => {
