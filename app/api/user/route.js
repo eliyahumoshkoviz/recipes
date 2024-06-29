@@ -11,7 +11,7 @@ export const POST = async (req) => {
          const _id = checkToken(body.token)
          return NextResponse.json(_id);
       } catch (error) {
-         console.log(error);
+         console.log(error.message);
       }
    }
 }
