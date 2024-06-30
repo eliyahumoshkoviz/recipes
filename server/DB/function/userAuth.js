@@ -8,13 +8,7 @@ export const getPermission = () => {
     const { permission } = checkToken(token)
     return permission
 }
-export const getPermissionWithError = () => {
-    const cookieStore = cookies()
-    const token = cookieStore.get("token")?.value
-    if (!token) throw new Error ({message: 'token not found'})
-    const { permission } = checkToken(token)
-    return permission
-}
+
 export const isAdmin = () => {
     const cookieStore = cookies()
     const token = cookieStore.get("token")?.value
@@ -27,5 +21,5 @@ export const isEditor = () => {
     const token = cookieStore.get("token")?.value
     if (!token) throw new Error ({message: 'token not found'})
     const { permission } = checkToken(token)
-    return permission === 'editor'
+    return permission === 'editor' || permission === 'admin'
 }
