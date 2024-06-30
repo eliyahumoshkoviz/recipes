@@ -28,7 +28,7 @@ export const loginService = async (data) => {
     if (!user) throw { message: 'User not found' }
     const correctPassword = bcrypt.compareSync(data.password, user.password)
     if (!correctPassword) throw { message: 'password mismatch' }
-    const token = createToken(user._id);
+    const token = createToken(user._id, user.permission);
     const userlogged = {
         name: user.userName,
         avatar: user.avatar?.image_url
