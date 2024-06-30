@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './style.module.scss';
 import { IoIosSettings } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
 
 
 const Setting = ({settings}) => {
@@ -12,8 +13,9 @@ const Setting = ({settings}) => {
 
   return (
     <div className={styles.settingContainer}>
-      <IoIosSettings onClick={toggleDropdown}
-        className={styles.settingIcon} />
+     {isOpen ? <IoClose  className={styles.settingIcon} onClick={toggleDropdown} /> :
+     <IoIosSettings  className={styles.settingIcon} onClick={toggleDropdown}/> 
+     }
       {isOpen && (
         <div className={styles.dropdown}>
           <ul>
