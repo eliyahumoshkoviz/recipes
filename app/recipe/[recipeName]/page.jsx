@@ -4,7 +4,7 @@ import { readRecipeByIdService, readRecipesService } from "@/server/DB/service/r
 import { connectToMongo } from "@/server/DL/connectToMongo";
 import { Footer } from "@/components/Footer";
 import styles from './style.module.scss'
-import { getPermission } from "@/server/DB/function/userAuth";
+import { isEditor } from "@/server/DB/function/userAuth";
 
 export const generateStaticParams = async () => {
   await connectToMongo();
@@ -15,7 +15,6 @@ export const generateStaticParams = async () => {
 export default async function Recipe({ params: { recipeName } }) {
   await connectToMongo();
   const recipe = await readRecipeByIdService(decodeURI(recipeName), true);
-  const permission = getPermission()
 
   const {
     title = '',
@@ -48,7 +47,7 @@ export default async function Recipe({ params: { recipeName } }) {
         typeFood={typeFood}
         instructions={instructions}
       />
-      {(permission === 'admin' || permission === 'editor') && <Footer recipeName={recipeName} category={category[0]._id} title={category[0].title} />}
+      {isEditor() && <Footer recipeName={recipeName} category={category[0]._id} title={category[0].title} />}
 
     </div >
       : <h1 >  מתכון לא קיים 😥</h1>
