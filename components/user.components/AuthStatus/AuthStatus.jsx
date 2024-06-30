@@ -9,28 +9,27 @@ import { deleteCookie, getCookies, hasCookie } from 'cookies-next';
 
 const AuthStatus = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(null);
-    
+
     const getAuthStatus = async () => {
-        if(!hasCookie('token'))  return
-        let { token, name, avatar } = getCookies();
-         name = decodeURIComponent(name);
-         avatar = decodeURIComponent(avatar);
+        if (!hasCookie('name')) return
+        if (!hasCookie('avatar')) return
+        let { name, avatar } = getCookies();
+        name = decodeURIComponent(name);
+        avatar = decodeURIComponent(avatar);
         try {
-            const response = token ? await fetch('/api/user', { method: "POST", body: JSON.stringify({ token }) }) : undefined
-            const {_id} = await response?.json();
-            console.log(_id);
+            const response = await fetch('/api/user', { method: "POST" })
+            const { _id } = await response?.json();
             _id && setIsLoggedIn({ userlogged: { name, avatar } });
         } catch (error) {
-            deleteCookie('token')
+            deleteCookie('name')
+            deleteCookie('avatar')
             console.error("Fetch error:", error);
         }
-
 
     };
     useEffect(() => {
         getAuthStatus();
     }, []);
-
 
     return (
         <div className={styles.login}>
