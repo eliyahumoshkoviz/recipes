@@ -14,7 +14,7 @@ export default function Header() {
           <Navlink href={'/'}>
             <h4>דף הבית</h4>
           </Navlink>
-          {permission === 'admin' || permission === 'editor' ?
+          {(permission === 'admin' || permission === 'editor') ?
             <div className={styles.dropdown}>
               <h4 className={styles.add}>הוסף מתכון/קטגוריה </h4>
               <div className={styles.menu}>
