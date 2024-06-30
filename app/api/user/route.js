@@ -11,9 +11,9 @@ export const POST = async (req) => {
          await connectToMongo()   
          const cookieStore = cookies()
          const token = cookieStore.get('token');
-         const _id = checkToken(token.value)
+         const {_id, permission} = checkToken(token.value)
 
-         return NextResponse.json(_id);
+         return NextResponse.json({_id:_id});
       } catch (error) {
          console.log(error.message);
       }
