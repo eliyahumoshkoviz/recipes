@@ -4,25 +4,27 @@ import { FaUser } from 'react-icons/fa';
 import styles from './style.module.scss'
 import Logged from '../Logged';
 import Guest from '../guest';
-import { getCookies } from 'cookies-next';
-import { checkToken } from '@/server/DB/utils/jwt';
+import { deleteCookie, getCookies, hasCookie } from 'cookies-next';
 
 
 const AuthStatus = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(null);
-
+    
     const getAuthStatus = async () => {
-        const { token, name, avatar } = getCookies();
+        if(!hasCookie('token'))  return
+        let { token, name, avatar } = getCookies();
+         name = decodeURIComponent(name);
+         avatar = decodeURIComponent(avatar);
         try {
-            const response = await fetch('/api/user', { method: "POST", body: JSON.stringify({ token }) })
-            const data = await response.json();
-            console.log(data);
+            const response = token ? await fetch('/api/user', { method: "POST", body: JSON.stringify({ token }) }) : undefined
+            const {_id} = await response?.json();
+            console.log(_id);
+            _id && setIsLoggedIn({ userlogged: { name, avatar } });
         } catch (error) {
+            deleteCookie('token')
             console.error("Fetch error:", error);
         }
 
-        const decodedName = decodeURIComponent(name);
-        setIsLoggedIn({ userlogged: { name: decodedName, avatar } });
 
     };
     useEffect(() => {
