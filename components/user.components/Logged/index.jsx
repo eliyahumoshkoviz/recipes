@@ -1,14 +1,21 @@
 "use client"
 
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './style.module.scss'
 import Image from 'next/image'
 import Setting from '../Setting';
-const settings = ['Profile', 'Account', 'Logout','Profile', 'Account', 'Logout'];
+import { settings } from '@/app/utils/objects';
+import { MyContext } from '../DataContext';
 
 
-export default function Logged({ isLoggedIn }) {
+
+
+export default function Logged() {
+  const { isLoggedIn } = useContext(MyContext);
+
   const { name, avatar } = isLoggedIn?.userlogged
+
+  
   return (
 
     <div className={styles.login} onClick={() => { }}>
@@ -24,4 +31,7 @@ export default function Logged({ isLoggedIn }) {
 
 
   )
+
+  
+  
 }

@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react';
 import styles from './style.module.scss';
 import { IoIosSettings } from "react-icons/io";
@@ -19,8 +20,10 @@ const Setting = ({settings}) => {
       {isOpen && (
         <div className={styles.dropdown}>
           <ul>
+            {/* {<li onClick={settings[3]?.action}>{settings[3]?.title}</li>} */}
+            
           {settings.map((setting, index) => (
-              <li key={index}>{setting}</li>
+            <li key={index} onClick={setting.action}>{setting.title}</li>
             ))}
           </ul>
         </div>

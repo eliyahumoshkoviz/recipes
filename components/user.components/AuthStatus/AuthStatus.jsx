@@ -1,22 +1,28 @@
 "use client"
-import React, { useState } from 'react';
-import styles from './style.module.scss'
+import React, { useContext } from 'react';
+import styles from './style.module.scss';
 import Logged from '../Logged';
 import Guest from '../guest';
 import CheckToken from '@/components/CheckToken';
-
+import { DataContext, MyContext } from '../DataContext';
 
 const AuthStatus = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const { isLoggedIn } = useContext(MyContext);
 
-    return (
-        <>
-        <CheckToken setIsLoggedIn={setIsLoggedIn}/>
-        <div className={styles.login}>
-            {isLoggedIn ? <Logged isLoggedIn={isLoggedIn} /> : <Guest setIsLoggedIn={setIsLoggedIn} />}
-        </div>
-        </>
+  return (
+    <>
+      <CheckToken />
+      <div className={styles.login}>
+        {isLoggedIn ? <Logged /> : <Guest />}
+      </div>
+    </>
+  );
+};
 
-    );
-}
-export default AuthStatus;
+const AuthStatusContext = () => (
+  <DataContext>
+    <AuthStatus />
+  </DataContext>
+);
+
+export default AuthStatusContext;

@@ -1,20 +1,22 @@
 'use client'
 
 import { useFormState } from 'react-dom'
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from './style.module.scss';
-import { CiUser } from "react-icons/ci";
 import { HiOutlineMail } from "react-icons/hi";
 import { TbPassword } from "react-icons/tb";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { loginAction } from "@/server/DB/actions/user.action";
 import Checkmark from '@/components/Checkmark';
 import Spinner from '@/components/Spinner';
+import { MyContext } from '../DataContext';
 
-export default function Login({ user, setIsLoggedIn }) {
+export default function Login({ user }) {
   const [isVisible, setIsVisible] = useState(false);
   const [state, formAction] = useFormState(loginAction, undefined)
   const [isClick, setIsClick] = useState(false)
+  const { setIsLoggedIn } = useContext(MyContext);
+
 
 
   const handleLoginSuccess = () => {

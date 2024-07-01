@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react'
+"use client"
+import React, { useContext, useEffect } from 'react'
 import { deleteCookie, getCookies, hasCookie } from 'cookies-next';
+import { MyContext } from '../user.components/DataContext';
 
 
-export default function CheckToken({setIsLoggedIn}) {
+export default function CheckToken() {
+    const {setIsLoggedIn}=useContext(MyContext);
 
     const getAuthStatus = async () => {
         if (!hasCookie('name')) return
