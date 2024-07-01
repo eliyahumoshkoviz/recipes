@@ -1,5 +1,6 @@
 import { checkToken } from "@/server/DB/utils/jwt";
 import { connectToMongo } from "@/server/DL/connectToMongo";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 

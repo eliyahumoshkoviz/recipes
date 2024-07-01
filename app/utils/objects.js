@@ -6,11 +6,11 @@ const profileFunction = ()=>{console.log('logout.......')}
   const accountFunction = ()=>{console.log('accountFunction.......')}
   const settingsFunction = ()=>{console.log('settingsFunction.......')}
   const helpFunction = ()=>{console.log('Help.......')}
-  const logout = async()=>{
+  const logout = async(setIsLoggedIn)=>{
     const res = await fetch('api/user',{method:'DELETE'}) 
     if(res.ok){
       
-      console.log(res)
+      setIsLoggedIn(null)
     }
   }
 

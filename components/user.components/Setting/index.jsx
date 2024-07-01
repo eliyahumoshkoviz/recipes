@@ -1,11 +1,14 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './style.module.scss';
 import { IoIosSettings } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
+import { MyContext } from '../DataContext';
 
 
-const Setting = ({settings}) => {
+const Setting = ({settings}) => { 
+   const { setIsLoggedIn } = useContext(MyContext);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -23,7 +26,8 @@ const Setting = ({settings}) => {
             {/* {<li onClick={settings[3]?.action}>{settings[3]?.title}</li>} */}
             
           {settings.map((setting, index) => (
-            <li key={index} onClick={setting.action}>{setting.title}</li>
+            <li key={index} onClick={()=> setting.action(setIsLoggedIn)}>{setting.title}</li>
+
             ))}
           </ul>
         </div>
