@@ -8,12 +8,6 @@ export const getPermission = () => {
   const { permission } = checkToken(token);
   return permission;
 };
-  const cookieStore = cookies();
-  const token = cookieStore.get("token")?.value;
-  if (!token) return null;
-  const { permission } = checkToken(token);
-  return permission;
-};
 
 export const isAdmin = () => {
   const cookieStore = cookies();
