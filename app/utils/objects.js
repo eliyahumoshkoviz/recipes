@@ -4,7 +4,7 @@ const profileFunction = ()=>{console.log('logout.......')}
   const settingsFunction = ()=>{console.log('settingsFunction.......')}
   const helpFunction = ()=>{console.log('Help.......')}
   const logout = async(setIsLoggedIn)=>{
-    const res = await fetch(`http://localhost:3000/api/user`,{method:'DELETE'}) 
+    const res = await fetch('http://localhost:3000/api/user',{method:'DELETE'}) 
     console.log(res)
     if(res.ok){
       
