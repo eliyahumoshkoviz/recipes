@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
 import { deleteCookie, getCookies, hasCookie } from 'cookies-next';
+import { useUserStore } from '@/store/storeUser';
 
 
-export default function CheckToken({setIsLoggedIn}) {
+export default function CheckToken() {
+// export default function CheckToken({x}) {
+    const setIsLoggedIn = useUserStore((state) => state.setUser);
+
 
     const getAuthStatus = async () => {
         if (!hasCookie('name')) return
