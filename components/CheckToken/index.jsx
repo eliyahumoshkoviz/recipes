@@ -4,7 +4,6 @@ import { useUserStore } from '@/store/storeUser';
 
 
 export default function CheckToken() {
-// export default function CheckToken({x}) {
     const setIsLoggedIn = useUserStore((state) => state.setUser);
 
 

@@ -10,11 +10,14 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { loginAction } from "@/server/DB/actions/user.action";
 import Checkmark from '@/components/Checkmark';
 import Spinner from '@/components/Spinner';
+import { useUserStore } from '@/store/storeUser';
 
-export default function Login({ user, setIsLoggedIn }) {
+export default function Login({ user }) {
   const [isVisible, setIsVisible] = useState(false);
   const [state, formAction] = useFormState(loginAction, undefined)
   const [isClick, setIsClick] = useState(false)
+  const setIsLoggedIn = useUserStore((state) => state.setUser);
+
 
 
   const handleLoginSuccess = () => {
