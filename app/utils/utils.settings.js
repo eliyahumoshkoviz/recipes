@@ -7,6 +7,7 @@ const logout = async (setIsLoggedIn) => {
   const res = await fetch('http://localhost:3000/api/user', { method: 'DELETE' })
   if (res.ok) {
     setIsLoggedIn(null)
+    window.location.reload();
   }
 }
 
