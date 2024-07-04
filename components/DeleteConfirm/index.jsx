@@ -6,23 +6,20 @@ export const DeleteConfirm = ({ type, setPopup, _id, category, title }) => {
   const router = useRouter();
 
   const handleDelete = async () => {
-    try {
-      const options = {
-        method: "DELETE",
-        cache: "no-store",
-      };
-  
+      const options = { method: "DELETE", cache: "no-store" };
       if (category) {
         options.body = JSON.stringify({ category });
       }
       const response = await fetch(`/api/${type}/${_id}`, options);
-          if (response.ok) {
-            router.push(`/${category ?`category/${title}` :''}`, undefined, { shallow: false });
-            setPopup(undefined);
-          }
-    } catch (error) {
-      console.error("Fetch error:", error);
-    }
+      const data = await response?.json();
+      if (data.message) {
+        router.push(`/${category ? `category/${title}` : ''}`, undefined, { shallow: false });
+        setPopup(undefined);
+      }
+      else{
+        setPopup(`${data.error}`);
+
+      }
   };
 
   return (

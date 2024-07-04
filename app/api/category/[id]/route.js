@@ -8,11 +8,13 @@ export const DELETE = async (req, { params }) => {
     if(req.method === 'DELETE'){
        const { id } = params;
        try {
-         if(!isAdmin()) throw new Error("only admin can delete a category" )
+         if(!isAdmin()) throw new Error("only admin can delete a category")
           await deleteRecipeByIdService(id);
           return NextResponse.json({ message: 'Recipe deleted successfully' });
        } catch (error) {
-          console.log(error);
+          console.log(error?.message);
+          return NextResponse.json({ error: error?.message });
+
        }
     }
  }
