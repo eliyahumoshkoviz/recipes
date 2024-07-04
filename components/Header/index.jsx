@@ -1,10 +1,9 @@
-import { getPermission } from '@/server/DB/function/userAuth';
+import { isEditor } from '@/server/DB/function/userAuth';
 import Navlink from '../NavLink'
 import AuthStatus from '../user.components/AuthStatus/AuthStatus';
 import styles from './style.module.scss'
 
 export default function Header() {
-  const permission = getPermission()
 
   return (
     <>
@@ -14,7 +13,7 @@ export default function Header() {
           <Navlink href={'/'}>
             <h4>דף הבית</h4>
           </Navlink>
-          {(permission === 'admin' || permission === 'editor') ?
+          {isEditor() ?
             <div className={styles.dropdown}>
               <h4 className={styles.add}>הוסף מתכון/קטגוריה </h4>
               <div className={styles.menu}>

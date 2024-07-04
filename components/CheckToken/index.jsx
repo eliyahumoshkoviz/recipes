@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect } from 'react'
 import { deleteCookie, getCookies, hasCookie } from 'cookies-next';
 import { useUserStore } from '@/store/storeUser';

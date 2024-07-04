@@ -17,17 +17,17 @@ export const isAdmin = () => {
     const { permission } = checkToken(token);
     return permission === "admin";
   } catch (e) {
-    return null; 
+    return null;
   }
 };
 export const isEditor = () => {
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
-  if (!token) return null; 
+  if (!token) return null;
   try {
     const { permission } = checkToken(token);
     return (permission === "editor" || permission === "admin");
   } catch (e) {
-    return null;
+    return null; 
   }
 };

@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+"use client"
+import React, { useContext, useState } from 'react';
 import styles from './style.module.scss';
 import { IoIosSettings } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
+import { useUserStore } from '@/store/storeUser';
 
 
-const Setting = ({settings}) => {
+const Setting = ({settings}) => { 
+const setIsLoggedIn = useUserStore((state) => state.setUser);
+
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -18,9 +23,10 @@ const Setting = ({settings}) => {
      }
       {isOpen && (
         <div className={styles.dropdown}>
-          <ul>
+          <ul>            
           {settings.map((setting, index) => (
-              <li key={index}>{setting}</li>
+            <li key={index} onClick={()=> setting.action(setIsLoggedIn)}>{setting.title}</li>
+
             ))}
           </ul>
         </div>
