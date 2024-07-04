@@ -52,7 +52,7 @@ export default function Login({ user }) {
             }
           </div>
         ))}
-        <input className={`${styles.btn} ${isClick ? styles.Click : ''}`}
+        <input className={`${styles.btn} ${isClick ? styles.click : ''}`}
           type="submit" value="התחברות"
           onClick={() => setIsClick(true)} />
         <p className={styles.error}>{state?.error}</p>
