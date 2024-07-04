@@ -15,17 +15,16 @@ export const Footer = ({ recipeName, category, title }) => {
   return (<>
     <div className={styles.container}>
       <MdEdit className={styles.edit}
-        onClick={() => setPopup(<EditRecipe recipeName={recipeName} setPopup={setPopup}/>)}
+        onClick={() => setPopup(<EditRecipe recipeName={recipeName} setPopup={setPopup} />)}
       />
       <FaRegTrashAlt className={styles.edit}
-        // onClick={() => setPopup(<ReachText setResetKey={setCount} />)}
-        onClick={() => setPopup(<DeleteConfirm type={'recipe'} _id={recipeName} setPopup={setPopup} category={category} title={title}/>)}
+        onClick={() => setPopup(<DeleteConfirm type={'recipe'} _id={recipeName} setPopup={setPopup} category={category} title={title} />)}
 
       />
     </div>
     {popup && <Popup setPopup={setPopup} >
       {popup}
     </Popup>}
-    </>
+  </>
   )
 }
