@@ -4,7 +4,7 @@ import styles from './style.module.scss'
 import Image from 'next/image'
 import Setting from '../Setting';
 import { useUserStore } from '@/store/storeUser';
-import { settings } from '@/app/utils/objects';
+import { settings } from '@/app/utils/utils.settings';
 
 
 export default function Logged() {
