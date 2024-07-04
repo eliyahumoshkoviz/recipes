@@ -18,12 +18,13 @@ export const DeleteConfirm = ({ type, setPopup, _id, category, title }) => {
 
     const response = await fetch(`/api/${type}/${_id}`, options);
     const data = await response?.json();
+    console.log(data);
 
     if (data.message) {
-      router.push(`/${category ? `category/${title}` : ''}`, undefined, { shallow: false });
       setPopup(<SuccessMessage message={`${data.message}`} />);
       setTimeout(() => {
         setPopup(undefined);
+        router.push(`/${category ? `category/${title}` : ''}`, undefined, { shallow: false });
       }, 2000);
     }
     else {
